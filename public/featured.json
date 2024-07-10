@@ -1,0 +1,104 @@
+[
+  {
+    "_id": "room001",
+    "roomNumber": "201",
+    "type": "Deluxe Queen Room",
+    "capacity": 3,
+    "adults": 2,
+    "child": 1,
+    "description": "Experience luxury in our deluxe room with a private balcony offering breathtaking ocean views.",
+    "amenities": ["wifi", "TV", "AC", "private balcony with ocean view"],
+    "price": 150.0,
+    "availability": {
+      "startDate": "2023-01-01",
+      "endDate": "2023-12-31"
+    },
+    "image": "https://i.ibb.co/3W5C9fp/1.jpg"
+  },
+  {
+    "_id": "room002",
+    "roomNumber": "301",
+    "type": "King Ensuite Room",
+    "capacity": 4,
+    "adults": 2,
+    "child": 2,
+    "description": "Indulge in the ultimate luxury with our executive suite, featuring a private spa and minibar.",
+    "amenities": ["wifi", "TV", "AC"],
+    "price": 250.0,
+    "availability": {
+      "startDate": "2023-01-01",
+      "endDate": "2023-12-31"
+    },
+    "image": "https://i.ibb.co/jVzpTNn/2.jpg"
+  },
+  {
+    "_id": "room003",
+    "roomNumber": "102",
+    "type": "Family",
+    "capacity": 6,
+    "adults": 4,
+    "child": 2,
+    "description": "Enjoy a comfortable stay with your family in our spacious family room with connecting rooms.",
+    "amenities": ["free wifi", "TV", "air conditioning", "connecting rooms"],
+    "price": 120.0,
+    "availability": {
+      "startDate": "2023-01-01",
+      "endDate": "2023-12-31"
+    },
+    "image": "https://i.ibb.co/Sr95bsX/3.jpg"
+  },
+  {
+    "_id": "room004",
+    "roomNumber": "115",
+    "type": "Standard Room",
+    "capacity": 2,
+    "adults": 2,
+    "child": 0,
+    "description": "Experience a cozy and budget-friendly stay in our standard room with essential amenities.",
+    "amenities": ["wifi", "TV", "Ac"],
+    "price": 80.0,
+    "availability": {
+      "startDate": "2023-01-01",
+      "endDate": "2023-12-31"
+    },
+    "image": "https://i.ibb.co/RhBZGfb/4.jpg"
+  },
+  {
+    "_id": "room005",
+    "roomNumber": "401",
+    "type": "Romantic Suite",
+    "capacity": 2,
+    "adults": 2,
+    "child": 0,
+    "description": "Ignite the spark in our romantic suite with a whirlpool tub and personalized rose petal turn-down service.",
+    "amenities": [
+      "free wifi",
+      "TV",
+      "air conditioning",
+      "whirlpool tub",
+      "rose petal turn-down service"
+    ],
+    "price": 200.0,
+    "availability": {
+      "startDate": "2023-01-01",
+      "endDate": "2023-12-31"
+    },
+    "image": "https://i.ibb.co/ZcGFk87/5.jpg"
+  },
+  {
+    "_id": "room006",
+    "roomNumber": "118",
+    "type": "Accessible",
+    "capacity": 2,
+    "adults": 2,
+    "child": 0,
+    "description": "Experience comfort and accessibility in our specially designed accessible room with an accessible bathroom.",
+    "amenities": ["free wifi", "TV", "air conditioning", "accessible bathroom"],
+    "price": 90.0,
+    "availability": {
+      "startDate": "2023-01-01",
+      "endDate": "2023-12-31"
+    },
+    "image": "https://i.ibb.co/4RmLRhs/6.jpg"
+  }
+]
