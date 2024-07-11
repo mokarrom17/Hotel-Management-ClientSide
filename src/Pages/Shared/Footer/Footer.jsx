@@ -1,7 +1,7 @@
 import logo from "../../../assets/royal-hotel-high-resolution-logo.ico";
 const Footer = () => {
   return (
-    <div>
+    <div className="my-6">
       <footer className="footer p-10 bg-black text-white ">
         <aside>
           <img className="rounded-full w-20" src={logo} alt="" />
