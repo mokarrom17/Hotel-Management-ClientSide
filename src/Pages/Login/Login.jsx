@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import img from "../../assets/Hotel.jpg";
-
 const Login = () => {
   const handleLogin = (event) => {
     event.preventDefault();
