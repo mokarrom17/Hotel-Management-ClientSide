@@ -1,0 +1,56 @@
+[
+  {
+    "_id": "offer01",
+    "img": "https://i.ibb.co/Wt8Sbh7/01.jpg",
+    "title": "20% Off 3+ Nights Bookings",
+    "description": "Offer Valid For Suites Only"
+  },
+  {
+    "_id": "offer02",
+    "img": "https://i.ibb.co/n8zTMKV/02.jpg",
+    "title": "Summer Couples Offer",
+    "description": "20% Off August Bookings For Couples"
+  },
+  {
+    "_id": "offer03",
+    "img": "https://i.ibb.co/c1W4wjZ/03.jpg",
+    "title": "Honeymoon Offer",
+    "description": "Special Honeymoon Suite And Items"
+  },
+  {
+    "_id": "offer04",
+    "img": "https://i.ibb.co/2krh8JN/04.jpg",
+    "title": "1 Week Package Offer",
+    "description": "30% Off 1 Week+ Stays"
+  },
+  {
+    "_id": "offer05",
+    "img": "https://i.ibb.co/DVKH6KC/05.jpg",
+    "title": "10% When Booking Full Board",
+    "description": "Offer Valid In August Only"
+  },
+  {
+    "_id": "offer06",
+    "img": "https://i.ibb.co/SBcqhx2/06.jpg",
+    "title": "Family Discount",
+    "description": "10% Off For Families In March"
+  },
+  {
+    "_id": "offer07",
+    "img": "https://i.ibb.co/9GWGmNG/07.jpg",
+    "title": "Family Spring Savings",
+    "description": "Save 10% on March family getaways!"
+  },
+  {
+    "_id": "offer08",
+    "img": "https://i.ibb.co/zNgJJrv/08.jpg",
+    "title": "March Family Fun Deal",
+    "description": "Enjoy 10% off your family stay this March!"
+  },
+  {
+    "_id": "offer09",
+    "img": "https://i.ibb.co/0KCMdWK/09.jpg",
+    "title": "March Family Escape",
+    "description": "Get 10% off on your March family retreat!"
+  }
+]
