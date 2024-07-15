@@ -9,7 +9,7 @@ const Offers = () => {
     fetch("offers.json")
       .then((res) => res.json())
       .then((data) => setOffers(data));
-  });
+  }, []);
 
   var settings = {
     dots: true,

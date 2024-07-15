@@ -1,0 +1,38 @@
+[
+  {
+    "_id": 1,
+    "name": "Sarah Collins",
+    "occupation": "Corporate Executive",
+    "review": "I had an amazing stay at this luxury hotel. The service was impeccable, and the staff were attentive to every detail. The rooms were spacious, elegantly decorated, and offered breathtaking views. The spa and wellness facilities were top-notch, providing a truly relaxing experience. The on-site dining options were diverse and gourmet, catering to all tastes. I will definitely be returning on my next business trip.",
+    "image": "https://i.ibb.co/Cz71m1G/Image-1.jpg"
+  },
+  {
+    "_id": 2,
+    "name": "Dr. James Carter",
+    "occupation": "Cardiologist",
+    "review": "This hotel exceeded all my expectations. From the moment I arrived, I felt like royalty. The concierge service was incredibly helpful, making my stay stress-free. The room was luxurious, with a comfortable bed and high-end amenities. The infinity pool and rooftop bar were highlights of my stay, offering stunning city views. I highly recommend this hotel to anyone seeking luxury and comfort.",
+    "image": "https://i.ibb.co/BwPb6r3/Image-2.jpg"
+  },
+  {
+    "_id": 3,
+    "name": "Amanda Reynolds",
+    "occupation": "Fashion Designer",
+    "review": "A perfect blend of luxury and comfort. The hotel's interior design was stunning, reflecting elegance in every corner. The staff were friendly and professional, ensuring all my needs were met. My suite was exquisite, featuring plush furnishings and a marble bathroom. The hotel's location was ideal, close to shopping and cultural attractions. It was an unforgettable experience, and I can't wait to return.",
+
+    "image": "https://i.ibb.co/S0pGsv8/Image-3.jpg"
+  },
+  {
+    "_id": 4,
+    "name": "Michael Thompson",
+    "occupation": "Software Engineer",
+    "review": "Staying at this luxury hotel was an unforgettable experience. The personalized service made me feel special from check-in to check-out. The room was a haven of tranquility, equipped with state-of-the-art technology and a luxurious bathroom. The fitness center was well-equipped, and the spa treatments were rejuvenating. Dining at the hotel's restaurant was a culinary delight.",
+    "image": "https://i.ibb.co/qBv7gCt/Image-4.jpg"
+  },
+  {
+    "_id": 5,
+    "name": "Emily Watson",
+    "occupation": "Travel Blogger",
+    "review": "This luxury hotel is a gem. The attention to detail in the decor and the quality of service were outstanding. My room was spacious, with a beautiful view and the most comfortable bed I've ever slept in. The hotel's amenities, including the spa and pool, were exceptional. The dining experience was superb, with a variety of delicious options. It's the perfect place to unwind and indulge in luxury.",
+    "image": "https://i.ibb.co/mDRbN2z/Image-5.jpg"
+  }
+]
