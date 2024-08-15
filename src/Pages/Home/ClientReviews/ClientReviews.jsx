@@ -17,10 +17,12 @@ const ClientReviews = () => {
       .then((data) => setReviews(data));
   });
   return (
-    <div className="mx-20 mb-12 bg-white">
+    <div className="mx-4 md:mx-8 lg:mx-20 mb-12 bg-white">
       <div className="text-center mb-8 text-black">
-        <h2 className="text-5xl mb-4 ">Happy Client's Review</h2>
-        <p>
+        <h2 className="text-3xls md:text-4xl lg:text-center mb-4 font-bold">
+          Happy Client's Review
+        </h2>
+        <p className="lg:text-lg md:text-base text-sm">
           Maecenas nec odio et ante tincidunt tempus. Donec vitae apitlibero
           venenatis faucibus. Nullam quis ante. Etiam sit amet orci
         </p>
@@ -32,6 +34,10 @@ const ClientReviews = () => {
           320: {
             slidesPerView: 1,
             spaceBetween: 10,
+          },
+          640: {
+            slidesPerView: 1,
+            spaceBetween: 15,
           },
           768: {
             slidesPerView: 2,
@@ -47,18 +53,22 @@ const ClientReviews = () => {
       >
         {reviews.map((review) => (
           <SwiperSlide key={review._id}>
-            <div className="border-2 border-stone-900 mb-3 p-4 w-full h-[430px] rounded-lg">
+            <div className="border-2 border-stone-900 mb-3 p-4 w-full h-full lg:h-[300px] rounded-lg">
               <div className="text-center">
                 <div className="avatar">
-                  <div className="w-24 rounded-full">
+                  <div className="lg:w-24 lg:h-24 w-20 h-20 mx-auto overflow-hidden rounded-full">
                     <img src={review.image} />
                   </div>
                 </div>
-                <h1 className="text-black font-bold">{review.name}</h1>
-                <h1 className="text-black font-bold">{review.occupation}</h1>
+                <h1 className="text-black font-bold text-lg lg:text-xl">
+                  {review.name}
+                </h1>
+                <h1 className="text-black font-medium text-sm lg:text-base">
+                  {review.occupation}
+                </h1>
               </div>
-              <div className="overflow-hidden text-black font-medium ">
-                <p>{review.review}</p>
+              <div className=" text-sm lg:text-base text-black font-medium ">
+                <p className="line-clamp-4">{review.review}</p>
               </div>
             </div>
           </SwiperSlide>
