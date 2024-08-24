@@ -52,7 +52,7 @@ const ClientReviews = () => {
         className=""
       >
         {reviews.map((review) => (
-          <SwiperSlide key={review._id}>
+          <SwiperSlide className="px-2" key={review._id}>
             <div className="border-2 border-stone-900 mb-3 p-4 w-full h-full lg:h-[300px] rounded-lg">
               <div className="text-center">
                 <div className="avatar">
