@@ -11,7 +11,7 @@ const Faq = () => {
           please contact with us, we will solve the issue in correct time.
         </p>
       </div>
-      <div className="flex flex-col lg:flex-row  justify-between items-center lg:items-start  gap-6 lg:gap-10">
+      <div className="flex flex-col lg:flex-row justify-between items-center lg:items-start gap-6 lg:gap-10">
         <div className="w-full lg:w-1/2">
           <div className="collapse collapse-plus bg-base-200 mb-3">
             <input type="checkbox" name="my-accordion-3" />
@@ -27,7 +27,7 @@ const Faq = () => {
           </div>
           <div className="collapse collapse-plus bg-base-200 mb-3 ">
             <input type="checkbox" name="my-accordion-3" />
-            <div className="collapse-title text-lg lg:text-xl:text-xl font-medium">
+            <div className="collapse-title text-lg lg:text-xl te font-medium">
               Is breakfast included in the room rate?
             </div>
             <div className="collapse-content">
@@ -40,7 +40,7 @@ const Faq = () => {
           </div>
           <div className="collapse collapse-plus bg-base-200 mb-3">
             <input type="checkbox" name="my-accordion-3" />
-            <div className="collapse-title text-lg lg:text-xl font-medium">
+            <div className="collapse-title text-lg lg:te te font-medium">
               Is parking available at the hotel?
             </div>
             <div className="collapse-content">
@@ -52,7 +52,7 @@ const Faq = () => {
           </div>
           <div className="collapse collapse-plus bg-base-200 mb-3">
             <input type="checkbox" name="my-accordion-3" />
-            <div className="collapse-title text-lg lg:text-xl font-medium">
+            <div className="collapse-title text-lg lg:te te font-medium">
               Does the hotel have Wi-Fi, and is it free?
             </div>
             <div className="collapse-content">
@@ -64,7 +64,7 @@ const Faq = () => {
           </div>
           <div className="collapse collapse-plus bg-base-200 mb-3">
             <input type="checkbox" name="my-accordion-3" />
-            <div className="collapse-title text-lg lg:text-xl font-medium">
+            <div className="collapse-title text-lg lg:te te font-medium">
               Do you offer airport shuttle service?
             </div>
             <div className="collapse-content">
@@ -76,10 +76,10 @@ const Faq = () => {
             </div>
           </div>
         </div>
-        <div className="">
+        <div className="w-full lg:w-1/2">
           <div className="collapse collapse-plus bg-base-200 mb-3">
             <input type="checkbox" name="my-accordion-3" />
-            <div className="collapse-title text-lg lg:text-xl font-medium">
+            <div className="collapse-title text-lg lg:te te font-medium">
               Are pets allowed at the hotel?
             </div>
             <div className="collapse-content">
@@ -91,7 +91,7 @@ const Faq = () => {
           </div>
           <div className="collapse collapse-plus bg-base-200 mb-3">
             <input type="checkbox" name="my-accordion-3" />
-            <div className="collapse-title text-lg lg:text-xl font-medium">
+            <div className="collapse-title text-lg lg:te te font-medium">
               What amenities are available at the hotel?
             </div>
             <div className="collapse-content">
@@ -104,7 +104,7 @@ const Faq = () => {
           </div>
           <div className="collapse collapse-plus bg-base-200 mb-3">
             <input type="checkbox" name="my-accordion-3" />
-            <div className="collapse-title text-lg lg:text-xl font-medium">
+            <div className="collapse-title text-lg lg:te te font-medium">
               Is there a cancellation policy?
             </div>
             <div className="collapse-content">
@@ -117,27 +117,25 @@ const Faq = () => {
           </div>
           <div className="collapse collapse-plus bg-base-200 mb-3">
             <input type="checkbox" name="my-accordion-3" />
-            <div className="collapse-title text-lg lg:text-xl text-xl font-medium">
-              Are there any nearby attractions or points of interest?
+            <div className="collapse-title text-lg lg:text-xl  font-medium">
+              Are there any additional fees or taxes?
             </div>
             <div className="collapse-content">
               <p>
-                Our hotel is conveniently located near [popular
-                attractions/landmarks]. The front desk can provide
-                recommendations and directions.
+                Additional fees and local taxes may apply depending on the rate
+                and services used during your stay.
               </p>
             </div>
           </div>
           <div className="collapse collapse-plus bg-base-200 mb-3">
             <input type="checkbox" name="my-accordion-3" />
-            <div className="collapse-title text-lg lg:text-xl text-xl font-medium">
-              Do you have accessible rooms for guests with disabilities?
+            <div className="collapse-title text-lg lg:text-xl font-medium">
+              Can I store my luggage after check-out?
             </div>
             <div className="collapse-content">
               <p>
-                Yes, we have accessible rooms equipped with features to
-                accommodate guests with disabilities. Please inform us of your
-                needs when making your reservation.
+                Yes, we offer complimentary luggage storage for guests who have
+                checked out but still wish to explore the area.
               </p>
             </div>
           </div>
