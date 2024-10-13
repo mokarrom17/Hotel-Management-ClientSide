@@ -14,13 +14,9 @@ const FeaturedRoom = ({ room }) => {
         </h2>
         <p className="text-black">{description}</p>
         <div className="flex mx-auto  ">
-          <Link className="btn btn-sm hover:bg-[] rounded-none btn-dark py-2 px-4 text-white">
+          <Link to={``} className="btn btn-sm hover:bg-[] rounded-none bg-[#AB8A62] py-2 px-4 text-white">
             {" "}
             <FaComputer></FaComputer> Book Now
-          </Link>
-          <Link className="btn btn-sm bg-[#aa8453] rounded-none py-2 px-4 text-white">
-            {" "}
-            <MdOutlinePreview /> View Details
           </Link>
         </div>
       </div>

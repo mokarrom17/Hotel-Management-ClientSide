@@ -1,6 +1,5 @@
 [
   {
-    "_id": "room001",
     "roomNumber": "201",
     "type": "Deluxe Queen Room",
     "capacity": 3,
@@ -16,7 +15,6 @@
     "image": "https://i.ibb.co/3W5C9fp/1.jpg"
   },
   {
-    "_id": "room002",
     "roomNumber": "301",
     "type": "King Ensuite Room",
     "capacity": 4,
@@ -32,7 +30,6 @@
     "image": "https://i.ibb.co/jVzpTNn/2.jpg"
   },
   {
-    "_id": "room003",
     "roomNumber": "102",
     "type": "Family",
     "capacity": 6,
@@ -48,7 +45,6 @@
     "image": "https://i.ibb.co/Sr95bsX/3.jpg"
   },
   {
-    "_id": "room004",
     "roomNumber": "115",
     "type": "Standard Room",
     "capacity": 2,
@@ -64,7 +60,6 @@
     "image": "https://i.ibb.co/RhBZGfb/4.jpg"
   },
   {
-    "_id": "room005",
     "roomNumber": "401",
     "type": "Romantic Suite",
     "capacity": 2,
@@ -86,7 +81,6 @@
     "image": "https://i.ibb.co/ZcGFk87/5.jpg"
   },
   {
-    "_id": "room006",
     "roomNumber": "118",
     "type": "Accessible",
     "capacity": 2,

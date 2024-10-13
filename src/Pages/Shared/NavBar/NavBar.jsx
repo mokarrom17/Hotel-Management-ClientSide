@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import logo from "../../../assets/royal-hotel-high-resolution-logo.ico";
 import { FaHandPointRight } from "react-icons/fa";
 
 const NavBar = () => {
@@ -48,7 +47,7 @@ const NavBar = () => {
             </ul>
           </div>
           <Link to="/" className="">
-            <img className="rounded-e-full w-16" src={logo} alt="" />
+            <img className="rounded-e-full w-16" alt="" />
           </Link>
         </div>
         <div className=" navbar-center hidden lg:flex ">
