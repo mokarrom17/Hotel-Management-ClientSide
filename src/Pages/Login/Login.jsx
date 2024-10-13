@@ -1,8 +1,22 @@
 import { Link } from "react-router-dom";
 import img from "../../assets/Hotel.jpg";
+import { useContext } from "react";
+import { AuthContext } from "../../Providers/AuthProvider";
 const Login = () => {
   const handleLogin = (event) => {
+    const { signUp } = useContext(AuthContext);
+
     event.preventDefault();
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    signUp(email, password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => console.log(error));
   };
   return (
     <div className="">
