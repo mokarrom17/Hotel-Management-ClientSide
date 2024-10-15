@@ -1,9 +1,10 @@
+import hoteLogo from "../../../assets/logo.jpg";
 const Footer = () => {
   return (
     <div className="my-6 mx-3">
       <footer className="footer p-10 bg-black text-white ">
         <aside>
-          <img className="rounded-full w-20" alt="" />
+          <img className="rounded-full w-20" src={hoteLogo} alt="" />
           <p>
             ACME Industries Ltd.
             <br />

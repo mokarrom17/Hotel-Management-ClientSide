@@ -5,14 +5,26 @@
     "capacity": 3,
     "adults": 2,
     "child": 1,
-    "description": "Experience luxury in our deluxe room with a private balcony offering breathtaking ocean views.",
+    "beds": {
+      "single": 1,
+      "double": 1
+    },
+    "description": "Enjoy a deluxe room with a private balcony, breathtaking ocean views, and modern amenities for a luxurious stay. Perfect for small families or couples seeking comfort and relaxation.",
     "amenities": ["wifi", "TV", "AC", "private balcony with ocean view"],
     "price": 150.0,
     "availability": {
       "startDate": "2023-01-01",
       "endDate": "2023-12-31"
     },
-    "image": "https://i.ibb.co/3W5C9fp/1.jpg"
+    "cancellationPolicy": "Free Cancellation",
+    "checkInTime": "11:00 PM",
+    "checkOutTime": "11:00 PM",
+    "image": "https://i.ibb.co/3W5C9fp/1.jpg",
+    "gallery": [
+      "https://i.ibb.co.com/YZtp9pq/001.jpg",
+      "https://i.ibb.co.com/QXs3tXT/01.jpg",
+      "https://i.ibb.co.com/m4zv97L/0001.jpg"
+    ]
   },
   {
     "roomNumber": "301",
@@ -20,14 +32,26 @@
     "capacity": 4,
     "adults": 2,
     "child": 2,
-    "description": "Indulge in the ultimate luxury with our executive suite, featuring a private spa and minibar.",
+    "beds": {
+      "single": 0,
+      "double": 2
+    },
+    "description": "Luxuriate in our King Ensuite, featuring a private spa and minibar. Ideal for families or couples looking for an indulgent getaway with comfort and premium amenities.",
     "amenities": ["wifi", "TV", "AC"],
     "price": 250.0,
     "availability": {
       "startDate": "2023-01-01",
       "endDate": "2023-12-31"
     },
-    "image": "https://i.ibb.co/jVzpTNn/2.jpg"
+    "cancellationPolicy": "Free Cancellation",
+    "checkInTime": "11:00 PM",
+    "checkOutTime": "11:00 PM",
+    "image": "https://i.ibb.co/jVzpTNn/2.jpg",
+    "gallery": [
+      "https://i.ibb.co.com/Lg1vB2s/002.jpg",
+      "https://i.ibb.co.com/gyqT4BC/0002.jpg",
+      "https://ibb.co.com/pZjRrs5"
+    ]
   },
   {
     "roomNumber": "102",
@@ -35,14 +59,24 @@
     "capacity": 6,
     "adults": 4,
     "child": 2,
-    "description": "Enjoy a comfortable stay with your family in our spacious family room with connecting rooms.",
+    "beds": {
+      "single": 2,
+      "double": 2
+    },
+    "description": "Spacious family room with connecting rooms, perfect for large families. Enjoy modern amenities, including free wifi and air conditioning, ensuring a comfortable stay for everyone.",
     "amenities": ["free wifi", "TV", "air conditioning", "connecting rooms"],
     "price": 120.0,
     "availability": {
       "startDate": "2023-01-01",
       "endDate": "2023-12-31"
     },
-    "image": "https://i.ibb.co/Sr95bsX/3.jpg"
+    "cancellationPolicy": "Free Cancellation",
+    "image": "https://i.ibb.co/Sr95bsX/3.jpg",
+    "gallery": [
+      "https://i.ibb.co.com/qYh1fFd/03.jpg",
+      "https://i.ibb.co.com/HHnnc7p/003.jpg",
+      "https://ibb.co.com/xHRXWCS"
+    ]
   },
   {
     "roomNumber": "115",
@@ -50,14 +84,26 @@
     "capacity": 2,
     "adults": 2,
     "child": 0,
-    "description": "Experience a cozy and budget-friendly stay in our standard room with essential amenities.",
-    "amenities": ["wifi", "TV", "Ac"],
+    "beds": {
+      "single": 0,
+      "double": 1
+    },
+    "description": "A cozy, budget-friendly standard room with essential amenities like wifi and air conditioning. Ideal for guests seeking comfort at an affordable rate.",
+    "amenities": ["wifi", "TV", "AC"],
     "price": 80.0,
     "availability": {
       "startDate": "2023-01-01",
       "endDate": "2023-12-31"
     },
-    "image": "https://i.ibb.co/RhBZGfb/4.jpg"
+    "cancellationPolicy": "Free Cancellation",
+    "checkInTime": "11:00 PM",
+    "checkOutTime": "11:00 PM",
+    "image": "https://i.ibb.co/RhBZGfb/4.jpg",
+    "gallery": [
+      "https://i.ibb.co.com/dp235Cc/04.jpg",
+      "https://i.ibb.co.com/Fh44wtn/004.jpg",
+      "https://ibb.co.com/9whMNDQ"
+    ]
   },
   {
     "roomNumber": "401",
@@ -65,7 +111,11 @@
     "capacity": 2,
     "adults": 2,
     "child": 0,
-    "description": "Ignite the spark in our romantic suite with a whirlpool tub and personalized rose petal turn-down service.",
+    "beds": {
+      "single": 0,
+      "double": 1
+    },
+    "description": "Our romantic suite offers a whirlpool tub and rose petal turn-down service. Perfect for couples looking for a romantic and intimate getaway.",
     "amenities": [
       "free wifi",
       "TV",
@@ -78,7 +128,15 @@
       "startDate": "2023-01-01",
       "endDate": "2023-12-31"
     },
-    "image": "https://i.ibb.co/ZcGFk87/5.jpg"
+    "cancellationPolicy": "Free Cancellation",
+    "checkInTime": "11:00 PM",
+    "checkOutTime": "11:00 PM",
+    "image": "https://i.ibb.co/ZcGFk87/5.jpg",
+    "gallery": [
+      "https://i.ibb.co/ZcGFk87/5.jpg",
+      "https://ibb.co.com/QfWyk4T",
+      "https://ibb.co.com/44KX5T3"
+    ]
   },
   {
     "roomNumber": "118",
@@ -86,13 +144,25 @@
     "capacity": 2,
     "adults": 2,
     "child": 0,
-    "description": "Experience comfort and accessibility in our specially designed accessible room with an accessible bathroom.",
+    "beds": {
+      "single": 0,
+      "double": 1
+    },
+    "description": "Designed for accessibility, this room offers comfort with features like an accessible bathroom, free wifi, and air conditioning for a relaxed stay.",
     "amenities": ["free wifi", "TV", "air conditioning", "accessible bathroom"],
     "price": 90.0,
     "availability": {
       "startDate": "2023-01-01",
       "endDate": "2023-12-31"
     },
-    "image": "https://i.ibb.co/4RmLRhs/6.jpg"
+    "cancellationPolicy": "Free Cancellation",
+    "checkInTime": "11:00 PM",
+    "checkOutTime": "11:00 PM",
+    "image": "https://i.ibb.co/4RmLRhs/6.jpg",
+    "gallery": [
+      "https://i.ibb.co/4RmLRhs/6.jpg",
+      "https://i.ibb.co.com/zm3dsVZ/06.webp",
+      "https://i.ibb.co.com/VqxT42K/006.jpg"
+    ]
   }
 ]

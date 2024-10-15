@@ -1,26 +1,35 @@
 import { Link } from "react-router-dom";
+import hotelLogo from "../../../assets/logo.jpg";
 import { FaHandPointRight } from "react-icons/fa";
 
 const NavBar = () => {
   const navItems = (
     <>
-      <li>
-        <Link to="/">HOME</Link>
+      <li className="">
+        <Link to="/" className="hover:text-[#aa8453]">
+          HOME
+        </Link>
       </li>
       <li>
-        <Link to="/">FAQS</Link>
+        <Link to="/" className="hover:text-[#aa8453]">
+          FAQS
+        </Link>
       </li>
       <li>
-        <Link to="/">UPDATE</Link>
+        <Link to="/" className="hover:text-[#aa8453]">
+          UPDATE
+        </Link>
       </li>
       <li>
-        <Link to="/">CONTACTS</Link>
+        <Link to="/" className="hover:text-[#aa8453]">
+          CONTACTS
+        </Link>
       </li>
     </>
   );
   return (
     <div>
-      <div className="navbar bg-base-100 h-24">
+      <div className="navbar bg-white h-24">
         <div className="navbar-start">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -47,11 +56,13 @@ const NavBar = () => {
             </ul>
           </div>
           <Link to="/" className="">
-            <img className="rounded-e-full w-16" alt="" />
+            <img className="rounded-e-full w-16" src={hotelLogo} alt="" />
           </Link>
         </div>
         <div className=" navbar-center hidden lg:flex ">
-          <ul className="menu menu-horizontal px-1">{navItems}</ul>
+          <ul className="menu menu-horizontal text-black  font-medium px-1">
+            {navItems}
+          </ul>
         </div>
         <div className="navbar-end">
           <a className="btn bg-[#aa8453] text-white font-b hover:bg-black">
