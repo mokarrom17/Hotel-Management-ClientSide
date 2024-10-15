@@ -3,7 +3,7 @@ import hotelBg from "../../assets/HotelBg2.jpg";
 
 const RoomDetails = () => {
   const features = useLoaderData();
-  const { type, image, adults, child, price } = features;
+  const { type, image, adults, child, price, description } = features;
   return (
     <div>
       <div
@@ -34,7 +34,7 @@ const RoomDetails = () => {
                   </div>
                 </div>
                 <div className="">
-                  <div className="text-3xl text-black font-bold">
+                  <div className="text-3xl text-[#aa8453] font-bold">
                     ${price}.00
                   </div>
                   <div className="text-sm text-black">
@@ -51,6 +51,14 @@ const RoomDetails = () => {
             src={image}
             alt=""
           />
+        </div>
+        <div className="flex justify-center mt-6 shadow-md">
+          <div className="card bg-white w-[800px] shadow-xl">
+            <div className="card-body text-black divide-y-2">
+              <h2 className="card-title">Description</h2>
+              <p>{description}</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>

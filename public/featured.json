@@ -9,7 +9,7 @@
       "single": 1,
       "double": 1
     },
-    "description": "Enjoy a deluxe room with a private balcony, breathtaking ocean views, and modern amenities for a luxurious stay. Perfect for small families or couples seeking comfort and relaxation.",
+    "description": "Experience luxury in our Deluxe Queen Room, featuring a private balcony with breathtaking ocean views. Designed for comfort, this room is perfect for couples or small families seeking relaxation in a serene environment. Enjoy modern amenities like high-speed Wi-Fi, flat-screen TV, and air conditioning. The room offers a cozy ambiance with a queen-sized bed and a single bed, making it ideal for a family of three. Wake up to the sound of the waves and unwind with the stunning coastal scenery from your balcony. Book this room for a memorable, luxurious stay by the ocean.",
     "amenities": ["wifi", "TV", "AC", "private balcony with ocean view"],
     "price": 150.0,
     "availability": {
@@ -36,7 +36,7 @@
       "single": 0,
       "double": 2
     },
-    "description": "Luxuriate in our King Ensuite, featuring a private spa and minibar. Ideal for families or couples looking for an indulgent getaway with comfort and premium amenities.",
+    "description": " Indulge in ultimate luxury with our King Ensuite Room, designed for those who seek a premium experience. The spacious room features a king-sized bed, two double beds, and a private spa for relaxation. Ideal for families or couples, the room comes equipped with modern amenities such as high-speed Wi-Fi, a flat-screen TV, and air conditioning. Relax in the comfort of your own private space with a minibar stocked for your convenience. Whether you're traveling for leisure or business, this room provides the perfect blend of luxury and comfort to elevate your stay.",
     "amenities": ["wifi", "TV", "AC"],
     "price": 250.0,
     "availability": {
@@ -63,7 +63,7 @@
       "single": 2,
       "double": 2
     },
-    "description": "Spacious family room with connecting rooms, perfect for large families. Enjoy modern amenities, including free wifi and air conditioning, ensuring a comfortable stay for everyone.",
+    "description": "Our Family Room is designed to provide a spacious, comfortable stay for large families. With connecting rooms and enough space for six people, this room ensures that everyone has their own area while remaining close together. It comes equipped with two single beds and two double beds, offering flexibility for families. Amenities like free Wi-Fi, a flat-screen TV, and air conditioning ensure a modern, comfortable experience. The Family Room is perfect for creating lasting memories with loved ones, providing both privacy and shared space in a welcoming and warm environment.",
     "amenities": ["free wifi", "TV", "air conditioning", "connecting rooms"],
     "price": 120.0,
     "availability": {
@@ -88,7 +88,7 @@
       "single": 0,
       "double": 1
     },
-    "description": "A cozy, budget-friendly standard room with essential amenities like wifi and air conditioning. Ideal for guests seeking comfort at an affordable rate.",
+    "description": "Experience comfort and affordability in our Standard Room, ideal for budget-conscious travelers without compromising on essential amenities. This cozy room is perfect for two adults and features a comfortable double bed, air conditioning, a flat-screen TV, and free Wi-Fi. Whether you're staying for a short weekend getaway or an extended business trip, our Standard Room provides all the essentials for a restful stay. Enjoy a relaxing environment that caters to your basic needs, with everything you require to recharge during your trip at an affordable price point.",
     "amenities": ["wifi", "TV", "AC"],
     "price": 80.0,
     "availability": {
@@ -115,7 +115,7 @@
       "single": 0,
       "double": 1
     },
-    "description": "Our romantic suite offers a whirlpool tub and rose petal turn-down service. Perfect for couples looking for a romantic and intimate getaway.",
+    "description": "Perfect for couples, our Romantic Suite is the ideal choice for a romantic escape. Featuring a luxurious whirlpool tub and personalized rose petal turn-down service, this room sets the stage for intimate and unforgettable moments. The suite is equipped with modern amenities, including free Wi-Fi, air conditioning, and a flat-screen TV. Enjoy quiet relaxation and create beautiful memories in this peaceful and stylish space designed to enhance your romantic experience. Whether it's for an anniversary, honeymoon, or a special getaway, the Romantic Suite offers the ultimate ambiance for couples.",
     "amenities": [
       "free wifi",
       "TV",
@@ -148,7 +148,7 @@
       "single": 0,
       "double": 1
     },
-    "description": "Designed for accessibility, this room offers comfort with features like an accessible bathroom, free wifi, and air conditioning for a relaxed stay.",
+    "description": "Our Accessible Room is specially designed to ensure comfort and convenience for all guests, including those with mobility challenges. This room is equipped with an accessible bathroom, free Wi-Fi, air conditioning, and a flat-screen TV. The spacious design ensures ease of movement, and all key amenities are within convenient reach. The room features a comfortable double bed, ensuring a restful stay. Whether you're traveling for leisure or business, this room is the perfect choice for guests seeking an accessible and comfortable accommodation option that provides both functionality and relaxation.",
     "amenities": ["free wifi", "TV", "air conditioning", "accessible bathroom"],
     "price": 90.0,
     "availability": {
