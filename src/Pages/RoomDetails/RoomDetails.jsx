@@ -11,8 +11,14 @@ import {
 } from "react-icons/fi";
 import { FaSwimmingPool } from "react-icons/fa";
 import { FaAccessibleIcon } from "react-icons/fa6";
+import { useState } from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const RoomDetails = () => {
+  const [checkInDate, setCheckInDate] = useState(null);
+  const [checkOutDate, setCheckOutDate] = useState(null);
+
   const features = useLoaderData();
   const {
     type,
@@ -172,42 +178,50 @@ const RoomDetails = () => {
             </div>
           </div>
         </div>
-        <div className="hero w-1/3">
-          <div className="">
-            <div className="card shadow-2xl">
-              <form className="card-body ">
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text">Email</span>
-                  </label>
-                  <input
-                    type="email"
-                    placeholder="email"
-                    className="input input-bordered"
-                    required
-                  />
-                </div>
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text">Password</span>
-                  </label>
-                  <input
-                    type="password"
-                    placeholder="password"
-                    className="input input-bordered"
-                    required
-                  />
-                  <label className="label">
-                    <a href="#" className="label-text-alt link link-hover">
-                      Forgot password?
-                    </a>
-                  </label>
-                </div>
-                <div className="form-control mt-6">
-                  <button className="btn btn-primary">Login</button>
-                </div>
-              </form>
+        <div className="w-full lg:w-1/3 mt-16 mx-auto">
+          <div className="border-2 p-10 rounded-lg shadow-md mx-10">
+            <div className="mb-4 flex flex-col text-black font-medium">
+              <label>Check In</label>
+              <DatePicker
+                selected={checkInDate}
+                onChange={(date) => setCheckInDate(date)}
+                dateFormat="dd/MM/yyyy"
+                placeholderText="Select a date"
+                className="input input-bordered w-full focus:border-[#aa8453] focus:ring-0 text-black bg-white"
+                required
+                minDate={new Date()}
+              />
             </div>
+            <div className="mb-4 flex flex-col text-black font-medium">
+              <label>Check Out</label>
+              <DatePicker
+                selected={checkOutDate}
+                onChange={(date) => setCheckOutDate(date)}
+                dateFormat="dd/MM/yyyy"
+                placeholderText="Select a date"
+                className="input input-bordered focus:border-[#aa8453] focus:ring-0 w-full text-black bg-white"
+                required
+                minDate={
+                  checkInDate
+                    ? new Date(checkInDate.getTime() + 24 * 60 * 60 * 1000)
+                    : new Date()
+                }
+              />
+            </div>
+            <div className="flex flex-col space-y-2 mb-6">
+              <label className="font-medium text-black">Rooms</label>
+              <input
+                type="number"
+                id="rooms"
+                name="rooms"
+                placeholder="Number of Rooms"
+                min="1"
+                className=" block input-bordered w-full px-5 py-3 text-black bg-white input rounded-md "
+              />
+            </div>
+            <button className="btn btn-wide hover:bg-[#aa8453] border-white bg-white text-black">
+              SEND BOOKING REQUEST
+            </button>
           </div>
         </div>
       </div>
