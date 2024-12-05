@@ -180,7 +180,7 @@ const RoomDetails = () => {
         </div>
         <div className="w-full lg:w-1/3 mt-16 mx-auto">
           <div className="border-2 p-10 rounded-lg shadow-md mx-10">
-            <div className="mb-4 flex flex-col text-black font-medium">
+            <div className="mb-4 flex flex-col space-y-2 text-black font-medium">
               <label>Check In</label>
               <DatePicker
                 selected={checkInDate}
@@ -192,7 +192,7 @@ const RoomDetails = () => {
                 minDate={new Date()}
               />
             </div>
-            <div className="mb-4 flex flex-col text-black font-medium">
+            <div className="mb-4 flex flex-col space-y-2 text-black font-medium">
               <label>Check Out</label>
               <DatePicker
                 selected={checkOutDate}
@@ -208,15 +208,41 @@ const RoomDetails = () => {
                 }
               />
             </div>
+            <div className="mb-4 flex flex-col space-y-2 text-black font-medium">
+              <label>Name</label>
+              <input
+                type="text"
+                placeholder="Enter Your full name"
+                className="input input-bordered focus:border-[#aa8453] focus:ring-0  w-full max-w-xs bg-white"
+              />
+            </div>
+            <div className="mb-4 flex flex-col space-y-2 text-black font-medium">
+              <label>Email</label>
+              <input
+                type="email"
+                placeholder="Enter Your email address"
+                className="input input-bordered focus:border-[#aa8453] focus:ring-0  w-full max-w-xs bg-white"
+              />
+            </div>
+            <div className="mb-4 flex flex-col space-y-2 text-black font-medium">
+              <label>Phone</label>
+              <input
+                type="text"
+                placeholder="Enter Your phone number"
+                className="input input-bordered focus:border-[#aa8453] focus:ring-0  w-full max-w-xs bg-white"
+              />
+            </div>
             <div className="flex flex-col space-y-2 mb-6">
-              <label className="font-medium text-black">Rooms</label>
+              <label className="font-medium focus:border-[#aa8453] focus:ring-0 text-black">
+                Rooms
+              </label>
               <input
                 type="number"
                 id="rooms"
                 name="rooms"
                 placeholder="Number of Rooms"
                 min="1"
-                className=" block input-bordered w-full px-5 py-3 text-black bg-white input rounded-md "
+                className=" block input-bordered focus:border-[#aa8453] focus:ring-0 w-full px-5 py-3 text-black bg-white input rounded-md "
               />
             </div>
             <button className="btn btn-wide hover:bg-[#aa8453] border-white bg-white text-black">
