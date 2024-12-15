@@ -32,7 +32,18 @@ const RoomDetails = () => {
     cancellationPolicy,
     amenities,
     beds,
+    gallery,
   } = features;
+
+  const [mainImage, setMainImage] = useState(image);
+  const [smallImage, setSmallImage] = useState(gallery.slice(0, 3));
+  // Handle swapping images
+  const handleImageClick = () => {
+    const updateImage = smallImage.filter((img) => img !== selectedImage);
+    updateImage.unshift(mainImage);
+    setMainImage(selectedImage);
+    setSmallImage(updateImage);
+  };
 
   //Function to Determine Which icon to display for each amenity
   const getAmenityIcon = (amenity) => {
@@ -107,9 +118,20 @@ const RoomDetails = () => {
           <div className=" flex items-center justify-center">
             <img
               className="w-[800px] h-[400px] border rounded-xl"
-              src={image}
+              src={mainImage}
               alt=""
             />
+          </div>
+          {/* Gallery Section */}
+          <div className="flex justify-center mt-4 space-x-4">
+            {smallImage.map((smallImage, index) => (
+              <img
+                src={smallImage}
+                alt={`small ${index}`}
+                className="w-30 h-24 object-cover border rounded-md cursor-pointer hover:scale-105 transform transition"
+                onClick={() => handleImageClick(smallImage)}
+              />
+            ))}
           </div>
           <div className="flex justify-center mt-6 shadow-md">
             <div className="card bg-white w-[800px] shadow-xl">

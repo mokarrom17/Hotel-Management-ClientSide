@@ -12,7 +12,7 @@ const NavBar = () => {
       </li>
       <li>
         <Link to="/" className="hover:text-[#aa8453]">
-          FAQS
+          Blogs
         </Link>
       </li>
       <li>
