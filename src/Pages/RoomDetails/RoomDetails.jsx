@@ -11,13 +11,44 @@ import {
 } from "react-icons/fi";
 import { FaSwimmingPool } from "react-icons/fa";
 import { FaAccessibleIcon } from "react-icons/fa6";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { AuthContext } from "../../Providers/AuthProvider";
 
 const RoomDetails = () => {
   const [checkInDate, setCheckInDate] = useState(null);
   const [checkOutDate, setCheckOutDate] = useState(null);
+  const { user } = useContext(AuthContext);
+
+  const handleBooking = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const checkIn = form.checkIn.value;
+    const checkOut = form.checkOut.value;
+    const roomNumber = form.rooms.value;
+    const name = form.name.value;
+    const email = user?.email;
+    const phone = form.phone.value;
+    const booking = {
+      customerName: name,
+      customerEmail: email,
+      customerPhone: phone,
+      checkIn: checkIn,
+      checkOut: checkOut,
+      roomNumber: roomNumber,
+    };
+    console.log(booking);
+    fetch("http://localhost:5000/bookings", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(booking),
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data));
+  };
 
   const features = useLoaderData();
   const {
@@ -38,7 +69,7 @@ const RoomDetails = () => {
   const [mainImage, setMainImage] = useState(image);
   const [smallImage, setSmallImage] = useState(gallery.slice(0, 3));
   // Handle swapping images
-  const handleImageClick = () => {
+  const handleImageClick = (selectedImage) => {
     const updateImage = smallImage.filter((img) => img !== selectedImage);
     updateImage.unshift(mainImage);
     setMainImage(selectedImage);
@@ -126,6 +157,7 @@ const RoomDetails = () => {
           <div className="flex justify-center mt-4 space-x-4">
             {smallImage.map((smallImage, index) => (
               <img
+                key={index}
                 src={smallImage}
                 alt={`small ${index}`}
                 className="w-30 h-24 object-cover border rounded-md cursor-pointer hover:scale-105 transform transition"
@@ -201,7 +233,10 @@ const RoomDetails = () => {
           </div>
         </div>
         <div className="w-full lg:w-1/3 mt-16 mx-auto">
-          <div className="border-2 p-10 rounded-lg shadow-md mx-10">
+          <form
+            onSubmit={handleBooking}
+            className="border-2 p-10 rounded-lg shadow-md mx-10"
+          >
             <div className="mb-4 flex flex-col space-y-2 text-black font-medium">
               <label>Check In</label>
               <DatePicker
@@ -209,6 +244,7 @@ const RoomDetails = () => {
                 onChange={(date) => setCheckInDate(date)}
                 dateFormat="dd/MM/yyyy"
                 placeholderText="Select a date"
+                name="checkIn"
                 className="input input-bordered w-full focus:border-[#aa8453] focus:ring-0 text-black bg-white"
                 required
                 minDate={new Date()}
@@ -221,6 +257,7 @@ const RoomDetails = () => {
                 onChange={(date) => setCheckOutDate(date)}
                 dateFormat="dd/MM/yyyy"
                 placeholderText="Select a date"
+                name="checkOut"
                 className="input input-bordered focus:border-[#aa8453] focus:ring-0 w-full text-black bg-white"
                 required
                 minDate={
@@ -230,18 +267,22 @@ const RoomDetails = () => {
                 }
               />
             </div>
-            <div className="mb-4 flex flex-col space-y-2 text-black font-medium">
+            <div className="mb-4 flex flex-col space-y-2 text-black  font-medium">
               <label>Name</label>
               <input
                 type="text"
+                name="name"
+                defaultValue={user?.displayName}
                 placeholder="Enter Your full name"
-                className="input input-bordered focus:border-[#aa8453] focus:ring-0  w-full max-w-xs bg-white"
+                className="input input-bordered focus:border-[#aa8453] focus:ring-0  w-full max-w-xs text-black bg-white"
               />
             </div>
             <div className="mb-4 flex flex-col space-y-2 text-black font-medium">
               <label>Email</label>
               <input
                 type="email"
+                name="email"
+                defaultValue={user?.email}
                 placeholder="Enter Your email address"
                 className="input input-bordered focus:border-[#aa8453] focus:ring-0  w-full max-w-xs bg-white"
               />
@@ -250,6 +291,7 @@ const RoomDetails = () => {
               <label>Phone</label>
               <input
                 type="text"
+                name="phone"
                 placeholder="Enter Your phone number"
                 className="input input-bordered focus:border-[#aa8453] focus:ring-0  w-full max-w-xs bg-white"
               />
@@ -264,13 +306,13 @@ const RoomDetails = () => {
                 name="rooms"
                 placeholder="Number of Rooms"
                 min="1"
-                className=" block input-bordered focus:border-[#aa8453] focus:ring-0 w-full px-5 py-3 text-black bg-white input rounded-md "
+                className=" block input-bordered focus:border-[#aa8453] focus:ring-0 w-full px-5 py-3 text-black bg-white input rounded-md font-medium "
               />
             </div>
             <button className="btn btn-wide hover:bg-[#aa8453] border-white bg-white text-black">
               SEND BOOKING REQUEST
             </button>
-          </div>
+          </form>
         </div>
       </div>
     </div>
