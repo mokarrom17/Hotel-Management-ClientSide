@@ -1,5 +1,7 @@
 import { useLoaderData } from "react-router-dom";
 import hotelBg from "../../assets/HotelBg2.jpg";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { BsDoorClosed, BsDoorOpen } from "react-icons/bs";
 import { RiCheckDoubleFill } from "react-icons/ri";
 import {
@@ -37,6 +39,7 @@ const RoomDetails = () => {
       checkIn: checkIn,
       checkOut: checkOut,
       roomNumber: roomNumber,
+      type: type,
     };
     console.log(booking);
     fetch("http://localhost:5000/bookings", {
@@ -47,7 +50,15 @@ const RoomDetails = () => {
       body: JSON.stringify(booking),
     })
       .then((res) => res.json())
-      .then((data) => console.log(data));
+      .then((data) => {
+        console.log(data);
+        if (data.insertedId) {
+          toast.success("Booking successful!");
+        }
+      })
+      .catch((error) => {
+        toast.error("Booking failed. Please try again.");
+      });
   };
 
   const features = useLoaderData();
@@ -105,6 +116,7 @@ const RoomDetails = () => {
 
   return (
     <div>
+      <ToastContainer />
       <div
         className="hero min-h-48"
         style={{
