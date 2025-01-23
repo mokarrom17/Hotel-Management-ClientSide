@@ -1,13 +1,22 @@
 import { Link } from "react-router-dom";
 import hotelLogo from "../../../assets/logo.jpg";
 import { FaHandPointRight } from "react-icons/fa";
+import { useContext } from "react";
+import { AuthContext } from "../../../Providers/AuthProvider";
 
 const NavBar = () => {
+  const { user, logOut } = useContext(AuthContext);
+
+  const handelLogOut = () => {
+    logOut()
+      .then(() => {})
+      .catch((error) => console.log(error));
+  };
   const navItems = (
     <>
       <li className="">
         <Link to="/" className="hover:text-[#aa8453]">
-          HOME
+          Home
         </Link>
       </li>
       <li>
@@ -17,14 +26,20 @@ const NavBar = () => {
       </li>
       <li>
         <Link to="/" className="hover:text-[#aa8453]">
-          UPDATE
+          Contacts
         </Link>
       </li>
-      <li>
-        <Link to="/" className="hover:text-[#aa8453]">
-          CONTACTS
-        </Link>
-      </li>
+      {user?.email ? (
+        <li className="hover:text-[#aa8453]">
+          <button onClick={handelLogOut}>Log out</button>
+        </li>
+      ) : (
+        <li>
+          <Link to="/login" className="hover:text-[#aa8453]">
+            Login
+          </Link>
+        </li>
+      )}
     </>
   );
   return (
