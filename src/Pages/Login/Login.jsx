@@ -3,9 +3,8 @@ import img from "../../assets/Hotel.jpg";
 import { useContext } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
 const Login = () => {
+  const { signUp } = useContext(AuthContext);
   const handleLogin = (event) => {
-    const { signUp } = useContext(AuthContext);
-
     event.preventDefault();
     const form = event.target;
     const email = form.email.value;

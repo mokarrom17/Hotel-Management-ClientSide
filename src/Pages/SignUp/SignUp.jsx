@@ -1,10 +1,11 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import img from "../../assets/Hotel.jpg";
 import { useContext } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
 
 const SignUp = () => {
   const { createUser } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const handleSignUp = (event) => {
     event.preventDefault();
@@ -17,7 +18,12 @@ const SignUp = () => {
     createUser(email, password)
       .then((result) => {
         const user = result.user;
-        console.log(user);
+        return updateProfile(user, {
+          displayName: name,
+        });
+      })
+      .then(() => {
+        navigate("/");
       })
       .catch((error) => console.log(error));
   };
@@ -44,8 +50,8 @@ const SignUp = () => {
                 </label>
                 <input
                   name="name"
-                  type="name"
-                  placeholder="email"
+                  type="text"
+                  placeholder="Enter your name"
                   className="input input-bordered"
                   required
                 />
@@ -85,7 +91,7 @@ const SignUp = () => {
                 </label>
               </div>
               <div className="form-control">
-                <button className="btn bg-[#FF3811] font-bold text-white">
+                <button className="btn bg-[#FF3811] hover:text-black font-bold text-white">
                   SignUp
                 </button>
               </div>

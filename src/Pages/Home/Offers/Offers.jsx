@@ -48,7 +48,7 @@ const Offers = () => {
   return (
     <div className="mb-12 mx-auto">
       <div className="text-center mb-12">
-        <h2 className="text-white font-bold text-5xl">Special Offers</h2>
+        <h2 className="text-black font-bold text-5xl">Special Offers</h2>
       </div>
 
       <div className="">
