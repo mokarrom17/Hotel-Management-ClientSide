@@ -3,9 +3,11 @@ import img from "../../../assets/Hotel.jpg";
 import { useContext } from "react";
 import { updateProfile } from "firebase/auth";
 import { AuthContext } from "../../../Providers/AuthProvider";
+import useAxios from "../../../hooks/useAxios";
 
 const SignUp = () => {
   const { createUser } = useContext(AuthContext);
+  const axiosSecure = useAxios();
 
   const navigate = useNavigate();
 
@@ -47,17 +49,9 @@ const SignUp = () => {
       };
 
       // Save User In MongoDB
-      const res = await fetch("http://localhost:5000/users", {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(userInfo),
-      });
+      const res = await axiosSecure.post("/users", userInfo);
 
-      const data = await res.json();
-
-      console.log(data);
+      console.log(res.data);
 
       // Navigate Home
       navigate("/");

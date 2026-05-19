@@ -6,21 +6,54 @@
     "adults": 2,
     "child": 1,
     "beds": "Queen",
-    "description": "Experience luxury in our Deluxe Queen Room, featuring a private balcony with breathtaking ocean views. Designed for comfort, this room is perfect for couples or small families seeking relaxation in a serene environment. Enjoy modern amenities like high-speed Wi-Fi, flat-screen TV, and air conditioning. The room offers a cozy ambiance with a queen-sized bed and a single bed, making it ideal for a family of three. Wake up to the sound of the waves and unwind with the stunning coastal scenery from your balcony. Book this room for a memorable, luxurious stay by the ocean.",
-    "amenities": ["wifi", "TV", "AC", "private balcony with ocean view"],
+    "floor": 2,
+    "size": 320,
+    "view": "Ocean View",
+    "smokingAllowed": false,
+    "isAvailable": true,
+    "bookedDates": [],
+    "tags": ["popular", "ocean view", "best value"],
+    "rating": 4.7,
+    "totalReviews": 128,
+    "discount": 10,
+    "description": "Experience luxury in our Deluxe Queen Room, featuring a private balcony with breathtaking ocean views. Designed for comfort, this room is perfect for couples or small families seeking relaxation in a serene environment. Enjoy modern amenities like high-speed Wi-Fi, flat-screen TV, and air conditioning. The room offers a cozy ambiance with a queen-sized bed and a single bed, making it ideal for a family of three. Wake up to the sound of the waves and unwind with the stunning coastal scenery from your balcony.",
+    "amenities": [
+      "wifi",
+      "TV",
+      "AC",
+      "private balcony",
+      "ocean view",
+      "mini fridge",
+      "safe",
+      "hair dryer"
+    ],
     "price": 150.0,
     "availability": {
-      "startDate": "2023-01-01",
-      "endDate": "2023-12-31"
+      "startDate": "2024-01-01",
+      "endDate": "2025-12-31"
     },
     "cancellationPolicy": "Free Cancellation",
-    "checkInTime": "11:00 PM",
-    "checkOutTime": "11:00 PM",
+    "checkInTime": "2:00 PM",
+    "checkOutTime": "11:00 AM",
     "image": "https://i.ibb.co/3W5C9fp/1.jpg",
     "gallery": [
       "https://i.ibb.co.com/YZtp9pq/001.jpg",
       "https://i.ibb.co.com/QXs3tXT/01.jpg",
       "https://i.ibb.co.com/m4zv97L/0001.jpg"
+    ],
+    "reviews": [
+      {
+        "name": "Sarah Johnson",
+        "rating": 5,
+        "comment": "Absolutely stunning ocean view! The room was spotless and the staff were incredibly helpful.",
+        "date": "2024-11-15"
+      },
+      {
+        "name": "Michael Chen",
+        "rating": 4,
+        "comment": "Great room with beautiful views. Very comfortable beds. Would definitely book again.",
+        "date": "2024-10-22"
+      }
     ]
   },
   {
@@ -30,43 +63,113 @@
     "adults": 2,
     "child": 2,
     "beds": "King",
-    "description": " Indulge in ultimate luxury with our King Ensuite Room, designed for those who seek a premium experience. The spacious room features a king-sized bed, two double beds, and a private spa for relaxation. Ideal for families or couples, the room comes equipped with modern amenities such as high-speed Wi-Fi, a flat-screen TV, and air conditioning. Relax in the comfort of your own private space with a minibar stocked for your convenience. Whether you're traveling for leisure or business, this room provides the perfect blend of luxury and comfort to elevate your stay.",
-    "amenities": ["wifi", "TV", "AC"],
+    "floor": 3,
+    "size": 480,
+    "view": "City View",
+    "smokingAllowed": false,
+    "isAvailable": true,
+    "bookedDates": [],
+    "tags": ["luxury", "spacious", "family friendly"],
+    "rating": 4.9,
+    "totalReviews": 95,
+    "discount": 0,
+    "description": "Indulge in ultimate luxury with our King Ensuite Room, designed for those who seek a premium experience. The spacious room features a king-sized bed, two double beds, and a private spa for relaxation. Ideal for families or couples, the room comes equipped with modern amenities such as high-speed Wi-Fi, a flat-screen TV, and air conditioning. Relax in the comfort of your own private space with a minibar stocked for your convenience. Whether you're traveling for leisure or business, this room provides the perfect blend of luxury and comfort.",
+    "amenities": [
+      "wifi",
+      "TV",
+      "AC",
+      "private spa",
+      "minibar",
+      "bathtub",
+      "walk-in closet",
+      "safe",
+      "hair dryer",
+      "coffee maker"
+    ],
     "price": 250.0,
     "availability": {
-      "startDate": "2023-01-01",
-      "endDate": "2023-12-31"
+      "startDate": "2024-01-01",
+      "endDate": "2025-12-31"
     },
     "cancellationPolicy": "Free Cancellation",
-    "checkInTime": "11:00 PM",
-    "checkOutTime": "11:00 PM",
+    "checkInTime": "2:00 PM",
+    "checkOutTime": "11:00 AM",
     "image": "https://i.ibb.co/jVzpTNn/2.jpg",
     "gallery": [
       "https://i.ibb.co.com/Lg1vB2s/002.jpg",
       "https://i.ibb.co.com/gyqT4BC/0002.jpg",
       "https://i.ibb.co.com/6DzVkhS/02.jpg"
+    ],
+    "reviews": [
+      {
+        "name": "Emma Williams",
+        "rating": 5,
+        "comment": "Perfect for our family vacation! Kids loved it. The private spa was a dream.",
+        "date": "2024-12-01"
+      },
+      {
+        "name": "James Rodriguez",
+        "rating": 5,
+        "comment": "Most luxurious hotel room I have ever stayed in. Worth every penny!",
+        "date": "2024-11-08"
+      }
     ]
   },
   {
     "roomNumber": "102",
-    "type": "Family",
+    "type": "Family Room",
     "capacity": 6,
     "adults": 4,
     "child": 2,
     "beds": "Double",
-    "description": "Our Family Room is designed to provide a spacious, comfortable stay for large families. With connecting rooms and enough space for six people, this room ensures that everyone has their own area while remaining close together. It comes equipped with two single beds and two double beds, offering flexibility for families. Amenities like free Wi-Fi, a flat-screen TV, and air conditioning ensure a modern, comfortable experience. The Family Room is perfect for creating lasting memories with loved ones, providing both privacy and shared space in a welcoming and warm environment.",
-    "amenities": ["free wifi", "TV", "air conditioning", "connecting rooms"],
+    "floor": 1,
+    "size": 550,
+    "view": "Garden View",
+    "smokingAllowed": false,
+    "isAvailable": true,
+    "bookedDates": [],
+    "tags": ["family friendly", "spacious", "connecting rooms"],
+    "rating": 4.6,
+    "totalReviews": 74,
+    "discount": 15,
+    "description": "Our Family Room is designed to provide a spacious, comfortable stay for large families. With connecting rooms and enough space for six people, this room ensures that everyone has their own area while remaining close together. It comes equipped with two single beds and two double beds, offering flexibility for families. Amenities like free Wi-Fi, a flat-screen TV, and air conditioning ensure a modern, comfortable experience. The Family Room is perfect for creating lasting memories with loved ones.",
+    "amenities": [
+      "free wifi",
+      "TV",
+      "air conditioning",
+      "connecting rooms",
+      "kitchenette",
+      "dining area",
+      "safe",
+      "crib available"
+    ],
     "price": 120.0,
     "availability": {
-      "startDate": "2023-01-01",
-      "endDate": "2023-12-31"
+      "startDate": "2024-01-01",
+      "endDate": "2025-12-31"
     },
     "cancellationPolicy": "Free Cancellation",
+    "checkInTime": "2:00 PM",
+    "checkOutTime": "11:00 AM",
     "image": "https://i.ibb.co/Sr95bsX/3.jpg",
     "gallery": [
       "https://i.ibb.co.com/qYh1fFd/03.jpg",
       "https://i.ibb.co.com/HHnnc7p/003.jpg",
       "https://i.ibb.co.com/SycK1Zw/0003.jpg"
+    ],
+    "reviews": [
+      {
+        "name": "David Park",
+        "rating": 5,
+        "comment": "Perfect for our big family trip! Plenty of space for everyone. Kids had a blast.",
+        "date": "2024-10-30"
+      },
+      {
+        "name": "Linda Thompson",
+        "rating": 4,
+        "comment": "Great value for a large family. The kitchenette was very handy for the kids snacks.",
+        "date": "2024-09-18"
+      }
     ]
   },
   {
@@ -75,22 +178,54 @@
     "capacity": 2,
     "adults": 2,
     "child": 0,
-    "beds": "Single",
-    "description": "Experience comfort and affordability in our Standard Room, ideal for budget-conscious travelers without compromising on essential amenities. This cozy room is perfect for two adults and features a comfortable double bed, air conditioning, a flat-screen TV, and free Wi-Fi. Whether you're staying for a short weekend getaway or an extended business trip, our Standard Room provides all the essentials for a restful stay. Enjoy a relaxing environment that caters to your basic needs, with everything you require to recharge during your trip at an affordable price point.",
-    "amenities": ["wifi", "TV", "AC"],
+    "beds": "Double",
+    "floor": 1,
+    "size": 220,
+    "view": "Pool View",
+    "smokingAllowed": false,
+    "isAvailable": true,
+    "bookedDates": [],
+    "tags": ["budget friendly", "cozy", "best value"],
+    "rating": 4.3,
+    "totalReviews": 210,
+    "discount": 0,
+    "description": "Experience comfort and affordability in our Standard Room, ideal for budget-conscious travelers without compromising on essential amenities. This cozy room is perfect for two adults and features a comfortable double bed, air conditioning, a flat-screen TV, and free Wi-Fi. Whether you're staying for a short weekend getaway or an extended business trip, our Standard Room provides all the essentials for a restful stay at an affordable price point.",
+    "amenities": [
+      "wifi",
+      "TV",
+      "AC",
+      "pool access",
+      "safe",
+      "hair dryer",
+      "daily housekeeping"
+    ],
     "price": 80.0,
     "availability": {
-      "startDate": "2023-01-01",
-      "endDate": "2023-12-31"
+      "startDate": "2024-01-01",
+      "endDate": "2025-12-31"
     },
     "cancellationPolicy": "Free Cancellation",
-    "checkInTime": "11:00 PM",
-    "checkOutTime": "11:00 PM",
+    "checkInTime": "2:00 PM",
+    "checkOutTime": "11:00 AM",
     "image": "https://i.ibb.co/RhBZGfb/4.jpg",
     "gallery": [
       "https://i.ibb.co.com/dp235Cc/04.jpg",
       "https://i.ibb.co.com/Fh44wtn/004.jpg",
       "https://i.ibb.co.com/C94VX4F/0004.jpg"
+    ],
+    "reviews": [
+      {
+        "name": "Anna Lee",
+        "rating": 4,
+        "comment": "Great value for money! Clean, comfortable and the pool view was a nice bonus.",
+        "date": "2024-11-20"
+      },
+      {
+        "name": "Tom Baker",
+        "rating": 4,
+        "comment": "Exactly what we needed for a quick business trip. Clean and comfortable.",
+        "date": "2024-10-05"
+      }
     ]
   },
   {
@@ -100,51 +235,477 @@
     "adults": 2,
     "child": 0,
     "beds": "King",
-    "description": "Perfect for couples, our Romantic Suite is the ideal choice for a romantic escape. Featuring a luxurious whirlpool tub and personalized rose petal turn-down service, this room sets the stage for intimate and unforgettable moments. The suite is equipped with modern amenities, including free Wi-Fi, air conditioning, and a flat-screen TV. Enjoy quiet relaxation and create beautiful memories in this peaceful and stylish space designed to enhance your romantic experience. Whether it's for an anniversary, honeymoon, or a special getaway, the Romantic Suite offers the ultimate ambiance for couples.",
+    "floor": 4,
+    "size": 420,
+    "view": "Ocean View",
+    "smokingAllowed": false,
+    "isAvailable": true,
+    "bookedDates": [],
+    "tags": ["romantic", "honeymoon", "luxury", "popular"],
+    "rating": 4.9,
+    "totalReviews": 156,
+    "discount": 0,
+    "description": "Perfect for couples, our Romantic Suite is the ideal choice for a romantic escape. Featuring a luxurious whirlpool tub and personalized rose petal turn-down service, this room sets the stage for intimate and unforgettable moments. The suite is equipped with modern amenities including free Wi-Fi, air conditioning, and a flat-screen TV. Whether it's for an anniversary, honeymoon, or a special getaway, the Romantic Suite offers the ultimate ambiance for couples.",
     "amenities": [
       "free wifi",
       "TV",
       "air conditioning",
       "whirlpool tub",
-      "rose petal turn-down service"
+      "rose petal turn-down",
+      "champagne on arrival",
+      "private balcony",
+      "ocean view",
+      "premium toiletries",
+      "pillow menu"
     ],
     "price": 200.0,
     "availability": {
-      "startDate": "2023-01-01",
-      "endDate": "2023-12-31"
+      "startDate": "2024-01-01",
+      "endDate": "2025-12-31"
     },
     "cancellationPolicy": "Free Cancellation",
-    "checkInTime": "11:00 PM",
-    "checkOutTime": "11:00 PM",
+    "checkInTime": "2:00 PM",
+    "checkOutTime": "11:00 AM",
     "image": "https://i.ibb.co/ZcGFk87/5.jpg",
     "gallery": [
       "https://i.ibb.co/ZcGFk87/5.jpg",
-      "https://ibb.co.com/QfWyk4T",
+      "https://i.ibb.co.com/QfWyk4T/05.jpg",
       "https://i.ibb.co.com/ZLrwjSk/0005.jpg"
+    ],
+    "reviews": [
+      {
+        "name": "Sophie Martin",
+        "rating": 5,
+        "comment": "Our honeymoon was absolutely magical here! The rose petals and champagne were such a lovely touch.",
+        "date": "2024-12-10"
+      },
+      {
+        "name": "Ryan & Kate",
+        "rating": 5,
+        "comment": "Celebrated our anniversary here. Best decision ever! The whirlpool tub was incredible.",
+        "date": "2024-11-25"
+      }
     ]
   },
   {
     "roomNumber": "118",
-    "type": "Accessible",
+    "type": "Accessible Room",
     "capacity": 2,
     "adults": 2,
     "child": 0,
-    "beds": "single",
-    "description": "Our Accessible Room is specially designed to ensure comfort and convenience for all guests, including those with mobility challenges. This room is equipped with an accessible bathroom, free Wi-Fi, air conditioning, and a flat-screen TV. The spacious design ensures ease of movement, and all key amenities are within convenient reach. The room features a comfortable double bed, ensuring a restful stay. Whether you're traveling for leisure or business, this room is the perfect choice for guests seeking an accessible and comfortable accommodation option that provides both functionality and relaxation.",
-    "amenities": ["free wifi", "TV", "air conditioning", "accessible bathroom"],
+    "beds": "Queen",
+    "floor": 1,
+    "size": 300,
+    "view": "Garden View",
+    "smokingAllowed": false,
+    "isAvailable": true,
+    "bookedDates": [],
+    "tags": ["accessible", "ground floor", "cozy"],
+    "rating": 4.5,
+    "totalReviews": 62,
+    "discount": 5,
+    "description": "Our Accessible Room is specially designed to ensure comfort and convenience for all guests, including those with mobility challenges. This room is equipped with an accessible bathroom, free Wi-Fi, air conditioning, and a flat-screen TV. The spacious design ensures ease of movement and all key amenities are within convenient reach. The room features a comfortable queen-sized bed, ensuring a restful stay for all guests seeking accessible accommodation.",
+    "amenities": [
+      "free wifi",
+      "TV",
+      "air conditioning",
+      "accessible bathroom",
+      "roll-in shower",
+      "grab bars",
+      "lowered light switches",
+      "emergency pull cord",
+      "wide doorways"
+    ],
     "price": 90.0,
     "availability": {
-      "startDate": "2023-01-01",
-      "endDate": "2023-12-31"
+      "startDate": "2024-01-01",
+      "endDate": "2025-12-31"
     },
     "cancellationPolicy": "Free Cancellation",
-    "checkInTime": "11:00 PM",
-    "checkOutTime": "11:00 PM",
+    "checkInTime": "2:00 PM",
+    "checkOutTime": "11:00 AM",
     "image": "https://i.ibb.co/4RmLRhs/6.jpg",
     "gallery": [
       "https://i.ibb.co.com/sq9hQ6w/0006.jpg",
       "https://i.ibb.co.com/zm3dsVZ/06.webp",
       "https://i.ibb.co.com/VqxT42K/006.jpg"
+    ],
+    "reviews": [
+      {
+        "name": "George Harris",
+        "rating": 5,
+        "comment": "Finally a hotel that truly understands accessibility needs. Everything was perfectly set up.",
+        "date": "2024-10-14"
+      },
+      {
+        "name": "Patricia White",
+        "rating": 4,
+        "comment": "Very thoughtfully designed room. Felt comfortable and independent throughout our stay.",
+        "date": "2024-09-28"
+      }
+    ]
+  },
+  {
+    "roomNumber": "501",
+    "type": "Presidential Suite",
+    "capacity": 4,
+    "adults": 4,
+    "child": 0,
+    "beds": "King",
+    "floor": 5,
+    "size": 900,
+    "view": "Panoramic Ocean View",
+    "smokingAllowed": false,
+    "isAvailable": true,
+    "bookedDates": [],
+    "tags": ["luxury", "VIP", "panoramic view", "new"],
+    "rating": 5.0,
+    "totalReviews": 38,
+    "discount": 0,
+    "description": "The crown jewel of our hotel, the Presidential Suite offers an unparalleled luxury experience. Spanning 900 square feet on the top floor, this suite features a separate living room, dining area, two king-sized bedrooms, and a private terrace with panoramic ocean views. Enjoy butler service, a fully stocked premium bar, and state-of-the-art entertainment system. Perfect for VIP guests, executives, and those who demand nothing but the best. Every detail has been crafted to deliver an extraordinary and unforgettable stay.",
+    "amenities": [
+      "wifi",
+      "55-inch smart TV",
+      "AC",
+      "butler service",
+      "private terrace",
+      "premium bar",
+      "jacuzzi",
+      "living room",
+      "dining area",
+      "espresso machine",
+      "pillow menu",
+      "premium toiletries",
+      "daily newspaper",
+      "airport transfer"
+    ],
+    "price": 800.0,
+    "availability": {
+      "startDate": "2024-01-01",
+      "endDate": "2025-12-31"
+    },
+    "cancellationPolicy": "Free Cancellation up to 48 hours",
+    "checkInTime": "12:00 PM",
+    "checkOutTime": "12:00 PM",
+    "image": "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800",
+    "gallery": [
+      "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800",
+      "https://images.unsplash.com/photo-1591088398332-8a7791972843?w=800",
+      "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800"
+    ],
+    "reviews": [
+      {
+        "name": "Alexander Brooks",
+        "rating": 5,
+        "comment": "Nothing short of perfection. The butler service was exceptional and the panoramic view left us speechless.",
+        "date": "2024-12-05"
+      },
+      {
+        "name": "Victoria Stone",
+        "rating": 5,
+        "comment": "Stayed here for a business conference. Impressed every single guest. Absolutely world class.",
+        "date": "2024-11-30"
+      }
+    ]
+  },
+  {
+    "roomNumber": "215",
+    "type": "Business Suite",
+    "capacity": 2,
+    "adults": 2,
+    "child": 0,
+    "beds": "King",
+    "floor": 2,
+    "size": 380,
+    "view": "City View",
+    "smokingAllowed": false,
+    "isAvailable": true,
+    "bookedDates": [],
+    "tags": ["business", "work friendly", "executive"],
+    "rating": 4.7,
+    "totalReviews": 89,
+    "discount": 0,
+    "description": "Designed with the modern business traveler in mind, our Business Suite combines productivity with comfort. Featuring a dedicated work desk, high-speed fiber Wi-Fi, and a fully equipped meeting corner for up to 4 people, this suite ensures you can work efficiently while enjoying premium comfort. The king-sized bed guarantees a restful night's sleep so you can perform at your best. Complimentary breakfast and evening cocktails are included for the ultimate business travel experience.",
+    "amenities": [
+      "fiber wifi",
+      "55-inch smart TV",
+      "AC",
+      "work desk",
+      "meeting corner",
+      "printer access",
+      "complimentary breakfast",
+      "evening cocktails",
+      "espresso machine",
+      "iron & board",
+      "safe",
+      "daily newspaper"
+    ],
+    "price": 220.0,
+    "availability": {
+      "startDate": "2024-01-01",
+      "endDate": "2025-12-31"
+    },
+    "cancellationPolicy": "Free Cancellation",
+    "checkInTime": "2:00 PM",
+    "checkOutTime": "12:00 PM",
+    "image": "https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=800",
+    "gallery": [
+      "https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=800",
+      "https://images.unsplash.com/photo-1560185007-cde436f6a4d0?w=800",
+      "https://images.unsplash.com/photo-1587985064135-0366536eab42?w=800"
+    ],
+    "reviews": [
+      {
+        "name": "Nathan Clarke",
+        "rating": 5,
+        "comment": "Perfect for business travel. The meeting corner saved me from booking a conference room.",
+        "date": "2024-11-10"
+      },
+      {
+        "name": "Jennifer Walsh",
+        "rating": 4,
+        "comment": "Fiber WiFi was lightning fast. Complimentary breakfast was a lovely bonus.",
+        "date": "2024-10-22"
+      }
+    ]
+  },
+  {
+    "roomNumber": "320",
+    "type": "Penthouse Suite",
+    "capacity": 4,
+    "adults": 2,
+    "child": 2,
+    "beds": "King",
+    "floor": 3,
+    "size": 750,
+    "view": "360° City & Ocean View",
+    "smokingAllowed": false,
+    "isAvailable": true,
+    "bookedDates": [],
+    "tags": ["luxury", "penthouse", "popular", "panoramic view"],
+    "rating": 4.8,
+    "totalReviews": 47,
+    "discount": 5,
+    "description": "Perched on the third floor with 360-degree views of both the city skyline and ocean horizon, our Penthouse Suite redefines luxury living. The suite spans 750 square feet and features floor-to-ceiling windows, a wraparound private terrace, and a private plunge pool. With two bedrooms, a spacious lounge, and a gourmet kitchenette, it offers the perfect home away from home for discerning guests. Every corner of this suite has been designed to wow and delight.",
+    "amenities": [
+      "wifi",
+      "smart TV",
+      "AC",
+      "private plunge pool",
+      "wraparound terrace",
+      "floor-to-ceiling windows",
+      "gourmet kitchenette",
+      "2 bedrooms",
+      "lounge area",
+      "premium bar",
+      "daily housekeeping",
+      "concierge service"
+    ],
+    "price": 600.0,
+    "availability": {
+      "startDate": "2024-01-01",
+      "endDate": "2025-12-31"
+    },
+    "cancellationPolicy": "Free Cancellation up to 48 hours",
+    "checkInTime": "2:00 PM",
+    "checkOutTime": "12:00 PM",
+    "image": "https://images.unsplash.com/photo-1590490360182-c33d57733427?w=800",
+    "gallery": [
+      "https://images.unsplash.com/photo-1590490360182-c33d57733427?w=800",
+      "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?w=800",
+      "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=800"
+    ],
+    "reviews": [
+      {
+        "name": "Oliver Grant",
+        "rating": 5,
+        "comment": "The private plunge pool with that view? Absolutely breathtaking. We never wanted to leave.",
+        "date": "2024-12-08"
+      },
+      {
+        "name": "Amelia Foster",
+        "rating": 5,
+        "comment": "Celebrated my 40th birthday here. The concierge arranged everything perfectly. Magical!",
+        "date": "2024-11-14"
+      }
+    ]
+  },
+  {
+    "roomNumber": "110",
+    "type": "Deluxe Twin Room",
+    "capacity": 4,
+    "adults": 2,
+    "child": 2,
+    "beds": "Twin",
+    "floor": 1,
+    "size": 350,
+    "view": "Pool View",
+    "smokingAllowed": false,
+    "isAvailable": true,
+    "bookedDates": [],
+    "tags": ["family friendly", "pool view", "budget friendly"],
+    "rating": 4.4,
+    "totalReviews": 103,
+    "discount": 10,
+    "description": "Our Deluxe Twin Room is an excellent choice for families or friends traveling together. Featuring two comfortable single beds and two double beds, this room offers flexibility and space for up to four guests. Enjoy pool views from your window, access to all hotel amenities, and a warm, welcoming atmosphere. The room is thoughtfully furnished to ensure a comfortable and enjoyable stay for both adults and children alike.",
+    "amenities": [
+      "wifi",
+      "TV",
+      "AC",
+      "pool view",
+      "pool access",
+      "mini fridge",
+      "safe",
+      "crib available",
+      "daily housekeeping"
+    ],
+    "price": 140.0,
+    "availability": {
+      "startDate": "2024-01-01",
+      "endDate": "2025-12-31"
+    },
+    "cancellationPolicy": "Free Cancellation",
+    "checkInTime": "2:00 PM",
+    "checkOutTime": "11:00 AM",
+    "image": "https://images.unsplash.com/photo-1631049552057-403cdb8f0658?w=800",
+    "gallery": [
+      "https://images.unsplash.com/photo-1631049552057-403cdb8f0658?w=800",
+      "https://images.unsplash.com/photo-1540518614846-7eded433c457?w=800",
+      "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=800"
+    ],
+    "reviews": [
+      {
+        "name": "Chris and Emily",
+        "rating": 4,
+        "comment": "Kids loved waking up to pool views every morning. Rooms were clean and well maintained.",
+        "date": "2024-10-18"
+      },
+      {
+        "name": "Mark Davis",
+        "rating": 5,
+        "comment": "Great room for the price. Very spacious and the pool access was fantastic.",
+        "date": "2024-09-12"
+      }
+    ]
+  },
+  {
+    "roomNumber": "430",
+    "type": "Spa Wellness Suite",
+    "capacity": 2,
+    "adults": 2,
+    "child": 0,
+    "beds": "King",
+    "floor": 4,
+    "size": 460,
+    "view": "Garden & Mountain View",
+    "smokingAllowed": false,
+    "isAvailable": true,
+    "bookedDates": [],
+    "tags": ["wellness", "spa", "romantic", "new"],
+    "rating": 4.8,
+    "totalReviews": 55,
+    "discount": 0,
+    "description": "Escape and rejuvenate in our Spa Wellness Suite, a sanctuary of calm and tranquility. This suite features an in-room infrared sauna, a deep-soaking Japanese ofuro tub, and access to our full-service spa facility. Surrounded by lush garden and mountain views, it is the perfect retreat for those seeking complete relaxation and renewal. Complimentary daily spa treatments are included, and the room features calming natural materials, ambient lighting, and organic bath products.",
+    "amenities": [
+      "wifi",
+      "smart TV",
+      "AC",
+      "infrared sauna",
+      "Japanese ofuro tub",
+      "spa access",
+      "complimentary spa treatment",
+      "organic bath products",
+      "aromatherapy kit",
+      "yoga mat",
+      "meditation guide",
+      "garden view balcony"
+    ],
+    "price": 350.0,
+    "availability": {
+      "startDate": "2024-01-01",
+      "endDate": "2025-12-31"
+    },
+    "cancellationPolicy": "Free Cancellation",
+    "checkInTime": "2:00 PM",
+    "checkOutTime": "12:00 PM",
+    "image": "https://images.unsplash.com/photo-1515362778563-6a8d0e44bc0f?w=800",
+    "gallery": [
+      "https://images.unsplash.com/photo-1515362778563-6a8d0e44bc0f?w=800",
+      "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800",
+      "https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?w=800"
+    ],
+    "reviews": [
+      {
+        "name": "Isabella Moore",
+        "rating": 5,
+        "comment": "The infrared sauna and ofuro tub were beyond amazing. Left feeling completely renewed.",
+        "date": "2024-12-02"
+      },
+      {
+        "name": "William Turner",
+        "rating": 5,
+        "comment": "Booked this for my wife's birthday. The complimentary spa treatment was the cherry on top.",
+        "date": "2024-11-18"
+      }
+    ]
+  },
+  {
+    "roomNumber": "225",
+    "type": "Superior Double Room",
+    "capacity": 3,
+    "adults": 2,
+    "child": 1,
+    "beds": "Double",
+    "floor": 2,
+    "size": 260,
+    "view": "Pool View",
+    "smokingAllowed": false,
+    "isAvailable": true,
+    "bookedDates": [],
+    "tags": ["popular", "great value", "pool view"],
+    "rating": 4.5,
+    "totalReviews": 142,
+    "discount": 8,
+    "description": "Our Superior Double Room strikes the perfect balance between comfort, style, and value. Located on the second floor with a refreshing pool view, this room is ideal for couples or small families. Featuring a plush double bed, a comfortable single sofa bed, and all essential modern amenities, it provides everything needed for a relaxing and enjoyable stay. Enjoy easy access to the pool and all hotel facilities from this centrally located room.",
+    "amenities": [
+      "wifi",
+      "TV",
+      "AC",
+      "pool view",
+      "pool access",
+      "sofa bed",
+      "mini fridge",
+      "safe",
+      "hair dryer",
+      "daily housekeeping"
+    ],
+    "price": 110.0,
+    "availability": {
+      "startDate": "2024-01-01",
+      "endDate": "2025-12-31"
+    },
+    "cancellationPolicy": "Free Cancellation",
+    "checkInTime": "2:00 PM",
+    "checkOutTime": "11:00 AM",
+    "image": "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800",
+    "gallery": [
+      "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800",
+      "https://images.unsplash.com/photo-1505693314120-0d443867891c?w=800",
+      "https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=800"
+    ],
+    "reviews": [
+      {
+        "name": "Laura Bennett",
+        "rating": 5,
+        "comment": "Excellent value! The pool view was gorgeous and the room was super clean and comfortable.",
+        "date": "2024-11-28"
+      },
+      {
+        "name": "Daniel Kim",
+        "rating": 4,
+        "comment": "Great location within the hotel. Staff were very friendly and helpful throughout our stay.",
+        "date": "2024-10-09"
+      }
     ]
   }
 ]
