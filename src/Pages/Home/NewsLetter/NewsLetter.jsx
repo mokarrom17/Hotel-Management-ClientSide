@@ -2,7 +2,7 @@ import { IoIosPaperPlane } from "react-icons/io";
 
 const NewsLetter = () => {
   return (
-    <div className="text-center bg-[#ab8a62] p-8 md:p-16 mx-3">
+    <div className="text-center rounded-lg bg-[#ab8a62] p-8 md:p-16 mx-3">
       <h2 className="font-extrabold text-3xl md:text-5xl lg:text-6xl text-white mb-6 md:mb-8">
         Subscribe Newsletter{" "}
       </h2>
