@@ -52,34 +52,10 @@ const DatePickerSection = () => {
       <button
         type="button"
         onClick={() => setOpenDate(!openDate)}
-        className="
-          w-full
-          flex
-          items-center
-          gap-4
-          p-4
-          rounded-2xl
-          bg-white
-          shadow-md
-          hover:shadow-lg
-          transition-all
-          duration-300
-          border
-          border-gray-200
-        "
+        className=" w-full flex items-center gap-4 p-4 rounded-2xl bg-white shadow-md hover:shadow-lg transition-all duration-300 border border-gray-200"
       >
         {/* Icon */}
-        <div
-          className="
-            h-12
-            w-12
-            rounded-xl
-            bg-[#aa8453]/10
-            flex
-            items-center
-            justify-center
-          "
-        >
+        <div className=" h-12 w-12 rounded-xl bg-[#aa8453]/10 flex items-center justify-center">
           <FaRegCalendarAlt className="text-[#aa8453] text-xl" />
         </div>
 
@@ -102,21 +78,7 @@ const DatePickerSection = () => {
           Calendar Popup
       ========================================== */}
       {openDate && (
-        <div
-          className="
-            absolute
-            top-24
-            left-0
-            z-50
-            rounded-3xl
-            overflow-hidden
-            shadow-2xl
-            border
-            border-gray-200
-            bg-white
-            animate-fadeIn
-          "
-        >
+        <div className=" absolute top-24 left-0 z-50 rounded-3xl overflow-hidden shadow-2xl border border-gray-200 bg-white animate-fadeIn">
           <DateRangePicker
             ranges={[date]}
             onChange={handleChange}

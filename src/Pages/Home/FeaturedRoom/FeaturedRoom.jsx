@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const FeaturedRoom = ({ room }) => {
   const { _id, image, type, price, description } = room;
   return (
-    <div className="card rounded-none bg-white shadow-xl ">
+    <div className="card rounded-lg bg-white shadow-xl ">
       <img className="h-[200px] w-full " src={image} alt="" />
       <div className="card-body ">
         <Link className="card-title font-bold text-black ">{type}</Link>

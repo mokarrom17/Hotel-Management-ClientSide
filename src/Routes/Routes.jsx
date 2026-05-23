@@ -5,6 +5,7 @@ import RoomDetails from "../Pages/RoomDetails/RoomDetails";
 import AuthLayout from "../Layout/AuthLayout";
 import Login from "../Pages/Authentication/Login/Login";
 import SignUp from "../Pages/Authentication/SignUp/SignUp";
+import Rooms from "../Pages/Rooms/Rooms";
 
 const router = createBrowserRouter([
   {
@@ -15,12 +16,15 @@ const router = createBrowserRouter([
         path: "/",
         element: <Home></Home>,
       },
-
+      {
+        path: "/rooms",
+        element: <Rooms />,
+      },
       {
         path: "roomDetails/:id",
         element: <RoomDetails></RoomDetails>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/features/${params.id}`),
+          fetch(`http://localhost:5000/roomTypes/${params.id}`),
       },
     ],
   },
