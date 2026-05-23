@@ -6,6 +6,7 @@ import AuthLayout from "../Layout/AuthLayout";
 import Login from "../Pages/Authentication/Login/Login";
 import SignUp from "../Pages/Authentication/SignUp/SignUp";
 import Rooms from "../Pages/Rooms/Rooms";
+import Contact from "../Pages/Contacts/Contacts";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
         element: <RoomDetails></RoomDetails>,
         loader: ({ params }) =>
           fetch(`http://localhost:5000/roomTypes/${params.id}`),
+      },
+      {
+        path: "/contact",
+        element: <Contact />,
       },
     ],
   },
