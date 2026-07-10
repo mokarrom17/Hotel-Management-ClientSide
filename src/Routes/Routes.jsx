@@ -1,4 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
+
 import Main from "../Layout/Main";
 import Home from "../Pages/Home/Home/Home";
 import RoomDetails from "../Pages/RoomDetails/RoomDetails";
@@ -8,31 +9,47 @@ import SignUp from "../Pages/Authentication/SignUp/SignUp";
 import Rooms from "../Pages/Rooms/Rooms";
 import Contact from "../Pages/Contacts/Contacts";
 
+import MyBookings from "../Pages/MyBookings/MyBookings";
+import PrivateRoute from "./PrivateRoute";
+
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Main></Main>,
+    element: <Main />,
     children: [
       {
         path: "/",
-        element: <Home></Home>,
+        element: <Home />,
       },
+
       {
         path: "/rooms",
         element: <Rooms />,
       },
+
+      {
+        path: "/myBookings",
+        element: (
+          <PrivateRoute>
+            <MyBookings />
+          </PrivateRoute>
+        ),
+      },
+
       {
         path: "roomDetails/:id",
-        element: <RoomDetails></RoomDetails>,
+        element: <RoomDetails />,
         loader: ({ params }) =>
           fetch(`http://localhost:5000/roomTypes/${params.id}`),
       },
+
       {
         path: "/contact",
         element: <Contact />,
       },
     ],
   },
+
   {
     path: "/",
     Component: AuthLayout,
@@ -41,6 +58,7 @@ const router = createBrowserRouter([
         path: "/login",
         Component: Login,
       },
+
       {
         path: "/signUp",
         Component: SignUp,
@@ -48,4 +66,5 @@ const router = createBrowserRouter([
     ],
   },
 ]);
+
 export default router;

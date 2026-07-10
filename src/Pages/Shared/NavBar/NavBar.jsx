@@ -26,8 +26,8 @@ const NavBar = () => {
           to="/"
           className={({ isActive }) =>
             isActive
-              ? "text-[#aa8453] font-semibold"
-              : "hover:text-[#aa8453] transition duration-300"
+              ? "text-[#c49b63] font-bold"
+              : "hover:text-[#c49b63] transition duration-300"
           }
         >
           Home
@@ -39,8 +39,8 @@ const NavBar = () => {
           to="/rooms"
           className={({ isActive }) =>
             isActive
-              ? "text-[#aa8453] font-semibold"
-              : "hover:text-[#aa8453] transition duration-300"
+              ? "text-[#c49b63] font-bold"
+              : "hover:text-[#c49b63] transition duration-300"
           }
         >
           Rooms
@@ -52,8 +52,8 @@ const NavBar = () => {
           to="/blogs"
           className={({ isActive }) =>
             isActive
-              ? "text-[#aa8453] font-semibold"
-              : "hover:text-[#aa8453] transition duration-300"
+              ? "text-[#c49b63] font-bold"
+              : "hover:text-[#c49b63] transition duration-300"
           }
         >
           Blogs
@@ -65,27 +65,32 @@ const NavBar = () => {
           to="/contact"
           className={({ isActive }) =>
             isActive
-              ? "text-[#aa8453] font-semibold"
-              : "hover:text-[#aa8453] transition duration-300"
+              ? "text-[#c49b63] font-bold"
+              : "hover:text-[#c49b63] transition duration-300"
           }
         >
-          Contacts
+          Contact
         </NavLink>
       </li>
     </>
   );
 
   return (
-    <div className="sticky top-0 z-50 bg-white/80 backdrop-blur-md shadow-sm">
-      <div className="navbar max-w-7xl mx-auto h-24 px-4">
-        {/* Navbar Start */}
-        <div className="navbar-start">
+    <div className="sticky top-0 z-50 bg-white/95 backdrop-blur-xl shadow-sm border-b border-gray-100">
+      <div className="navbar max-w-7xl mx-auto h-24 px-4 lg:px-8">
+        {/* ==========================================
+            Navbar Start
+        ========================================== */}
+        <div className="navbar-start gap-3">
           {/* Mobile Dropdown */}
           <div className="dropdown">
-            <label tabIndex={0} className="btn btn-ghost lg:hidden text-black">
+            <label
+              tabIndex={0}
+              className="btn btn-ghost lg:hidden text-black hover:bg-[#f5f5f5]"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6"
+                className="h-7 w-7"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -99,22 +104,7 @@ const NavBar = () => {
               </svg>
             </label>
 
-            <ul
-              tabIndex={0}
-              className="
-                menu 
-                menu-sm 
-                dropdown-content 
-                mt-3 
-                z-[1] 
-                p-4 
-                shadow-xl 
-                bg-white 
-                rounded-2xl 
-                w-56 
-                text-black
-              "
-            >
+            <ul className="menu menu-sm dropdown-content mt-3 z-[100] p-5 shadow-2xl bg-white rounded-3xl w-64 text-black space-y-1">
               {navItems}
 
               <div className="divider my-1"></div>
@@ -150,104 +140,50 @@ const NavBar = () => {
           {/* Logo */}
           <Link
             to="/"
-            className="
-              flex 
-              items-center 
-              hover:scale-105 
-              transition 
-              duration-300
-            "
+            className="flex items-center hover:scale-105 transition duration-300"
           >
             <img
-              className="w-24 rounded-e-full"
+              className="w-20 md:w-24 object-contain"
               src={hotelLogo}
               alt="Hotel Logo"
             />
           </Link>
         </div>
 
-        {/* Navbar Center */}
+        {/* ==========================================
+            Navbar Center
+        ========================================== */}
         <div className="navbar-center hidden lg:flex">
-          <ul
-            className="
-              menu 
-              menu-horizontal 
-              gap-5 
-              text-black 
-              font-semibold 
-              tracking-wide 
-              px-1
-            "
-          >
+          <ul className="menu menu-horizontal gap-8 text-black font-semibold tracking-wide px-1">
             {navItems}
           </ul>
         </div>
 
-        {/* Navbar End */}
-        <div className="navbar-end gap-4">
+        {/* ==========================================
+            Navbar End
+        ========================================== */}
+        <div className="navbar-end gap-3">
           {/* User Dropdown */}
           <div className="dropdown dropdown-end">
             <label
               tabIndex={0}
-              className="
-                cursor-pointer
-                transition
-                duration-300
-                hover:scale-105
-              "
+              className="cursor-pointer transition duration-300 hover:scale-105"
             >
               {user?.photoURL ? (
                 <img
-                  className="
-                    w-12 
-                    h-12 
-                    rounded-full 
-                    border-2 
-                    border-[#aa8453]
-                    object-cover
-                  "
+                  className="w-12 h-12 rounded-full border-2 border-[#c49b63] object-cover shadow-md"
                   src={user.photoURL}
                   alt="User"
                 />
               ) : (
-                <div
-                  className="
-                    w-12
-                    h-12
-                    rounded-full
-                    bg-[#aa8453]
-                    text-white
-                    flex
-                    items-center
-                    justify-center
-                    text-lg
-                    font-bold
-                    border-2
-                    border-[#aa8453]
-                  "
-                >
+                <div className="w-12 h-12 rounded-full bg-[#c49b63] text-white flex items-center justify-center text-lg font-bold shadow-md">
                   {user?.email ? firstLetter : <FaUserCircle size={24} />}
                 </div>
               )}
             </label>
 
             {/* Dropdown Menu */}
-            <ul
-              tabIndex={0}
-              className="
-                mt-4
-                z-[1]
-                p-4
-                shadow-2xl
-                menu
-                menu-sm
-                dropdown-content
-                bg-white
-                rounded-2xl
-                w-64
-                text-black
-              "
-            >
+            <ul className="mt-4 z-[100] p-5 shadow-2xl menu menu-sm dropdown-content bg-white rounded-3xl w-64 text-black">
               {user?.email ? (
                 <>
                   {/* User Info */}
@@ -304,22 +240,11 @@ const NavBar = () => {
           {/* Book Room Button */}
           <Link
             to="/rooms"
-            className="
-              btn
-              bg-[#aa8453]
-              text-white
-              border-none
-              rounded-full
-              px-6
-              hover:bg-black
-              hover:text-white
-              transition
-              duration-300
-              shadow-md
-            "
+            className="btn rounded-full bg-[#c49b63] border-0 text-white px-5 lg:px-7 h-12 min-h-12 text-sm lg:text-base hover:bg-black hover:text-white transition duration-300 shadow-lg"
           >
-            <FaHandPointRight className="text-xl" />
-            BOOK ROOM
+            <FaHandPointRight className="text-lg" />
+
+            <span className="hidden sm:block">BOOK ROOM</span>
           </Link>
         </div>
       </div>
