@@ -7,7 +7,7 @@ const FeaturedRooms = () => {
     queryKey: ["featuredRooms"],
 
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/roomTypes");
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/roomTypes`);
 
       return res.json();
     },

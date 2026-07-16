@@ -49,19 +49,6 @@ const NavBar = () => {
 
       <li>
         <NavLink
-          to="/blogs"
-          className={({ isActive }) =>
-            isActive
-              ? "text-[#c49b63] font-bold"
-              : "hover:text-[#c49b63] transition duration-300"
-          }
-        >
-          Blogs
-        </NavLink>
-      </li>
-
-      <li>
-        <NavLink
           to="/contact"
           className={({ isActive }) =>
             isActive
@@ -200,7 +187,7 @@ const NavBar = () => {
                   <div className="divider my-1"></div>
 
                   <li>
-                    <Link to="/profile">My Profile</Link>
+                    <Link to="/myProfile">My Profile</Link>
                   </li>
 
                   <li>

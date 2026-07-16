@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
-import useAuth from "../../hooks/useAuth";
-import useAxiosSecure from "../../hooks/useAxiosSecure";
+import useAuth from "../../../hooks/useAuth";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { Link } from "react-router-dom";
 
 const MyBookings = () => {
   const { user } = useAuth();
@@ -65,9 +66,9 @@ const MyBookings = () => {
 
       {bookings.length > 0 && (
         <div className="overflow-x-auto bg-white rounded-xl shadow">
-          <table className="table w-full">
+          <table className="table w-full text-xl">
             <thead>
-              <tr>
+              <tr className="text-lg font-semibold">
                 <th>Room</th>
 
                 <th>Check In</th>
@@ -115,9 +116,12 @@ const MyBookings = () => {
                     {booking.paymentStatus === "paid" ? (
                       <span className="text-green-600 font-bold">Paid</span>
                     ) : (
-                      <button className="btn btn-warning btn-sm">
+                      <Link
+                        to={`/payment/${booking._id}`}
+                        className="btn btn-warning btn-sm"
+                      >
                         Pay Now
-                      </button>
+                      </Link>
                     )}
                   </td>
                 </tr>

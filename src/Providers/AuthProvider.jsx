@@ -30,10 +30,16 @@ const AuthProvider = ({ children }) => {
     return signOut(auth);
   };
 
+  const updateUserProfile = (updates) => {
+    return updateCurrentUser(auth.currentUser, updates).then(() => {
+      setUser({ ...auth.currentUser });
+    });
+  };
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-      console.log("current user", currentUser);
+      // console.log("current user", currentUser);
       setLoading(false);
     });
     return () => {
@@ -47,6 +53,7 @@ const AuthProvider = ({ children }) => {
     createUser,
     signIn,
     logOut,
+    updateUserProfile,
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>

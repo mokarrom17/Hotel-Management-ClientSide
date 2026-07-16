@@ -23,7 +23,7 @@ import {
 import { FaSwimmingPool, FaStar } from "react-icons/fa";
 
 import { FaAccessibleIcon } from "react-icons/fa6";
-import BookingCard from "../Bookingcard/BookingCard";
+import BookingCard from "../Booking/Bookingcard/BookingCard.jsx";
 
 const RoomDetails = () => {
   // ==========================================

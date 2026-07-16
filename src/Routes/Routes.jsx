@@ -9,8 +9,10 @@ import SignUp from "../Pages/Authentication/SignUp/SignUp";
 import Rooms from "../Pages/Rooms/Rooms";
 import Contact from "../Pages/Contacts/Contacts";
 
-import MyBookings from "../Pages/MyBookings/MyBookings";
+import MyBookings from "../Pages/Booking/MyBookings/MyBookings";
 import PrivateRoute from "./PrivateRoute";
+import MyProfile from "../Pages/MyProfile/MyProfile";
+import Payment from "../Pages/Payment/Paymnet";
 
 const router = createBrowserRouter([
   {
@@ -35,12 +37,27 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
-
+      {
+        path: "/myProfile",
+        element: (
+          <PrivateRoute>
+            <MyProfile />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/payment/:bookingId",
+        element: (
+          <PrivateRoute>
+            <Payment />
+          </PrivateRoute>
+        ),
+      },
       {
         path: "roomDetails/:id",
         element: <RoomDetails />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/roomTypes/${params.id}`),
+          fetch(`${import.meta.env.VITE_API_URL}/roomTypes/${params.id}`),
       },
 
       {

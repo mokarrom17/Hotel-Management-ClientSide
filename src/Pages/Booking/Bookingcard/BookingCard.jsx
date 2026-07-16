@@ -8,9 +8,9 @@ import { FaArrowRight } from "react-icons/fa";
 
 import { toast } from "react-toastify";
 
-import { AuthContext } from "../../Providers/AuthProvider";
-import useAxiosSecure from "../../hooks/useAxiosSecure";
-import BookingSummary from "../BookingSummary/BookingSummary";
+import { AuthContext } from "../../../Providers/AuthProvider.jsx";
+import useAxiosSecure from "../../../hooks/useAxiosSecure.jsx";
+import BookingSummary from "../BookingSummary/BookingSummary.jsx";
 
 // ==========================================
 // Helpers
@@ -27,6 +27,13 @@ const getNightsBetween = (checkIn, checkOut) => {
   );
 
   return diffDays > 0 ? diffDays : 1;
+};
+
+// Keeps the rooms count a valid whole number >= 1
+const sanitizeRoomsCount = (value) => {
+  const parsed = parseInt(value, 10);
+
+  return Number.isNaN(parsed) || parsed < 1 ? 1 : parsed;
 };
 
 // ==========================================
@@ -49,6 +56,9 @@ const BookingCard = ({ room }) => {
 
   const [checkOutDate, setCheckOutDate] = useState(null);
 
+  // ✅ Number Of Rooms — now controlled, so price recalculates live
+  const [roomsCount, setRoomsCount] = useState(1);
+
   const [submitting, setSubmitting] = useState(false);
 
   // ==========================================
@@ -61,7 +71,8 @@ const BookingCard = ({ room }) => {
 
   const serviceFee = 20;
 
-  const totalPrice = price * nights + serviceFee;
+  // price * nights * rooms + one flat service fee
+  const totalPrice = price * nights * roomsCount + serviceFee;
 
   // ==========================================
   // Handle Booking
@@ -92,7 +103,9 @@ const BookingCard = ({ room }) => {
 
         checkOut: form.checkOut.value,
 
-        roomNumber: form.rooms.value,
+        // Number of rooms booked (kept as "roomNumber" to match
+        // the existing field already used in MyBookings.jsx)
+        roomNumber: roomsCount,
 
         // room information
         type,
@@ -121,6 +134,7 @@ const BookingCard = ({ room }) => {
         form.reset();
         setCheckInDate(null);
         setCheckOutDate(null);
+        setRoomsCount(1);
       }
     } catch (error) {
       toast.error("Booking Failed!");
@@ -150,8 +164,13 @@ const BookingCard = ({ room }) => {
         )}
       </div>
 
-      {/* Booking Summary */}
-      <BookingSummary price={price} nights={nights} serviceFee={serviceFee} />
+      {/* Booking Summary — now reacts to nights AND room count */}
+      <BookingSummary
+        price={price}
+        nights={nights}
+        rooms={roomsCount}
+        serviceFee={serviceFee}
+      />
 
       {/* Booking Form */}
       <form onSubmit={handleBooking} className="space-y-5">
@@ -243,7 +262,7 @@ const BookingCard = ({ room }) => {
           />
         </div>
 
-        {/* Rooms */}
+        {/* Rooms — controlled now, drives the price live */}
         <div>
           <label className="text-black font-semibold mb-2 block">
             Number Of Rooms
@@ -253,7 +272,8 @@ const BookingCard = ({ room }) => {
             type="number"
             name="rooms"
             min="1"
-            defaultValue="1"
+            value={roomsCount}
+            onChange={(e) => setRoomsCount(sanitizeRoomsCount(e.target.value))}
             placeholder="Rooms"
             className="input input-bordered w-full bg-white text-black rounded-2xl h-14"
             required

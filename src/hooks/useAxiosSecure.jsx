@@ -1,13 +1,16 @@
 import axios from "axios";
 import { useEffect } from "react";
 import useAuth from "./useAuth";
+import { useNavigate } from "react-router-dom";
 
 const axiosSecure = axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: import.meta.env.VITE_API_URL,
 });
 
 const useAxiosSecure = () => {
   const { user } = useAuth();
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Request Interceptor
@@ -33,7 +36,14 @@ const useAxiosSecure = () => {
       },
 
       (error) => {
-        console.log(error);
+        // console.log(error);
+
+        const statusCode = error.status;
+        if (statusCode === 401 || statusCode === 403) {
+          logOut().then(() => {
+            navigate("/login");
+          });
+        }
 
         return Promise.reject(error);
       },
