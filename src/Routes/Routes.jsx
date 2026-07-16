@@ -12,7 +12,9 @@ import Contact from "../Pages/Contacts/Contacts";
 import MyBookings from "../Pages/Booking/MyBookings/MyBookings";
 import PrivateRoute from "./PrivateRoute";
 import MyProfile from "../Pages/MyProfile/MyProfile";
-import Payment from "../Pages/Payment/Paymnet";
+import Payment from "../Pages/Payment/Payment";
+import DashboardLayout from "../Layout/DashboardLayout";
+import Payments from "../Pages/Dashboard/Payment/Payments";
 
 const router = createBrowserRouter([
   {
@@ -80,6 +82,107 @@ const router = createBrowserRouter([
         path: "/signUp",
         Component: SignUp,
       },
+    ],
+  },
+
+  // ==========================================
+  // Dashboard
+  // ==========================================
+  {
+    path: "/dashboard",
+    element: (
+      <PrivateRoute>
+        <DashboardLayout />
+      </PrivateRoute>
+    ),
+
+    children: [
+      // Dashboard Home
+      {
+        index: true,
+        element: <MyProfile />,
+      },
+
+      // Profile
+      {
+        path: "profile",
+        element: <MyProfile />,
+      },
+
+      // My Bookings
+      {
+        path: "my-bookings",
+        element: <MyBookings />,
+      },
+
+      // Payment
+      {
+        path: "payments/:bookingId",
+        element: <Payments />,
+      },
+
+      // =============================
+      // Future Routes
+      // =============================
+
+      // {
+      //   path: "reviews",
+      //   element: <MyReviews />
+      // },
+
+      // {
+      //   path: "settings",
+      //   element: <Settings />
+      // },
+
+      // =============================
+      // Admin Routes
+      // =============================
+
+      // {
+      //   path: "admin/users",
+      //   element: (
+      //     <AdminRoute>
+      //       <ManageUsers />
+      //     </AdminRoute>
+      //   ),
+      // },
+
+      // {
+      //   path: "admin/rooms",
+      //   element: (
+      //     <AdminRoute>
+      //       <ManageRooms />
+      //     </AdminRoute>
+      //   ),
+      // },
+
+      // {
+      //   path: "admin/bookings",
+      //   element: (
+      //     <AdminRoute>
+      //       <ManageBookings />
+      //     </AdminRoute>
+      //   ),
+      // },
+
+      // {
+      //   path: "admin/payments",
+      //   element: (
+      //     <AdminRoute>
+      //       <ManagePayments />
+      //     </AdminRoute>
+      //   ),
+      // },
+
+      // {
+      //   path: "admin/reviews",
+      //   element: (
+      //     <AdminRoute>
+      //       <ManageReviews />
+      //     </AdminRoute>
+      //   ),
+      // },
     ],
   },
 ]);
