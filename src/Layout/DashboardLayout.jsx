@@ -8,10 +8,14 @@ import {
   FaStar,
   FaCog,
   FaHome,
+  FaUsersCog,
 } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
+import useAdmin from "../hooks/useAdmin";
 
 const DashboardLayout = () => {
+  const { isAdmin } = useAdmin();
+
   return (
     <div className="drawer lg:drawer-open">
       <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
@@ -108,6 +112,36 @@ const DashboardLayout = () => {
               >
                 <FaBed className="text-lg" />
                 <span className="is-drawer-close:hidden">My Bookings</span>
+              </NavLink>
+            </li>
+            {/*  Admin */}
+            {/* {isAdmin && (
+              <li>
+                <NavLink
+                  to="/dashboard/manage-users"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "bg-[#c49b63] text-white rounded-xl"
+                      : "rounded-xl hover:bg-[#f5f5f5]"
+                  }
+                >
+                  <FaUsersCog className="text-lg" />
+                  <span className="is-drawer-close:hidden">Manage Users</span>
+                </NavLink>
+              </li>
+            )} */}
+
+            <li>
+              <NavLink
+                to="/dashboard/manage-users"
+                className={({ isActive }) =>
+                  isActive
+                    ? "bg-[#c49b63] text-white rounded-xl"
+                    : "rounded-xl hover:bg-[#f5f5f5]"
+                }
+              >
+                <FaUsersCog className="text-lg" />
+                <span className="is-drawer-close:hidden">Manage Users</span>
               </NavLink>
             </li>
 

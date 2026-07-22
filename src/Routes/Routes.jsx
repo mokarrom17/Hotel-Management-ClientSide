@@ -15,7 +15,7 @@ import MyProfile from "../Pages/MyProfile/MyProfile";
 import Payment from "../Pages/Payment/Payment";
 import DashboardLayout from "../Layout/DashboardLayout";
 import Payments from "../Pages/Dashboard/Payment/Payments";
-
+import UserManagement from "../Pages/Dashboard/Payment/UserManagement/UserManagement";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -119,6 +119,11 @@ const router = createBrowserRouter([
       {
         path: "payments/:bookingId",
         element: <Payments />,
+      },
+      // User Management
+      {
+        path: "/dashboard/manage-users",
+        element: <UserManagement />,
       },
 
       // =============================
