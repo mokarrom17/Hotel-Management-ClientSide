@@ -9,6 +9,8 @@ const UserManagement = () => {
   const [search, setSearch] = useState("");
   const [roleFilter, setRoleFilter] = useState("all");
   const [sortBy, setSortBy] = useState("newest");
+  const [currentPage, setCurrentPage] = useState(1);
+  const usersPerPage = 10;
   const {
     data: users = [],
     isError,
@@ -121,7 +123,9 @@ const UserManagement = () => {
 
     return matchesSearch && matchesRole;
   });
-
+  // ==========================================
+  // Sorting Users
+  // ==========================================
   const sortedUsers = [...filteredUsers];
   if (sortBy === "az") {
     sortedUsers.sort((a, b) => a.name.localeCompare(b.name));
@@ -134,6 +138,15 @@ const UserManagement = () => {
   if (sortBy === "newest") {
     sortedUsers.reverse();
   }
+
+  // ==========================================
+  // Pagination Logic
+  // ==========================================
+  const totalPages = Math.ceil(sortedUsers.length / usersPerPage);
+
+  const startIndex = (currentPage - 1) * usersPerPage;
+  const endIndex = startIndex + usersPerPage;
+  const paginatedUsers = sortedUsers.slice(startIndex, endIndex);
 
   return (
     <div className="p-6">
@@ -216,9 +229,9 @@ const UserManagement = () => {
           </thead>
 
           <tbody>
-            {sortedUsers.map((user, index) => (
+            {paginatedUsers.map((user, index) => (
               <tr key={user._id}>
-                <td>{index + 1}</td>
+                <td>{startIndex + index + 1}</td>
 
                 <td>
                   <div className="avatar">
@@ -271,6 +284,36 @@ const UserManagement = () => {
             ))}
           </tbody>
         </table>
+      </div>
+      {/* Pagination */}
+      <div className="flex justify-center items-center gap-2 mt-6">
+        <button
+          className="btn btn-sm"
+          disabled={currentPage === 1}
+          onClick={() => setCurrentPage(currentPage - 1)}
+        >
+          Previous
+        </button>
+
+        {[...Array(totalPages)].map((_, index) => (
+          <button
+            key={index}
+            className={`btn btn-sm ${
+              currentPage === index + 1 ? "btn-warning" : ""
+            }`}
+            onClick={() => setCurrentPage(index + 1)}
+          >
+            {index + 1}
+          </button>
+        ))}
+
+        <button
+          className="btn btn-sm"
+          disabled={currentPage === totalPages}
+          onClick={() => setCurrentPage(currentPage + 1)}
+        >
+          Next
+        </button>
       </div>
     </div>
   );
