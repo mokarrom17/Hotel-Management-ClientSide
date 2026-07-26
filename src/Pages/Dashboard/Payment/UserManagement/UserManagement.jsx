@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import { FiShieldOff } from "react-icons/fi";
+import UserDetailsModal from "./UserDetailsModal";
 
 const UserManagement = () => {
   const axiosSecure = useAxiosSecure();
@@ -11,6 +12,7 @@ const UserManagement = () => {
   const [sortBy, setSortBy] = useState("newest");
   const [currentPage, setCurrentPage] = useState(1);
   const usersPerPage = 10;
+  const [selectedUser, setSelectedUser] = useState(null);
   const {
     data: users = [],
     isError,
@@ -262,6 +264,18 @@ const UserManagement = () => {
 
                 <td>
                   <div className="flex gap-2">
+                    <button
+                      className="btn btn-sm btn-info"
+                      onClick={() => {
+                        setSelectedUser(user);
+                        document
+                          .getElementById("user_details_modal")
+                          .showModal();
+                      }}
+                    >
+                      View
+                    </button>
+
                     {user.role === "admin" ? (
                       <button
                         onClick={() => handleDeleteUser(user)}
@@ -315,6 +329,8 @@ const UserManagement = () => {
           Next
         </button>
       </div>
+      {/* User Details Modal */}
+      <UserDetailsModal selectedUser={selectedUser} />
     </div>
   );
 };
