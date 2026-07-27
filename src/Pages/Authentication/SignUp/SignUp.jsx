@@ -57,6 +57,7 @@ const SignUp = () => {
         email,
         photoURL: user.photoURL || "",
         role: "customer",
+        status: "active",
         createdAt: new Date(),
         lastLogin: new Date(),
       };

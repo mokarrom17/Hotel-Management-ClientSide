@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
-import { FiShieldOff } from "react-icons/fi";
+import { FiShield, FiShieldOff, FiUserCheck, FiUserX } from "react-icons/fi";
 import UserDetailsModal from "./UserDetailsModal";
 
 const UserManagement = () => {
@@ -31,9 +31,7 @@ const UserManagement = () => {
   const totalUsers = users.length;
   const totalAdmins = users.filter((user) => user.role === "admin").length;
   const totalStaff = users.filter((user) => user.role === "staff").length;
-  const totalCustomers = users.filter(
-    (user) => user.role === "customer",
-  ).length;
+  const totalCustomers = users.filter((user) => user.role === "user").length;
   // ==========================================
   // Loading and Error Handling
   // ==========================================
@@ -84,26 +82,27 @@ const UserManagement = () => {
       }
     });
   };
-  const handleDeleteUser = (user) => {
+  const handleRemoveAdmin = (user) => {
     Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
+      title: "Remove Admin?",
+      text: `${user.name} will no longer have admin access.`,
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
+      confirmButtonText: "Yes, Remove",
     }).then((result) => {
       if (result.isConfirmed) {
         axiosSecure
-          .patch(`/users/${user._id}`, { isDeleted: true })
+          .patch(`/users/${user._id}`, {
+            role: "user",
+          })
           .then((res) => {
             if (res.data.modifiedCount > 0) {
               refetch();
+
               Swal.fire({
                 icon: "success",
-                title: "Deleted!",
-                text: `${user.name ?? user.email} has been deleted.`,
+                title: "Admin Removed",
+                text: `${user.name} is now a user.`,
                 timer: 1500,
                 showConfirmButton: false,
               });
@@ -111,6 +110,52 @@ const UserManagement = () => {
           });
       }
     });
+  };
+
+  // ==========================================
+  // Handle Status Change
+  // ==========================================
+  const handleStatusChange = async (user) => {
+    const newStatus = user.status === "active" ? "suspended" : "active";
+    const result = await Swal.fire({
+      title: newStatus === "suspended" ? "Suspend User?" : "Activate User?",
+      text:
+        newStatus === "suspended"
+          ? "This user won't be able to access the system."
+          : "This user will regain access to the system.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: newStatus === "suspended" ? "#d33" : "#16a34a",
+      confirmButtonText: newStatus === "suspended" ? "Suspend" : "Activate",
+    });
+
+    if (!result.isConfirmed) return;
+
+    try {
+      const res = await axiosSecure.patch(`/users/${user._id}`, {
+        status: newStatus,
+      });
+
+      if (res.data.modifiedCount > 0) {
+        refetch();
+
+        Swal.fire({
+          icon: "success",
+          title: `User ${
+            newStatus === "suspended" ? "Suspended" : "Activated"
+          } Successfully`,
+          timer: 1500,
+          showConfirmButton: false,
+        });
+      }
+    } catch (error) {
+      console.error(error);
+
+      Swal.fire({
+        icon: "error",
+        title: "Something went wrong!",
+      });
+    }
   };
 
   // Filtered Users
@@ -219,20 +264,26 @@ const UserManagement = () => {
       {/* Table */}
       <div className="overflow-x-auto bg-white rounded-2xl shadow">
         <table className="table table-zebra">
-          <thead className="bg-base-200">
+          <thead className="bg-base-200 text-lg text-center">
             <tr>
               <th>#</th>
               <th>Photo</th>
               <th>Name</th>
               <th>Email</th>
               <th>Role</th>
+              <th>Status</th>
               <th>Action</th>
             </tr>
           </thead>
 
           <tbody>
             {paginatedUsers.map((user, index) => (
-              <tr key={user._id}>
+              <tr
+                key={user._id}
+                className={
+                  user.status === "suspended" ? "bg-red-50 opacity-80" : ""
+                }
+              >
                 <td>{startIndex + index + 1}</td>
 
                 <td>
@@ -248,9 +299,9 @@ const UserManagement = () => {
                   </div>
                 </td>
 
-                <td>{user.name || "No Name"}</td>
+                <td className="font-semibold">{user.name || "No Name"}</td>
 
-                <td>{user.email}</td>
+                <td className="text-gray-600 font-semibold">{user.email}</td>
 
                 <td>
                   <span
@@ -261,11 +312,21 @@ const UserManagement = () => {
                     {user.role || "user"}
                   </span>
                 </td>
+                <td>
+                  <span
+                    className={`badge badge-lg p-5 font-semibold rounded ${
+                      user.status === "active" ? "badge-success" : "badge-error"
+                    }`}
+                  >
+                    {user.status === "active" ? "Active" : "Suspended"}
+                  </span>
+                </td>
 
                 <td>
-                  <div className="flex gap-2">
+                  <div className="flex items-center justify-center gap-2">
+                    {/* View Button */}
                     <button
-                      className="btn btn-sm btn-info"
+                      className="btn btn-md btn-info"
                       onClick={() => {
                         setSelectedUser(user);
                         document
@@ -276,22 +337,47 @@ const UserManagement = () => {
                       View
                     </button>
 
+                    {/* Role Action */}
                     {user.role === "admin" ? (
                       <button
-                        onClick={() => handleDeleteUser(user)}
-                        className="tooltip"
+                        onClick={() => handleRemoveAdmin(user)}
+                        className="btn btn-md btn-outline btn-error tooltip tooltip-left"
                         data-tip="Remove Admin"
                       >
-                        <FiShieldOff />
+                        <FiShieldOff className="text-base size-5" />
                       </button>
                     ) : (
                       <button
                         onClick={() => handleMakeAdmin(user)}
-                        className="btn btn-sm btn-warning"
+                        className="btn btn-md btn-warning text-lg font-semibold
+                        "
+                        data-tip="Make Admin"
                       >
-                        👑 Make Admin
+                        <FiShield className="text-base size-5" />
+                        Admin
                       </button>
                     )}
+                    {/* Status Action */}
+                    <button
+                      onClick={() => handleStatusChange(user)}
+                      className={`btn btn-md ${
+                        user.status === "active"
+                          ? "btn-outline btn-error"
+                          : "btn-outline btn-success"
+                      }`}
+                    >
+                      {user.status === "active" ? (
+                        <>
+                          <FiUserX className="text-base size-5" />
+                          Suspend
+                        </>
+                      ) : (
+                        <>
+                          <FiUserCheck className="text-base size-5" />
+                          Activate
+                        </>
+                      )}
+                    </button>
                   </div>
                 </td>
               </tr>
