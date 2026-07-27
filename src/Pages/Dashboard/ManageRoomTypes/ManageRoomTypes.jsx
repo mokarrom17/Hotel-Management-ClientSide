@@ -62,11 +62,11 @@ const ManageRoomTypes = () => {
               place.
             </p>
 
-            <div className="mt-4">
+            {/* <div className="mt-4">
               <span className="badge badge-primary badge-lg">
                 Total Room Types: {roomTypes.length}
               </span>
-            </div>
+            </div> */}
           </div>
 
           {/* Right */}
@@ -95,7 +95,7 @@ const ManageRoomTypes = () => {
       <div className="bg-white rounded-3xl shadow-md overflow-x-auto">
         <table className="table">
           <thead className="bg-[#f8f5f0]">
-            <tr className="text-gray-700">
+            <tr className="text-gray-700 text-lg text-center">
               <th>#</th>
               <th>Image</th>
               <th>Room Type</th>
@@ -110,7 +110,7 @@ const ManageRoomTypes = () => {
             {roomTypes.map((room, index) => (
               <tr key={room._id} className="hover">
                 {/* Serial */}
-                <td className="font-semibold">{index + 1}</td>
+                <td className="font-semibold text-lg">{index + 1}</td>
 
                 {/* Image */}
                 <td>
@@ -123,7 +123,9 @@ const ManageRoomTypes = () => {
 
                 {/* Room Type */}
                 <td>
-                  <h2 className="font-bold text-gray-800">{room.type}</h2>
+                  <h2 className="font-bold text-lg text-gray-800">
+                    {room.type}
+                  </h2>
 
                   <p className="text-sm text-gray-500 line-clamp-1">
                     {room.description}
@@ -164,12 +166,13 @@ const ManageRoomTypes = () => {
                     </Link>
 
                     {/* Edit */}
-                    <button
-                      className="btn btn-sm btn-outline btn-warning tooltip"
+                    <Link
+                      to={`/dashboard/manage-room-types/${room._id}/edit`}
+                      className="btn btn-sm btn-outline btn-warning tooltip flex items-center justify-center"
                       data-tip="Edit"
                     >
                       <FiEdit2 />
-                    </button>
+                    </Link>
 
                     {/* Delete */}
                     <button
