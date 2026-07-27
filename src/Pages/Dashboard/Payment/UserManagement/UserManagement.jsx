@@ -2,8 +2,15 @@ import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
-import { FiShield, FiShieldOff, FiUserCheck, FiUserX } from "react-icons/fi";
+import {
+  FiEdit2,
+  FiShield,
+  FiShieldOff,
+  FiUserCheck,
+  FiUserX,
+} from "react-icons/fi";
 import UserDetailsModal from "./UserDetailsModal";
+import EditUserModal from "./EditUserModal";
 
 const UserManagement = () => {
   const axiosSecure = useAxiosSecure();
@@ -337,6 +344,19 @@ const UserManagement = () => {
                       View
                     </button>
 
+                    {/* Edit Button */}
+
+                    <button
+                      className="btn btn-sm btn-primary"
+                      onClick={() => {
+                        setSelectedUser(user);
+                        document.getElementById("edit_user_modal").showModal();
+                      }}
+                    >
+                      <FiEdit2 />
+                      Edit
+                    </button>
+
                     {/* Role Action */}
                     {user.role === "admin" ? (
                       <button
@@ -417,6 +437,11 @@ const UserManagement = () => {
       </div>
       {/* User Details Modal */}
       <UserDetailsModal selectedUser={selectedUser} />
+      <EditUserModal
+        selectedUser={selectedUser}
+        axiosSecure={axiosSecure}
+        refetch={refetch}
+      />
     </div>
   );
 };
