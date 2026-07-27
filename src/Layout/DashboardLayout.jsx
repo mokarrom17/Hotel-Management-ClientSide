@@ -147,6 +147,22 @@ const DashboardLayout = () => {
 
             <li>
               <NavLink
+                to="/dashboard/manage-room-types"
+                className={({ isActive }) =>
+                  isActive
+                    ? "bg-[#c49b63] text-white rounded-xl"
+                    : "rounded-xl hover:bg-[#f5f5f5]"
+                }
+              >
+                <FaBed className="text-lg" />
+                <span className="is-drawer-close:hidden">
+                  Manage Room Types
+                </span>
+              </NavLink>
+            </li>
+
+            <li>
+              <NavLink
                 to="/dashboard/payments/:bookingId"
                 className={({ isActive }) =>
                   isActive

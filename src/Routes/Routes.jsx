@@ -15,7 +15,9 @@ import MyProfile from "../Pages/MyProfile/MyProfile";
 import Payment from "../Pages/Payment/Payment";
 import DashboardLayout from "../Layout/DashboardLayout";
 import Payments from "../Pages/Dashboard/Payment/Payments";
-import UserManagement from "../Pages/Dashboard/Payment/UserManagement/UserManagement";
+import UserManagement from "../Pages/Dashboard/UserManagement/UserManagement";
+import ManageRoomTypes from "../Pages/Dashboard/ManageRoomTypes/ManageRoomTypes";
+import ManageRoomTypeDetails from "../Pages/Dashboard/ManageRoomTypes/ManageRoomTypeDetails";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -124,6 +126,15 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/manage-users",
         element: <UserManagement />,
+      },
+
+      {
+        path: "/dashboard/manage-room-types",
+        element: <ManageRoomTypes />,
+      },
+      {
+        path: "/dashboard/manage-room-types/:id",
+        element: <ManageRoomTypeDetails />,
       },
 
       // =============================

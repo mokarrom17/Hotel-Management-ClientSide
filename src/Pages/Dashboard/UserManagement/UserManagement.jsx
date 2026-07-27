@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
-import useAxiosSecure from "../../../../hooks/useAxiosSecure";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import {
   FiEdit2,
@@ -358,22 +358,22 @@ const UserManagement = () => {
                     </button>
 
                     {/* Role Action */}
-                    {user.role === "admin" ? (
+                    {user.role === "admin" && (
                       <button
                         onClick={() => handleRemoveAdmin(user)}
-                        className="btn btn-md btn-outline btn-error tooltip tooltip-left"
+                        className="btn btn-sm btn-outline btn-error tooltip tooltip-left"
                         data-tip="Remove Admin"
                       >
-                        <FiShieldOff className="text-base size-5" />
+                        <FiShieldOff />
                       </button>
-                    ) : (
+                    )}
+
+                    {user.role === "staff" && (
                       <button
                         onClick={() => handleMakeAdmin(user)}
-                        className="btn btn-md btn-warning text-lg font-semibold
-                        "
-                        data-tip="Make Admin"
+                        className="btn btn-sm btn-success"
                       >
-                        <FiShield className="text-base size-5" />
+                        <FiShield />
                         Admin
                       </button>
                     )}
