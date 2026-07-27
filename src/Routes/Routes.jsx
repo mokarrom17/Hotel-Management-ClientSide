@@ -18,6 +18,7 @@ import Payments from "../Pages/Dashboard/Payment/Payments";
 import UserManagement from "../Pages/Dashboard/UserManagement/UserManagement";
 import ManageRoomTypes from "../Pages/Dashboard/ManageRoomTypes/ManageRoomTypes";
 import ManageRoomTypeDetails from "../Pages/Dashboard/ManageRoomTypes/ManageRoomTypeDetails";
+import EditRoomType from "../Pages/Dashboard/ManageRoomTypes/EditRoomType";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -135,6 +136,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/manage-room-types/:id",
         element: <ManageRoomTypeDetails />,
+      },
+      {
+        path: "/dashboard/manage-room-types/:id/edit",
+        element: <EditRoomType />,
       },
 
       // =============================

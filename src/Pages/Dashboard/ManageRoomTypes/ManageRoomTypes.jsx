@@ -78,11 +78,6 @@ const ManageRoomTypes = () => {
               className="input input-bordered w-full sm:w-64"
             />
 
-            {/* Filter */}
-            <select className="select select-bordered">
-              <option>All Status</option>
-            </select>
-
             {/* Sort */}
             <select className="select select-bordered">
               <option>Newest</option>
@@ -90,14 +85,6 @@ const ManageRoomTypes = () => {
               <option>Price: Low → High</option>
               <option>Price: High → Low</option>
             </select>
-
-            {/* Add Button */}
-            <button
-              className="btn border-none text-white"
-              style={{ backgroundColor: "#c49b63" }}
-            >
-              + Add Room Type
-            </button>
           </div>
         </div>
       </div>
