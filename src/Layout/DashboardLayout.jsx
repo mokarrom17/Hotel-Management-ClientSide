@@ -10,6 +10,7 @@ import {
   FaHome,
   FaUsersCog,
   FaDoorOpen,
+  FaClipboardList,
 } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import useAdmin from "../hooks/useAdmin";
@@ -172,6 +173,20 @@ const DashboardLayout = () => {
               >
                 <FaDoorOpen className="text-lg" />
                 <span className="is-drawer-close:hidden">Manage Rooms</span>
+              </NavLink>
+            </li>
+
+            <li>
+              <NavLink
+                to="/dashboard/manage-bookings"
+                className={({ isActive }) =>
+                  isActive
+                    ? "bg-[#c49b63] text-white rounded-xl"
+                    : "rounded-xl hover:bg-[#f5f5f5]"
+                }
+              >
+                <FaClipboardList className="text-lg" />
+                <span className="is-drawer-close:hidden">Manage Bookings</span>
               </NavLink>
             </li>
 

@@ -20,6 +20,7 @@ import ManageRoomTypes from "../Pages/Dashboard/ManageRoomTypes/ManageRoomTypes"
 import ManageRoomTypeDetails from "../Pages/Dashboard/ManageRoomTypes/ManageRoomTypeDetails";
 import EditRoomType from "../Pages/Dashboard/ManageRoomTypes/EditRoomType";
 import ManageRooms from "../Pages/Dashboard/ManageRooms/ManageRooms";
+import ManageBookings from "../Pages/Dashboard/ManageBookings/ManageBookings";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -145,6 +146,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/manage-rooms",
         element: <ManageRooms />,
+      },
+      {
+        path: "manage-bookings",
+        element: <ManageBookings />,
       },
 
       // =============================
