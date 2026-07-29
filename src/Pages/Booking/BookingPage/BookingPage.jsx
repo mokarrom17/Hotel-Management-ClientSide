@@ -56,6 +56,7 @@ const BookingPage = () => {
 
   const handleContinue = async () => {
     const bookingData = {
+      customerName: user.displayName,
       customerEmail: user.email,
 
       type,
@@ -216,11 +217,11 @@ const BookingPage = () => {
                   <label
                     key={room._id}
                     className={`border rounded-2xl p-5 flex justify-between items-center cursor-pointer transition-all duration-300
-    ${
-      selectedRoom?._id === room._id
-        ? "border-[#c49b63] bg-[#fff8ef] shadow-md"
-        : "border-gray-200 hover:border-[#c49b63]"
-    }`}
+                        ${
+                          selectedRoom?._id === room._id
+                            ? "border-[#c49b63] bg-[#fff8ef] shadow-md"
+                            : "border-gray-200 hover:border-[#c49b63]"
+                        }`}
                   >
                     <div>
                       <div className="flex items-center gap-3">

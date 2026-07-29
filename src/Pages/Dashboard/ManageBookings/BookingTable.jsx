@@ -47,7 +47,7 @@ const BookingTable = () => {
             <tr key={booking.id}>
               <th>{index + 1}</th>
 
-              <td>{booking.id}</td>
+              <td>{booking.roomId.slice(0, 8)}</td>
 
               <td>
                 <div>
@@ -57,7 +57,7 @@ const BookingTable = () => {
                 </div>
               </td>
 
-              <td>{booking.customer}</td>
+              <td>{booking.customerName || "N/A"}</td>
 
               <td>{booking.checkIn}</td>
 
