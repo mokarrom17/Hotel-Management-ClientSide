@@ -29,13 +29,6 @@ const getNightsBetween = (checkIn, checkOut) => {
   return diffDays > 0 ? diffDays : 1;
 };
 
-// Keeps the rooms count a valid whole number >= 1
-const sanitizeRoomsCount = (value) => {
-  const parsed = parseInt(value, 10);
-
-  return Number.isNaN(parsed) || parsed < 1 ? 1 : parsed;
-};
-
 // ==========================================
 // Booking Card
 // Price + summary + the whole booking form, all
@@ -57,8 +50,6 @@ const BookingCard = ({ room }) => {
   const [checkOutDate, setCheckOutDate] = useState(null);
 
   // ✅ Number Of Rooms — now controlled, so price recalculates live
-  const [roomsCount, setRoomsCount] = useState(1);
-
   const [submitting, setSubmitting] = useState(false);
 
   // ==========================================
@@ -72,8 +63,7 @@ const BookingCard = ({ room }) => {
   const serviceFee = 20;
 
   // price * nights * rooms + one flat service fee
-  const totalPrice = price * nights * roomsCount + serviceFee;
-
+  const totalPrice = price * nights + serviceFee;
   // ==========================================
   // Handle Booking
   // ==========================================
@@ -93,6 +83,8 @@ const BookingCard = ({ room }) => {
       const booking = {
         roomId,
 
+        roomType: type,
+
         customerName: form.name.value,
 
         customerEmail: user?.email,
@@ -103,14 +95,7 @@ const BookingCard = ({ room }) => {
 
         checkOut: form.checkOut.value,
 
-        // Number of rooms booked (kept as "roomNumber" to match
-        // the existing field already used in MyBookings.jsx)
-        roomNumber: roomsCount,
-
-        // room information
-        type,
-
-        price,
+        pricePerNight: price,
 
         nights,
 
@@ -119,6 +104,8 @@ const BookingCard = ({ room }) => {
         totalPrice,
 
         paymentStatus: "pending",
+
+        bookingStatus: "pending",
 
         createdAt: new Date(),
       };
@@ -134,7 +121,15 @@ const BookingCard = ({ room }) => {
         form.reset();
         setCheckInDate(null);
         setCheckOutDate(null);
-        setRoomsCount(1);
+        if (res.data.insertedId) {
+          toast.success("Booking Successful!");
+
+          form.reset();
+
+          setCheckInDate(null);
+
+          setCheckOutDate(null);
+        }
       }
     } catch (error) {
       toast.error("Booking Failed!");
@@ -165,12 +160,7 @@ const BookingCard = ({ room }) => {
       </div>
 
       {/* Booking Summary — now reacts to nights AND room count */}
-      <BookingSummary
-        price={price}
-        nights={nights}
-        rooms={roomsCount}
-        serviceFee={serviceFee}
-      />
+      <BookingSummary price={price} nights={nights} serviceFee={serviceFee} />
 
       {/* Booking Form */}
       <form onSubmit={handleBooking} className="space-y-5">
@@ -257,24 +247,6 @@ const BookingCard = ({ room }) => {
             type="text"
             name="phone"
             placeholder="Enter phone number"
-            className="input input-bordered w-full bg-white text-black rounded-2xl h-14"
-            required
-          />
-        </div>
-
-        {/* Rooms — controlled now, drives the price live */}
-        <div>
-          <label className="text-black font-semibold mb-2 block">
-            Number Of Rooms
-          </label>
-
-          <input
-            type="number"
-            name="rooms"
-            min="1"
-            value={roomsCount}
-            onChange={(e) => setRoomsCount(sanitizeRoomsCount(e.target.value))}
-            placeholder="Rooms"
             className="input input-bordered w-full bg-white text-black rounded-2xl h-14"
             required
           />

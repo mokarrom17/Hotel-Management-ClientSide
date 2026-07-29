@@ -21,6 +21,7 @@ import ManageRoomTypeDetails from "../Pages/Dashboard/ManageRoomTypes/ManageRoom
 import EditRoomType from "../Pages/Dashboard/ManageRoomTypes/EditRoomType";
 import ManageRooms from "../Pages/Dashboard/ManageRooms/ManageRooms";
 import ManageBookings from "../Pages/Dashboard/ManageBookings/ManageBookings";
+import BookingPage from "../Pages/Booking/BookingPage/BookingPage";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -63,6 +64,16 @@ const router = createBrowserRouter([
       {
         path: "roomDetails/:id",
         element: <RoomDetails />,
+        loader: ({ params }) =>
+          fetch(`${import.meta.env.VITE_API_URL}/roomTypes/${params.id}`),
+      },
+      {
+        path: "/booking/:id",
+        element: (
+          <PrivateRoute>
+            <BookingPage />
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
           fetch(`${import.meta.env.VITE_API_URL}/roomTypes/${params.id}`),
       },

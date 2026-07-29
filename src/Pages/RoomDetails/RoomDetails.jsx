@@ -1,6 +1,8 @@
 import { useState } from "react";
 
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, Link } from "react-router-dom";
+
+import { useQuery } from "@tanstack/react-query";
 
 import hotelBg from "../../assets/HotelBg2.jpg";
 
@@ -20,10 +22,17 @@ import {
   FiWind,
 } from "react-icons/fi";
 
-import { FaSwimmingPool, FaStar } from "react-icons/fa";
+import {
+  FaSwimmingPool,
+  FaStar,
+  FaArrowRight,
+  FaCheckCircle,
+  FaLayerGroup,
+  FaEye,
+  FaPhoneAlt,
+} from "react-icons/fa";
 
 import { FaAccessibleIcon } from "react-icons/fa6";
-import BookingCard from "../Booking/Bookingcard/BookingCard.jsx";
 
 const RoomDetails = () => {
   // ==========================================
@@ -43,6 +52,7 @@ const RoomDetails = () => {
   }
 
   const {
+    _id,
     type,
     image,
     adults,
@@ -69,6 +79,21 @@ const RoomDetails = () => {
   // States
   // ==========================================
   const [mainImage, setMainImage] = useState(image || "");
+
+  // ==========================================
+  // Availability Summary — how many rooms of this
+  // type are free right now, and on which floors/views
+  // ==========================================
+  const { data: availability = {} } = useQuery({
+    queryKey: ["roomAvailability", type],
+    queryFn: async () => {
+      const res = await fetch(
+        `${import.meta.env.VITE_API_URL}/rooms/availability?roomType=${encodeURIComponent(type)}`,
+      );
+      return res.json();
+    },
+    enabled: !!type,
+  });
 
   // ==========================================
   // Gallery Images
@@ -361,10 +386,130 @@ const RoomDetails = () => {
         </div>
 
         {/* ==========================================
-            Booking Card
+            Book Now Panel
         ========================================== */}
         <div className="lg:col-span-4">
-          <BookingCard room={room} />
+          <div className="sticky top-28 bg-white rounded-[35px] shadow-2xl p-8 border border-gray-100">
+            {/* Price */}
+            <div className="mb-8">
+              <p className="text-gray-400">Starting From</p>
+
+              <div className="flex items-end gap-2 mt-2">
+                <h2 className="text-5xl font-black text-[#c49b63]">${price}</h2>
+
+                <span className="text-gray-400 mb-2">/ Night</span>
+              </div>
+
+              {room.discount > 0 && (
+                <div className="mt-4">
+                  <span className="bg-red-500 text-white px-4 py-2 rounded-full text-sm font-bold">
+                    {room.discount}% OFF TODAY
+                  </span>
+                </div>
+              )}
+            </div>
+
+            {/* Room Info */}
+            <div className="space-y-4">
+              <div className="flex justify-between">
+                <span className="text-gray-500">Guests</span>
+                <span className="font-semibold text-black">
+                  {adults} Adults • {child} Child
+                </span>
+              </div>
+
+              <div className="flex justify-between">
+                <span className="text-gray-500">Beds</span>
+                <span className="font-semibold text-black">{beds}</span>
+              </div>
+
+              <div className="flex justify-between">
+                <span className="text-gray-500">Floor</span>
+                <span className="font-semibold text-black">{floor}</span>
+              </div>
+
+              <div className="flex justify-between">
+                <span className="text-gray-500">View</span>
+                <span className="font-semibold text-black">{view}</span>
+              </div>
+
+              <div className="flex justify-between">
+                <span className="text-gray-500">Status</span>
+                <span
+                  className={`font-bold ${
+                    isAvailable ? "text-green-600" : "text-red-600"
+                  }`}
+                >
+                  {isAvailable ? "Available" : "Unavailable"}
+                </span>
+              </div>
+            </div>
+
+            {/* Availability Summary — live from the rooms collection */}
+            {isAvailable && (
+              <div className="mt-6 rounded-2xl border border-[#c49b63]/30 bg-[#faf7f2] p-5">
+                <div className="flex items-center gap-2 font-bold text-black">
+                  <FaCheckCircle className="text-green-600" />
+                  {availability.availableCount ?? "—"} Room
+                  {availability.availableCount !== 1 ? "s" : ""} Available Right
+                  Now
+                </div>
+
+                {availability.floors?.length > 0 && (
+                  <div className="mt-3 flex items-start gap-2 text-sm text-gray-600">
+                    <FaLayerGroup className="mt-0.5 text-[#c49b63]" />
+                    <span>
+                      Floors:{" "}
+                      {availability.floors
+                        .map(
+                          (f) =>
+                            `${f}${f === 1 ? "st" : f === 2 ? "nd" : f === 3 ? "rd" : "th"}`,
+                        )
+                        .join(", ")}
+                    </span>
+                  </div>
+                )}
+
+                {availability.views?.length > 0 && (
+                  <div className="mt-2 flex items-start gap-2 text-sm text-gray-600">
+                    <FaEye className="mt-0.5 text-[#c49b63]" />
+                    <span>Views: {availability.views.join(", ")}</span>
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* Book Now — takes the guest to the standalone booking form */}
+            {isAvailable ? (
+              <Link to={`/booking/${_id}`}>
+                <button className="mt-8 flex h-16 w-full items-center justify-center gap-3 rounded-2xl bg-[#c49b63] font-bold tracking-wide text-white transition hover:bg-[#aa8453]">
+                  BOOK NOW
+                  <FaArrowRight />
+                </button>
+              </Link>
+            ) : (
+              <button
+                disabled
+                className="mt-8 flex h-16 w-full items-center justify-center gap-3 rounded-2xl bg-[#c49b63] font-bold tracking-wide text-white opacity-50 cursor-not-allowed"
+              >
+                CURRENTLY UNAVAILABLE
+              </button>
+            )}
+
+            {/* Need Help */}
+            <div className="mt-8 rounded-2xl bg-[#faf7f2] p-5">
+              <h3 className="font-bold text-black">Need Help?</h3>
+
+              <p className="mt-2 text-sm text-gray-500">
+                Contact our reservation team for booking assistance.
+              </p>
+
+              <p className="mt-4 flex items-center gap-2 font-bold text-[#c49b63]">
+                <FaPhoneAlt />
+                +1 800 555 0199
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
