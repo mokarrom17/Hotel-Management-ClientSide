@@ -5,17 +5,7 @@ import { IoCloseCircle } from "react-icons/io5";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
-const BookingStats = () => {
-  const axiosSecure = useAxiosSecure();
-
-  const { data: bookings = [], isLoading } = useQuery({
-    queryKey: ["bookings"],
-    queryFn: async () => {
-      const res = await axiosSecure.get("/admin/bookings");
-      return res.data;
-    },
-  });
-
+const BookingStats = ({ bookings }) => {
   const totalBookings = bookings.length;
 
   const pendingBookings = bookings.filter(
@@ -58,10 +48,6 @@ const BookingStats = () => {
       color: "text-red-600",
     },
   ];
-
-  if (isLoading) {
-    return <span className="loading loading-spinner loading-lg"></span>;
-  }
 
   return (
     <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-4">

@@ -1,28 +1,114 @@
-import { FaEye } from "react-icons/fa";
+import { FaClipboardList, FaEye } from "react-icons/fa";
 import { MdCancel } from "react-icons/md";
 import { BsCheckCircleFill } from "react-icons/bs";
-import useAxiosSecure from "../../../hooks/useAxiosSecure";
-import { useQuery } from "@tanstack/react-query";
 
-const BookingTable = () => {
-  const axiosSecure = useAxiosSecure();
+const BookingTable = ({
+  bookings = [],
+  isLoading,
+  onView,
+  onConfirm,
+  onCancel,
+}) => {
+  const getBookingStatusBadge = (status) => {
+    switch (status) {
+      case "pending":
+        return (
+          <span className="badge badge-warning text-black font-medium">
+            Pending
+          </span>
+        );
 
-  const {
-    data: bookings = [],
-    isLoading,
-    refetch,
-  } = useQuery({
-    queryKey: ["bookings"],
-    queryFn: async () => {
-      const res = await axiosSecure.get("/admin/bookings");
-      return res.data;
-    },
-  });
+      case "confirmed":
+        return (
+          <span className="badge badge-info text-white font-medium">
+            Confirmed
+          </span>
+        );
 
+      case "checked-in":
+        return (
+          <span className="badge badge-success text-white font-medium">
+            Checked In
+          </span>
+        );
+
+      case "checked-out":
+        return (
+          <span className="badge badge-neutral text-white font-medium">
+            Checked Out
+          </span>
+        );
+
+      case "cancelled":
+        return (
+          <span className="badge badge-error text-white font-medium">
+            Cancelled
+          </span>
+        );
+
+      default:
+        return <span className="badge badge-ghost">Unknown</span>;
+    }
+  };
+  const getPaymentStatusBadge = (status) => {
+    switch (status) {
+      case "paid":
+        return (
+          <span className="badge badge-success text-white font-medium">
+            Paid
+          </span>
+        );
+
+      case "pending":
+        return (
+          <span className="badge badge-warning text-black font-medium">
+            Pending
+          </span>
+        );
+
+      case "failed":
+        return (
+          <span className="badge badge-error text-white font-medium">
+            Failed
+          </span>
+        );
+
+      default:
+        return <span className="badge badge-ghost">Unknown</span>;
+    }
+  };
+  const formatDate = (date) => {
+    if (!date) return "-";
+
+    return new Date(date).toLocaleDateString("en-GB", {
+      day: "2-digit",
+      month: "short",
+      year: "numeric",
+    });
+  };
   if (isLoading) {
-    return <span className="loading loading-spinner loading-lg"></span>;
+    return (
+      <div className="flex justify-center py-20">
+        <span className="loading loading-spinner loading-lg"></span>
+      </div>
+    );
   }
 
+  if (bookings.length === 0) {
+    return (
+      <div className="rounded-xl border border-gray-200 bg-white py-16 text-center shadow-sm">
+        <FaClipboardList className="mx-auto text-5xl text-gray-300" />
+
+        <h3 className="mt-4 text-xl font-semibold text-gray-700">
+          No bookings found
+        </h3>
+
+        <p className="mt-2 text-sm text-gray-500">
+          There are no bookings matching your current search or filters.
+        </p>
+      </div>
+    );
+  }
   return (
     <div className="overflow-x-auto rounded-xl border border-gray-200 bg-white shadow-sm">
       <table className="table">
@@ -44,72 +130,75 @@ const BookingTable = () => {
 
         <tbody>
           {bookings.map((booking, index) => (
-            <tr key={booking.id}>
+            <tr key={booking._id}>
               <th>{index + 1}</th>
 
-              <td>{booking.roomId.slice(0, 8)}</td>
+              <td>
+                <span
+                  className="cursor-pointer font-medium"
+                  title={booking._id}
+                >
+                  {booking._id.slice(0, 8)}...
+                </span>
+              </td>
 
               <td>
-                <div>
-                  <p className="font-semibold">Room {booking.roomNumber}</p>
+                <div className="flex flex-col">
+                  <span className="font-semibold text-gray-800">
+                    {booking.roomNumber}
+                  </span>
 
-                  <p className="text-xs text-gray-500">{booking.roomType}</p>
+                  <span className="text-xs text-gray-500">{booking.type}</span>
                 </div>
               </td>
 
               <td>{booking.customerName || "N/A"}</td>
 
-              <td>{booking.checkIn}</td>
+              <td>{formatDate(booking.checkIn)}</td>
 
-              <td>{booking.checkOut}</td>
+              <td>{formatDate(booking.checkOut)}</td>
 
               <td>{booking.nights}</td>
 
-              <td>£{booking.totalPrice}</td>
+              <td>£{booking.totalPrice.toFixed(2)}</td>
 
-              <td>
-                <span
-                  className={`badge rounded p-4 font-semibold ${
-                    booking.paymentStatus === "Paid"
-                      ? "badge-success"
-                      : "badge-error"
-                  }`}
-                >
-                  {booking.paymentStatus}
-                </span>
-              </td>
+              <td>{getPaymentStatusBadge(booking.paymentStatus)}</td>
 
-              <td>
-                <span
-                  className={`badge rounded p-4 font-semibold ${
-                    booking.bookingStatus === "Confirmed"
-                      ? "badge-info"
-                      : "badge-warning"
-                  }`}
-                >
-                  {booking.bookingStatus}
-                </span>
-              </td>
+              <td>{getBookingStatusBadge(booking.bookingStatus)}</td>
 
               <td>
                 <div className="flex justify-center gap-2">
                   <button
                     className="btn btn-sm btn-info text-white"
-                    title="View"
+                    title="View Booking"
+                    onClick={() => onView(booking)}
                   >
                     <FaEye />
                   </button>
 
                   <button
                     className="btn btn-sm btn-success text-white"
-                    title="Confirm"
+                    title="Confirm Booking"
+                    onClick={() => onConfirm(booking)}
+                    disabled={
+                      booking.bookingStatus === "confirmed" ||
+                      booking.bookingStatus === "checked-in" ||
+                      booking.bookingStatus === "checked-out" ||
+                      booking.bookingStatus === "cancelled"
+                    }
                   >
                     <BsCheckCircleFill />
                   </button>
 
                   <button
                     className="btn btn-sm btn-error text-white"
-                    title="Cancel"
+                    title="Cancel Booking"
+                    onClick={() => onCancel(booking)}
+                    disabled={
+                      booking.bookingStatus === "cancelled" ||
+                      booking.bookingStatus === "checked-in" ||
+                      booking.bookingStatus === "checked-out"
+                    }
                   >
                     <MdCancel />
                   </button>

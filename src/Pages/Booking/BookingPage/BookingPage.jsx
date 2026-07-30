@@ -76,6 +76,7 @@ const BookingPage = () => {
       totalPrice: nights * price + serviceFee,
 
       paymentStatus: "pending",
+      bookingStatus: "pending",
     };
 
     try {
