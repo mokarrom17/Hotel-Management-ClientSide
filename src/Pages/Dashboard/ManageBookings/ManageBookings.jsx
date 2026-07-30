@@ -97,6 +97,75 @@ const ManageBookings = () => {
     }
   };
 
+  const handleCheckIn = async (booking) => {
+    const result = await Swal.fire({
+      title: "Check-In Guest?",
+      text: "Mark this guest as checked-in?",
+      icon: "question",
+      showCancelButton: true,
+      confirmButtonText: "Yes, Check-In",
+    });
+
+    if (!result.isConfirmed) return;
+
+    try {
+      const res = await axiosSecure.patch(
+        `/admin/bookings/${booking._id}/check-in`,
+      );
+
+      if (res.data.modifiedCount > 0) {
+        Swal.fire({
+          icon: "success",
+          title: "Guest Checked-In",
+          timer: 1500,
+          showConfirmButton: false,
+        });
+
+        refetch();
+      }
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: error.response?.data?.message || "Failed to check-in guest.",
+      });
+    }
+  };
+  const handleCheckOut = async (booking) => {
+    const result = await Swal.fire({
+      title: "Check-Out Guest?",
+      text: "Complete this guest's stay?",
+      icon: "question",
+      showCancelButton: true,
+      confirmButtonText: "Yes, Check-Out",
+    });
+
+    if (!result.isConfirmed) return;
+
+    try {
+      const res = await axiosSecure.patch(
+        `/admin/bookings/${booking._id}/check-out`,
+      );
+
+      if (res.data.modifiedCount > 0) {
+        Swal.fire({
+          icon: "success",
+          title: "Guest Checked-Out",
+          timer: 1500,
+          showConfirmButton: false,
+        });
+
+        refetch();
+      }
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: error.response?.data?.message || "Failed to check-out guest.",
+      });
+    }
+  };
+
   return (
     <div className="space-y-6 mx-8 mb-12">
       <div>
@@ -119,6 +188,8 @@ const ManageBookings = () => {
         onView={setSelectedBooking}
         onConfirm={handleConfirmBooking}
         onCancel={handleCancelBooking}
+        onCheckIn={handleCheckIn}
+        onCheckOut={handleCheckOut}
       />
       <BookingDetailsModal
         booking={selectedBooking}

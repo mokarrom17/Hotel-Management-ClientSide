@@ -8,73 +8,87 @@ const BookingTable = ({
   onView,
   onConfirm,
   onCancel,
+  onCheckIn,
+  onCheckOut,
 }) => {
   const getBookingStatusBadge = (status) => {
+    const baseClass =
+      "inline-flex items-center justify-center rounded-md px-3 py-1 text-xs font-semibold whitespace-nowrap";
+
     switch (status) {
       case "pending":
         return (
-          <span className="badge badge-warning text-black font-medium">
+          <span className={`${baseClass} bg-yellow-100 text-yellow-800`}>
             Pending
           </span>
         );
 
       case "confirmed":
         return (
-          <span className="badge badge-info text-white font-medium">
+          <span className={`${baseClass} bg-blue-100 text-blue-800`}>
             Confirmed
           </span>
         );
 
       case "checked-in":
         return (
-          <span className="badge badge-success text-white font-medium">
-            Checked In
+          <span className={`${baseClass} bg-green-100 text-green-800`}>
+            Checked-In
           </span>
         );
 
       case "checked-out":
         return (
-          <span className="badge badge-neutral text-white font-medium">
-            Checked Out
+          <span className={`${baseClass} bg-slate-200 text-slate-800`}>
+            Checked-Out
           </span>
         );
 
       case "cancelled":
         return (
-          <span className="badge badge-error text-white font-medium">
+          <span className={`${baseClass} bg-red-100 text-red-700`}>
             Cancelled
           </span>
         );
 
       default:
-        return <span className="badge badge-ghost">Unknown</span>;
+        return (
+          <span className={`${baseClass} bg-gray-100 text-gray-700`}>
+            Unknown
+          </span>
+        );
     }
   };
   const getPaymentStatusBadge = (status) => {
+    const baseClass =
+      "inline-flex items-center justify-center rounded-md px-3 py-1 text-xs font-semibold whitespace-nowrap";
+
     switch (status) {
       case "paid":
         return (
-          <span className="badge badge-success text-white font-medium">
+          <span className={`${baseClass} bg-green-100 text-green-800`}>
             Paid
           </span>
         );
 
       case "pending":
         return (
-          <span className="badge badge-warning text-black font-medium">
+          <span className={`${baseClass} bg-yellow-100 text-yellow-800`}>
             Pending
           </span>
         );
 
       case "failed":
         return (
-          <span className="badge badge-error text-white font-medium">
-            Failed
-          </span>
+          <span className={`${baseClass} bg-red-100 text-red-700`}>Failed</span>
         );
 
       default:
-        return <span className="badge badge-ghost">Unknown</span>;
+        return (
+          <span className={`${baseClass} bg-gray-100 text-gray-700`}>
+            Unknown
+          </span>
+        );
     }
   };
   const formatDate = (date) => {
@@ -168,6 +182,7 @@ const BookingTable = ({
 
               <td>
                 <div className="flex justify-center gap-2">
+                  {/* View Button */}
                   <button
                     className="btn btn-sm btn-info text-white"
                     title="View Booking"
@@ -176,32 +191,50 @@ const BookingTable = ({
                     <FaEye />
                   </button>
 
-                  <button
-                    className="btn btn-sm btn-success text-white"
-                    title="Confirm Booking"
-                    onClick={() => onConfirm(booking)}
-                    disabled={
-                      booking.bookingStatus === "confirmed" ||
-                      booking.bookingStatus === "checked-in" ||
-                      booking.bookingStatus === "checked-out" ||
-                      booking.bookingStatus === "cancelled"
-                    }
-                  >
-                    <BsCheckCircleFill />
-                  </button>
+                  {/* Pending → Confirm */}
+                  {booking.bookingStatus === "pending" && (
+                    <button
+                      className="btn btn-sm btn-success text-white"
+                      title="Confirm Booking"
+                      onClick={() => onConfirm(booking)}
+                    >
+                      <BsCheckCircleFill />
+                    </button>
+                  )}
 
-                  <button
-                    className="btn btn-sm btn-error text-white"
-                    title="Cancel Booking"
-                    onClick={() => onCancel(booking)}
-                    disabled={
-                      booking.bookingStatus === "cancelled" ||
-                      booking.bookingStatus === "checked-in" ||
-                      booking.bookingStatus === "checked-out"
-                    }
-                  >
-                    <MdCancel />
-                  </button>
+                  {/* Confirmed → Check-In */}
+                  {booking.bookingStatus === "confirmed" && (
+                    <button
+                      className="btn btn-sm btn-primary text-white"
+                      title="Check-In"
+                      onClick={() => onCheckIn(booking)}
+                    >
+                      Check-In
+                    </button>
+                  )}
+
+                  {/* Checked-In → Check-Out */}
+                  {booking.bookingStatus === "checked-in" && (
+                    <button
+                      className="btn btn-sm btn-secondary text-white"
+                      title="Check-Out"
+                      onClick={() => onCheckOut(booking)}
+                    >
+                      Check-Out
+                    </button>
+                  )}
+
+                  {/* Pending বা Confirmed → Cancel */}
+                  {(booking.bookingStatus === "pending" ||
+                    booking.bookingStatus === "confirmed") && (
+                    <button
+                      className="btn btn-sm btn-error text-white"
+                      title="Cancel Booking"
+                      onClick={() => onCancel(booking)}
+                    >
+                      <MdCancel />
+                    </button>
+                  )}
                 </div>
               </td>
             </tr>
