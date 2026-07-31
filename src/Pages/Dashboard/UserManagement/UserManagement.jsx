@@ -11,6 +11,7 @@ import {
 } from "react-icons/fi";
 import UserDetailsModal from "./UserDetailsModal";
 import EditUserModal from "./EditUserModal";
+import Pagination from "../../Shared/Pagination/Pagination";
 
 const UserManagement = () => {
   const axiosSecure = useAxiosSecure();
@@ -406,35 +407,11 @@ const UserManagement = () => {
         </table>
       </div>
       {/* Pagination */}
-      <div className="flex justify-center items-center gap-2 mt-6">
-        <button
-          className="btn btn-sm"
-          disabled={currentPage === 1}
-          onClick={() => setCurrentPage(currentPage - 1)}
-        >
-          Previous
-        </button>
-
-        {[...Array(totalPages)].map((_, index) => (
-          <button
-            key={index}
-            className={`btn btn-sm ${
-              currentPage === index + 1 ? "btn-warning" : ""
-            }`}
-            onClick={() => setCurrentPage(index + 1)}
-          >
-            {index + 1}
-          </button>
-        ))}
-
-        <button
-          className="btn btn-sm"
-          disabled={currentPage === totalPages}
-          onClick={() => setCurrentPage(currentPage + 1)}
-        >
-          Next
-        </button>
-      </div>
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={setCurrentPage}
+      />
       {/* User Details Modal */}
       <UserDetailsModal selectedUser={selectedUser} />
       <EditUserModal

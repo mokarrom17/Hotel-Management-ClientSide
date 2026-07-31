@@ -6,11 +6,15 @@ import BookingTable from "./BookingTable";
 import { useState } from "react";
 import BookingDetailsModal from "./BookingDetailsModal";
 import Swal from "sweetalert2";
+import Pagination from "../../Shared/Pagination/Pagination";
 
 const ManageBookings = () => {
   const axiosSecure = useAxiosSecure();
 
   const [selectedBooking, setSelectedBooking] = useState(null);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const bookingsPerPage = 10;
 
   const {
     data: bookings = [],
@@ -166,6 +170,14 @@ const ManageBookings = () => {
     }
   };
 
+  //
+  const totalPages = Math.ceil(bookings.length / bookingsPerPage);
+
+  const startIndex = (currentPage - 1) * bookingsPerPage;
+  const endIndex = startIndex + bookingsPerPage;
+
+  const paginatedBookings = bookings.slice(startIndex, endIndex);
+
   return (
     <div className="space-y-6 mx-8 mb-12">
       <div>
@@ -183,7 +195,7 @@ const ManageBookings = () => {
 
       {/* Booking Table */}
       <BookingTable
-        bookings={bookings}
+        bookings={paginatedBookings}
         isLoading={isLoading}
         onView={setSelectedBooking}
         onConfirm={handleConfirmBooking}
@@ -194,6 +206,11 @@ const ManageBookings = () => {
       <BookingDetailsModal
         booking={selectedBooking}
         onClose={() => setSelectedBooking(null)}
+      />
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={setCurrentPage}
       />
     </div>
   );

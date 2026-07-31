@@ -1,30 +1,6 @@
-import { useQuery } from "@tanstack/react-query";
 import { FaEdit, FaEye } from "react-icons/fa";
-import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
-const RoomTable = ({ search, roomType, floor, status }) => {
-  const axiosSecure = useAxiosSecure();
-
-  const {
-    data: rooms = [],
-    isPending,
-    isError,
-    error,
-  } = useQuery({
-    queryKey: ["rooms", search, roomType, floor, status],
-    queryFn: async () => {
-      const res = await axiosSecure.get("/rooms", {
-        params: {
-          search,
-          roomType,
-          floor,
-          status,
-        },
-      });
-      return res.data;
-    },
-  });
-
+const RoomTable = ({ rooms, isPending, isError, error, startIndex }) => {
   if (isPending) {
     return (
       <div className="rounded-2xl border bg-white p-10 shadow-sm">
@@ -38,7 +14,9 @@ const RoomTable = ({ search, roomType, floor, status }) => {
   if (isError) {
     return (
       <div className="rounded-2xl border bg-white p-10 shadow-sm">
-        <p className="text-center font-medium text-red-500">{error.message}</p>
+        <p className="text-center font-medium text-red-500">
+          {error?.message || "Something went wrong."}
+        </p>
       </div>
     );
   }
@@ -69,7 +47,7 @@ const RoomTable = ({ search, roomType, floor, status }) => {
           ) : (
             rooms.map((room, index) => (
               <tr key={room._id} className="hover">
-                <td>{index + 1}</td>
+                <td>{startIndex + index + 1}</td>
 
                 <td className="font-semibold">{room.roomNumber}</td>
 
