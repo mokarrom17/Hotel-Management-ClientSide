@@ -22,6 +22,7 @@ import EditRoomType from "../Pages/Dashboard/ManageRoomTypes/EditRoomType";
 import ManageRooms from "../Pages/Dashboard/ManageRooms/ManageRooms";
 import ManageBookings from "../Pages/Dashboard/ManageBookings/ManageBookings";
 import BookingPage from "../Pages/Booking/BookingPage/BookingPage";
+import DashboardHome from "../Pages/Dashboard/DashboardHome/DashboardHome";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -116,7 +117,7 @@ const router = createBrowserRouter([
       // Dashboard Home
       {
         index: true,
-        element: <MyProfile />,
+        element: <DashboardHome />,
       },
 
       // Profile
