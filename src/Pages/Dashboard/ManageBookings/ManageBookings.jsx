@@ -16,6 +16,16 @@ const ManageBookings = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const bookingsPerPage = 10;
 
+  const [sortBy, setSortBy] = useState("");
+
+  const [search, setSearch] = useState("");
+
+  const [bookingStatus, setBookingStatus] = useState("");
+
+  const [paymentStatus, setPaymentStatus] = useState("");
+
+  const [roomType, setRoomType] = useState("");
+
   const {
     data: bookings = [],
     isLoading,
@@ -170,13 +180,95 @@ const ManageBookings = () => {
     }
   };
 
+  const handleReset = () => {
+    setSearch("");
+    setBookingStatus("");
+    setPaymentStatus("");
+    setRoomType("");
+    setSortBy("");
+    setCurrentPage(1);
+  };
+
+  const filteredBookings = bookings.filter((booking) => {
+    const keyword = search.trim().toLowerCase();
+
+    const matchesSearch =
+      booking._id?.toLowerCase().includes(keyword) ||
+      booking.customerName?.toLowerCase().includes(keyword) ||
+      booking.roomNumber?.toString().includes(keyword);
+
+    const matchesBookingStatus =
+      !bookingStatus || booking.bookingStatus === bookingStatus;
+
+    const matchesPaymentStatus =
+      !paymentStatus || booking.paymentStatus === paymentStatus;
+
+    const matchesRoomType = !roomType || booking.type === roomType;
+
+    return (
+      matchesSearch &&
+      matchesBookingStatus &&
+      matchesPaymentStatus &&
+      matchesRoomType
+    );
+  });
+
+  const sortedBookings = [...filteredBookings];
+
+  switch (sortBy) {
+    case "checkInAsc":
+      sortedBookings.sort((a, b) => new Date(a.checkIn) - new Date(b.checkIn));
+      break;
+
+    case "checkInDesc":
+      sortedBookings.sort((a, b) => new Date(b.checkIn) - new Date(a.checkIn));
+      break;
+
+    case "checkOutAsc":
+      sortedBookings.sort(
+        (a, b) => new Date(a.checkOut) - new Date(b.checkOut),
+      );
+      break;
+
+    case "checkOutDesc":
+      sortedBookings.sort(
+        (a, b) => new Date(b.checkOut) - new Date(a.checkOut),
+      );
+      break;
+
+    case "amountAsc":
+      sortedBookings.sort((a, b) => a.totalPrice - b.totalPrice);
+      break;
+
+    case "amountDesc":
+      sortedBookings.sort((a, b) => b.totalPrice - a.totalPrice);
+      break;
+
+    case "bookingStatusAsc":
+      sortedBookings.sort((a, b) =>
+        a.bookingStatus.localeCompare(b.bookingStatus),
+      );
+      break;
+
+    case "paymentStatusAsc":
+      sortedBookings.sort((a, b) =>
+        a.paymentStatus.localeCompare(b.paymentStatus),
+      );
+      break;
+
+    default:
+      break;
+  }
+
   //
-  const totalPages = Math.ceil(bookings.length / bookingsPerPage);
+  const totalPages = Math.ceil(sortedBookings.length / bookingsPerPage);
 
   const startIndex = (currentPage - 1) * bookingsPerPage;
-  const endIndex = startIndex + bookingsPerPage;
 
-  const paginatedBookings = bookings.slice(startIndex, endIndex);
+  const paginatedBookings = sortedBookings.slice(
+    startIndex,
+    startIndex + bookingsPerPage,
+  );
 
   return (
     <div className="space-y-6 mx-8 mb-12">
@@ -191,11 +283,26 @@ const ManageBookings = () => {
       <BookingStats bookings={bookings} />
 
       {/* Search & Filter */}
-      <BookingFilter />
+      <BookingFilter
+        search={search}
+        setSearch={setSearch}
+        bookingStatus={bookingStatus}
+        setBookingStatus={setBookingStatus}
+        paymentStatus={paymentStatus}
+        setPaymentStatus={setPaymentStatus}
+        roomType={roomType}
+        setRoomType={setRoomType}
+        sortBy={sortBy}
+        setSortBy={setSortBy}
+        onReset={handleReset}
+        setCurrentPage={setCurrentPage}
+        bookingCount={filteredBookings.length}
+      />
 
       {/* Booking Table */}
       <BookingTable
         bookings={paginatedBookings}
+        startIndex={startIndex}
         isLoading={isLoading}
         onView={setSelectedBooking}
         onConfirm={handleConfirmBooking}
