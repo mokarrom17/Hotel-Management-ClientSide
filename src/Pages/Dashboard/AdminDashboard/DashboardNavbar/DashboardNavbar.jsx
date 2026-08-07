@@ -1,6 +1,6 @@
 import { FaBars, FaBell, FaCog, FaSearch, FaUserCircle } from "react-icons/fa";
 import { Link, useLocation } from "react-router-dom";
-import useAuth from "../../../hooks/useAuth";
+import useAuth from "../../../../hooks/useAuth";
 
 const DashboardNavbar = () => {
   const { user } = useAuth();

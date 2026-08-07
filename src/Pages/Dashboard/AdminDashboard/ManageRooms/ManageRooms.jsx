@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 
 import RoomStats from "./RoomStats";
 import RoomFilters from "./RoomFilters";
 import RoomTable from "./RoomTable";
-import Pagination from "../../Shared/Pagination/Pagination";
+import Pagination from "../../../Shared/Pagination/Pagination";
 
 const ManageRooms = () => {
   const axiosSecure = useAxiosSecure();

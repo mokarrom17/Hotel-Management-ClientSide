@@ -17,9 +17,9 @@ import {
   FaUsers,
   FaWifi,
 } from "react-icons/fa";
-import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import { useQueryClient } from "@tanstack/react-query";
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 
 const EditRoomType = () => {
   const { id } = useParams();

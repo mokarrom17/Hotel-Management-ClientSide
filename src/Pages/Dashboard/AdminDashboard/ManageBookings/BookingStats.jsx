@@ -3,7 +3,7 @@ import { MdPendingActions } from "react-icons/md";
 import { FaMoneyCheckDollar } from "react-icons/fa6";
 import { IoCloseCircle } from "react-icons/io5";
 import { useQuery } from "@tanstack/react-query";
-import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 
 const BookingStats = ({ bookings }) => {
   const totalBookings = bookings.length;

@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { FaDoorOpen, FaCheckCircle, FaBed, FaTools } from "react-icons/fa";
-import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 
 const RoomStats = () => {
   const axiosSecure = useAxiosSecure();

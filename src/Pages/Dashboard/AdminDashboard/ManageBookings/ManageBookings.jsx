@@ -1,12 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
-import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import BookingFilter from "./BookingFilter";
 import BookingStats from "./BookingStats";
 import BookingTable from "./BookingTable";
 import { useState } from "react";
 import BookingDetailsModal from "./BookingDetailsModal";
 import Swal from "sweetalert2";
-import Pagination from "../../Shared/Pagination/Pagination";
+import Pagination from "../../../Shared/Pagination/Pagination";
 
 const ManageBookings = () => {
   const axiosSecure = useAxiosSecure();

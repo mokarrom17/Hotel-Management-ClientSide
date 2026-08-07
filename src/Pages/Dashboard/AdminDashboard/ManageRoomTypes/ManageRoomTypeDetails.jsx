@@ -25,7 +25,7 @@ import {
   FaUserFriends,
 } from "react-icons/fa";
 
-import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import { useState } from "react";
 
 const ManageRoomTypeDetails = () => {

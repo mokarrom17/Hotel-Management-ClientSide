@@ -15,7 +15,7 @@ import {
 } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import useAdmin from "../hooks/useAdmin";
-import DashboardNavbar from "../Pages/Dashboard/DashboardNavbar/DashboardNavbar";
+import DashboardNavbar from "../Pages/Dashboard/AdminDashboard/DashboardNavbar/DashboardNavbar";
 
 const DashboardLayout = () => {
   const { isAdmin } = useAdmin();

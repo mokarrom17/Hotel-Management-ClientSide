@@ -1,8 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
-import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { FiEdit2, FiEye, FiTrash2 } from "react-icons/fi";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 
 const ManageRoomTypes = () => {
   const [selectedRoomType, setSelectedRoomType] = useState(null);

@@ -5,7 +5,7 @@ import {
   FaSignInAlt,
   FaSignOutAlt,
 } from "react-icons/fa";
-import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 
 const TodaySummary = ({}) => {
   const axiosSecure = useAxiosSecure();

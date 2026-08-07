@@ -15,14 +15,14 @@ import MyProfile from "../Pages/MyProfile/MyProfile";
 import Payment from "../Pages/Payment/Payment";
 import DashboardLayout from "../Layout/DashboardLayout";
 import Payments from "../Pages/Dashboard/Payment/Payments";
-import UserManagement from "../Pages/Dashboard/UserManagement/UserManagement";
-import ManageRoomTypes from "../Pages/Dashboard/ManageRoomTypes/ManageRoomTypes";
-import ManageRoomTypeDetails from "../Pages/Dashboard/ManageRoomTypes/ManageRoomTypeDetails";
-import EditRoomType from "../Pages/Dashboard/ManageRoomTypes/EditRoomType";
-import ManageRooms from "../Pages/Dashboard/ManageRooms/ManageRooms";
-import ManageBookings from "../Pages/Dashboard/ManageBookings/ManageBookings";
+import UserManagement from "../Pages/Dashboard/AdminDashboard/UserManagement/UserManagement.jsx";
+import ManageRoomTypes from "../Pages/Dashboard/AdminDashboard/ManageRoomTypes/ManageRoomTypes.jsx";
+import ManageRoomTypeDetails from "../Pages/Dashboard/AdminDashboard/ManageRoomTypes/ManageRoomTypeDetails.jsx";
+import EditRoomType from "../Pages/Dashboard/AdminDashboard/ManageRoomTypes/EditRoomType.jsx";
+import ManageRooms from "../Pages/Dashboard/AdminDashboard/ManageRooms/ManageRooms";
+import ManageBookings from "../Pages/Dashboard/AdminDashboard/ManageBookings/ManageBookings";
 import BookingPage from "../Pages/Booking/BookingPage/BookingPage";
-import DashboardHome from "../Pages/Dashboard/DashboardHome/DashboardHome";
+import DashboardHome from "../Pages/Dashboard/AdminDashboard/DashboardHome/DashboardHome";
 import AdminRoute from "./AdminRoute";
 const router = createBrowserRouter([
   {

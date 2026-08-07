@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
-import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import {
   FiEdit2,
@@ -11,7 +11,7 @@ import {
 } from "react-icons/fi";
 import UserDetailsModal from "./UserDetailsModal";
 import EditUserModal from "./EditUserModal";
-import Pagination from "../../Shared/Pagination/Pagination";
+import Pagination from "../../../Shared/Pagination/Pagination";
 
 const UserManagement = () => {
   const axiosSecure = useAxiosSecure();
