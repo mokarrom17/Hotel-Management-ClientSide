@@ -23,6 +23,7 @@ import ManageRooms from "../Pages/Dashboard/ManageRooms/ManageRooms";
 import ManageBookings from "../Pages/Dashboard/ManageBookings/ManageBookings";
 import BookingPage from "../Pages/Booking/BookingPage/BookingPage";
 import DashboardHome from "../Pages/Dashboard/DashboardHome/DashboardHome";
+import AdminRoute from "./AdminRoute";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -117,7 +118,11 @@ const router = createBrowserRouter([
       // Dashboard Home
       {
         index: true,
-        element: <DashboardHome />,
+        element: (
+          <AdminRoute>
+            <DashboardHome />
+          </AdminRoute>
+        ),
       },
 
       // Profile
@@ -135,97 +140,62 @@ const router = createBrowserRouter([
       // Payment
       {
         path: "payments/:bookingId",
-        element: <Payments />,
+        element: (
+          <AdminRoute>
+            <Payments />
+          </AdminRoute>
+        ),
       },
       // User Management
       {
-        path: "/dashboard/manage-users",
-        element: <UserManagement />,
+        path: "manage-users",
+        element: (
+          <AdminRoute>
+            <UserManagement />
+          </AdminRoute>
+        ),
       },
 
       {
-        path: "/dashboard/manage-room-types",
-        element: <ManageRoomTypes />,
+        path: "manage-room-types",
+        element: (
+          <AdminRoute>
+            <ManageRoomTypes />
+          </AdminRoute>
+        ),
       },
       {
-        path: "/dashboard/manage-room-types/:id",
-        element: <ManageRoomTypeDetails />,
+        path: "manage-room-types/:id",
+        element: (
+          <AdminRoute>
+            <ManageRoomTypeDetails />
+          </AdminRoute>
+        ),
       },
       {
-        path: "/dashboard/manage-room-types/:id/edit",
-        element: <EditRoomType />,
+        path: "manage-room-types/:id/edit",
+        element: (
+          <AdminRoute>
+            <EditRoomType />
+          </AdminRoute>
+        ),
       },
       {
-        path: "/dashboard/manage-rooms",
-        element: <ManageRooms />,
+        path: "manage-rooms",
+        element: (
+          <AdminRoute>
+            <ManageRooms />
+          </AdminRoute>
+        ),
       },
       {
         path: "manage-bookings",
-        element: <ManageBookings />,
+        element: (
+          <AdminRoute>
+            <ManageBookings />
+          </AdminRoute>
+        ),
       },
-
-      // =============================
-      // Future Routes
-      // =============================
-
-      // {
-      //   path: "reviews",
-      //   element: <MyReviews />
-      // },
-
-      // {
-      //   path: "settings",
-      //   element: <Settings />
-      // },
-
-      // =============================
-      // Admin Routes
-      // =============================
-
-      // {
-      //   path: "admin/users",
-      //   element: (
-      //     <AdminRoute>
-      //       <ManageUsers />
-      //     </AdminRoute>
-      //   ),
-      // },
-
-      // {
-      //   path: "admin/rooms",
-      //   element: (
-      //     <AdminRoute>
-      //       <ManageRooms />
-      //     </AdminRoute>
-      //   ),
-      // },
-
-      // {
-      //   path: "admin/bookings",
-      //   element: (
-      //     <AdminRoute>
-      //       <ManageBookings />
-      //     </AdminRoute>
-      //   ),
-      // },
-
-      // {
-      //   path: "admin/payments",
-      //   element: (
-      //     <AdminRoute>
-      //       <ManagePayments />
-      //     </AdminRoute>
-      //   ),
-      // },
-
-      // {
-      //   path: "admin/reviews",
-      //   element: (
-      //     <AdminRoute>
-      //       <ManageReviews />
-      //     </AdminRoute>
-      //   ),
-      // },
     ],
   },
 ]);

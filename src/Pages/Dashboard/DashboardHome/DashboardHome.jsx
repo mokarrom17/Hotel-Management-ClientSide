@@ -6,6 +6,7 @@ import RevenueChart from "./RevenueChart";
 import BookingTrendChart from "./BookingTrendChart";
 import OccupancyCard from "./OccupancyCard";
 import RecentBookings from "./RecentBookings";
+import TodaySummary from "./TodaySummary";
 
 const DashboardHome = () => {
   const axiosSecure = useAxiosSecure();
@@ -41,6 +42,8 @@ const DashboardHome = () => {
     <div className="space-y-6 mx-8 mb-10">
       {/* Statistics */}
       <DashboardStats stats={stats} />
+
+      <TodaySummary />
 
       {/* Revenue Chart */}
       <RevenueChart />

@@ -11,6 +11,7 @@ import {
   FaUsersCog,
   FaDoorOpen,
   FaClipboardList,
+  FaSignOutAlt,
 } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import useAdmin from "../hooks/useAdmin";
@@ -35,16 +36,16 @@ const DashboardLayout = () => {
           aria-label="close sidebar"
           className="drawer-overlay"
         ></label>
-        <div className="flex min-h-full flex-col items-start bg-base-200 is-drawer-close:w-14 is-drawer-open:w-64">
+        <div className="flex min-h-full flex-col items-start bg-white border-r border-gray-200 is-drawer-close:w-14 is-drawer-open:w-72">
           {/* Sidebar content here */}
-          <ul className="menu w-full grow gap-2 text-[15px]">
+          <ul className="menu w-full grow gap-1 p-4 text-[15px]">
             <li>
               <NavLink
                 to="/"
                 className={({ isActive }) =>
                   isActive
-                    ? "bg-[#c49b63] text-white rounded-xl"
-                    : "rounded-xl hover:bg-[#f5f5f5]"
+                    ? "bg-[#c49b63] text-white rounded-xl shadow-md"
+                    : "rounded-xl transition-all duration-300 hover:bg-[#f8f6f2] hover:translate-x-1"
                 }
               >
                 <FaHome className="text-lg" />
@@ -58,8 +59,8 @@ const DashboardLayout = () => {
                 end
                 className={({ isActive }) =>
                   isActive
-                    ? "bg-[#c49b63] text-white rounded-xl"
-                    : "rounded-xl hover:bg-[#f5f5f5]"
+                    ? "bg-[#c49b63] text-white rounded-xl shadow-md"
+                    : "rounded-xl transition-all duration-300 hover:bg-[#f8f6f2] hover:translate-x-1"
                 }
               >
                 <FaTachometerAlt className="text-lg" />
@@ -72,8 +73,8 @@ const DashboardLayout = () => {
                 to="/dashboard/profile"
                 className={({ isActive }) =>
                   isActive
-                    ? "bg-[#c49b63] text-white rounded-xl"
-                    : "rounded-xl hover:bg-[#f5f5f5]"
+                    ? "bg-[#c49b63] text-white rounded-xl shadow-md"
+                    : "rounded-xl transition-all duration-300 hover:bg-[#f8f6f2] hover:translate-x-1"
                 }
               >
                 <FaUser className="text-lg" />
@@ -86,130 +87,144 @@ const DashboardLayout = () => {
                 to="/dashboard/my-bookings"
                 className={({ isActive }) =>
                   isActive
-                    ? "bg-[#c49b63] text-white rounded-xl"
-                    : "rounded-xl hover:bg-[#f5f5f5]"
+                    ? "bg-[#c49b63] text-white rounded-xl shadow-md"
+                    : "rounded-xl transition-all duration-300 hover:bg-[#f8f6f2] hover:translate-x-1"
                 }
               >
                 <FaBed className="text-lg" />
                 <span className="is-drawer-close:hidden">My Bookings</span>
               </NavLink>
             </li>
+            <div className="divider my-4"></div>
+            <li className="menu-title uppercase tracking-wider text-xs font-bold text-gray-400 px-2">
+              <span>Administration</span>
+            </li>
             {/*  Admin */}
-            {/* {isAdmin && (
-              <li>
-                <NavLink
-                  to="/dashboard/manage-users"
-                  className={({ isActive }) =>
-                    isActive
-                      ? "bg-[#c49b63] text-white rounded-xl"
-                      : "rounded-xl hover:bg-[#f5f5f5]"
-                  }
-                >
-                  <FaUsersCog className="text-lg" />
-                  <span className="is-drawer-close:hidden">Manage Users</span>
-                </NavLink>
-              </li>
-            )} */}
+            {isAdmin && (
+              <>
+                <li>
+                  <NavLink
+                    to="/dashboard/manage-users"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "bg-[#c49b63] text-white rounded-xl shadow-md"
+                        : "rounded-xl transition-all duration-300 hover:bg-[#f8f6f2] hover:translate-x-1"
+                    }
+                  >
+                    <FaUsersCog className="text-lg" />
+                    <span className="is-drawer-close:hidden">Manage Users</span>
+                  </NavLink>
+                </li>
 
-            <li>
-              <NavLink
-                to="/dashboard/manage-users"
-                className={({ isActive }) =>
-                  isActive
-                    ? "bg-[#c49b63] text-white rounded-xl"
-                    : "rounded-xl hover:bg-[#f5f5f5]"
-                }
-              >
-                <FaUsersCog className="text-lg" />
-                <span className="is-drawer-close:hidden">Manage Users</span>
-              </NavLink>
-            </li>
+                <li>
+                  <NavLink
+                    to="/dashboard/manage-room-types"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "bg-[#c49b63] text-white rounded-xl shadow-md"
+                        : "rounded-xl transition-all duration-300 hover:bg-[#f8f6f2] hover:translate-x-1"
+                    }
+                  >
+                    <FaBed className="text-lg" />
+                    <span className="is-drawer-close:hidden">
+                      Manage Room Types
+                    </span>
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/dashboard/manage-rooms"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "bg-[#c49b63] text-white rounded-xl shadow-md"
+                        : "rounded-xl transition-all duration-300 hover:bg-[#f8f6f2] hover:translate-x-1"
+                    }
+                  >
+                    <FaDoorOpen className="text-lg" />
+                    <span className="is-drawer-close:hidden">Manage Rooms</span>
+                  </NavLink>
+                </li>
 
-            <li>
-              <NavLink
-                to="/dashboard/manage-room-types"
-                className={({ isActive }) =>
-                  isActive
-                    ? "bg-[#c49b63] text-white rounded-xl"
-                    : "rounded-xl hover:bg-[#f5f5f5]"
-                }
-              >
-                <FaBed className="text-lg" />
-                <span className="is-drawer-close:hidden">
-                  Manage Room Types
-                </span>
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/dashboard/manage-rooms"
-                className={({ isActive }) =>
-                  isActive
-                    ? "bg-[#c49b63] text-white rounded-xl"
-                    : "rounded-xl hover:bg-[#f5f5f5]"
-                }
-              >
-                <FaDoorOpen className="text-lg" />
-                <span className="is-drawer-close:hidden">Manage Rooms</span>
-              </NavLink>
-            </li>
+                <li>
+                  <NavLink
+                    to="/dashboard/manage-bookings"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "bg-[#c49b63] text-white rounded-xl shadow-md"
+                        : "rounded-xl transition-all duration-300 hover:bg-[#f8f6f2] hover:translate-x-1"
+                    }
+                  >
+                    <FaClipboardList className="text-lg" />
+                    <span className="is-drawer-close:hidden">
+                      Manage Bookings
+                    </span>
+                  </NavLink>
+                </li>
 
-            <li>
-              <NavLink
-                to="/dashboard/manage-bookings"
-                className={({ isActive }) =>
-                  isActive
-                    ? "bg-[#c49b63] text-white rounded-xl"
-                    : "rounded-xl hover:bg-[#f5f5f5]"
-                }
-              >
-                <FaClipboardList className="text-lg" />
-                <span className="is-drawer-close:hidden">Manage Bookings</span>
-              </NavLink>
-            </li>
+                <li>
+                  <NavLink
+                    to="/dashboard/payments/:bookingId"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "bg-[#c49b63] text-white rounded-xl shadow-md"
+                        : "rounded-xl transition-all duration-300 hover:bg-[#f8f6f2] hover:translate-x-1"
+                    }
+                  >
+                    <FaCreditCard className="text-lg" />
+                    <span className="is-drawer-close:hidden">Payments</span>
+                  </NavLink>
+                </li>
 
-            <li>
-              <NavLink
-                to="/dashboard/payments/:bookingId"
-                className={({ isActive }) =>
-                  isActive
-                    ? "bg-[#c49b63] text-white rounded-xl"
-                    : "rounded-xl hover:bg-[#f5f5f5]"
-                }
-              >
-                <FaCreditCard className="text-lg" />
-                <span className="is-drawer-close:hidden">Payments</span>
-              </NavLink>
-            </li>
+                <li>
+                  <NavLink
+                    to="/dashboard/reviews"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "bg-[#c49b63] text-white rounded-xl shadow-md"
+                        : "rounded-xl transition-all duration-300 hover:bg-[#f8f6f2] hover:translate-x-1"
+                    }
+                  >
+                    <FaStar className="text-lg" />
+                    <span className="is-drawer-close:hidden">My Reviews</span>
+                  </NavLink>
+                </li>
 
-            <li>
-              <NavLink
-                to="/dashboard/reviews"
-                className={({ isActive }) =>
-                  isActive
-                    ? "bg-[#c49b63] text-white rounded-xl"
-                    : "rounded-xl hover:bg-[#f5f5f5]"
-                }
-              >
-                <FaStar className="text-lg" />
-                <span className="is-drawer-close:hidden">My Reviews</span>
-              </NavLink>
-            </li>
-
-            <li>
-              <NavLink
-                to="/dashboard/settings"
-                className={({ isActive }) =>
-                  isActive
-                    ? "bg-[#c49b63] text-white rounded-xl"
-                    : "rounded-xl hover:bg-[#f5f5f5]"
-                }
-              >
-                <FaCog className="text-lg" />
-                <span className="is-drawer-close:hidden">Settings</span>
-              </NavLink>
-            </li>
+                <li>
+                  <NavLink
+                    to="/dashboard/settings"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "bg-[#c49b63] text-white rounded-xl shadow-md"
+                        : "rounded-xl transition-all duration-300 hover:bg-[#f8f6f2] hover:translate-x-1"
+                    }
+                  >
+                    <FaCog className="text-lg" />
+                    <span className="is-drawer-close:hidden">Settings</span>
+                  </NavLink>
+                </li>
+              </>
+            )}
           </ul>
+
+          <div className="w-full mt-auto p-4">
+            <div className="divider my-4"></div>
+            <button
+              // onClick={handleLogout}
+              className="w-full flex items-center gap-3 rounded-xl px-4 py-3 transition-all duration-300 hover:bg-red-50 hover:text-red-600"
+            >
+              <FaSignOutAlt className="text-lg" />
+              <span className="is-drawer-close:hidden">Logout</span>
+            </button>
+          </div>
+          <div className="w-full border-t p-4 pb-4">
+            <p className="text-center text-xs text-gray-500">
+              Hotel Management System
+            </p>
+
+            <p className="mt-1 text-center text-xs text-gray-400">
+              Version 1.0.0
+            </p>
+          </div>
         </div>
       </div>
     </div>
