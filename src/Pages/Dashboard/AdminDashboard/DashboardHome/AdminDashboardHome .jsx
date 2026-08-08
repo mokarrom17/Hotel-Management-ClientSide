@@ -8,7 +8,7 @@ import OccupancyCard from "./OccupancyCard";
 import RecentBookings from "./RecentBookings";
 import TodaySummary from "./TodaySummary";
 
-const DashboardHome = () => {
+const AdminDashboardHome = () => {
   const axiosSecure = useAxiosSecure();
 
   const {
@@ -60,4 +60,4 @@ const DashboardHome = () => {
   );
 };
 
-export default DashboardHome;
+export default AdminDashboardHome;

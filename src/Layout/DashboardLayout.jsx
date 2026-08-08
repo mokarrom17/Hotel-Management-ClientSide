@@ -96,12 +96,13 @@ const DashboardLayout = () => {
               </NavLink>
             </li>
             <div className="divider my-4"></div>
-            <li className="menu-title uppercase tracking-wider text-xs font-bold text-gray-400 px-2">
-              <span>Administration</span>
-            </li>
+
             {/*  Admin */}
             {isAdmin && (
               <>
+                <li className="menu-title uppercase tracking-wider text-xs font-bold text-gray-400 px-2">
+                  <span>Administration</span>
+                </li>
                 <li>
                   <NavLink
                     to="/dashboard/manage-users"

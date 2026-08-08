@@ -22,8 +22,8 @@ import EditRoomType from "../Pages/Dashboard/AdminDashboard/ManageRoomTypes/Edit
 import ManageRooms from "../Pages/Dashboard/AdminDashboard/ManageRooms/ManageRooms";
 import ManageBookings from "../Pages/Dashboard/AdminDashboard/ManageBookings/ManageBookings";
 import BookingPage from "../Pages/Booking/BookingPage/BookingPage";
-import DashboardHome from "../Pages/Dashboard/AdminDashboard/DashboardHome/DashboardHome";
 import AdminRoute from "./AdminRoute";
+import DashboardHome from "../Pages/Dashboard/DashboardHome/DashboardHome.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -118,11 +118,7 @@ const router = createBrowserRouter([
       // Dashboard Home
       {
         index: true,
-        element: (
-          <AdminRoute>
-            <DashboardHome />
-          </AdminRoute>
-        ),
+        element: <DashboardHome />,
       },
 
       // Profile
