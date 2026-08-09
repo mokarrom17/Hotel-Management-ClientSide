@@ -1,8 +1,16 @@
+import QuickActions from "./QuickActions";
+import RecentBookings from "./RecentBookings";
+import UpcomingStay from "./UpcomingStay";
+import UserStats from "./UserStats";
+import UserWelcome from "./WelcomeCard";
+
 const UserDashboardHome = () => {
   return (
-    <div className="m-12 ">
-      <h1 className="text-2xl font-bold">User Dashboard</h1>
-      <p>Welcome to your dashboard.</p>
+    <div className="p-6">
+      <UserWelcome />
+      <UserStats />
+      <UpcomingStay />
+      <RecentBookings />
     </div>
   );
 };

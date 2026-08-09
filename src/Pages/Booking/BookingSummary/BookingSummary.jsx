@@ -50,7 +50,7 @@ const BookingSummary = ({
         {/* Price / Night */}
         <div className="flex justify-between items-center">
           <span className="text-gray-500">Price / Night</span>
-          <span className="font-semibold">£{price}</span>
+          <span className="font-semibold">${price}</span>
         </div>
 
         {/* Check In */}
@@ -77,14 +77,14 @@ const BookingSummary = ({
         <div className="flex justify-between items-center">
           <span className="text-gray-500">Room Total</span>
           <span className="font-semibold">
-            {nights > 0 ? `£${roomTotal}` : "--"}
+            {nights > 0 ? `$${roomTotal}` : "--"}
           </span>
         </div>
 
         {/* Service Fee */}
         <div className="flex justify-between items-center">
           <span className="text-gray-500">Service Fee</span>
-          <span>{nights > 0 ? `£${serviceFee}` : "--"}</span>
+          <span>{nights > 0 ? `$${serviceFee}` : "--"}</span>
         </div>
 
         <div className="border-t pt-5">
@@ -92,7 +92,7 @@ const BookingSummary = ({
           <div className="flex justify-between items-center mb-6">
             <span className="text-xl font-bold">Total</span>
             <span className="text-2xl font-black text-[#c49b63]">
-              {nights > 0 ? `£${total}` : "--"}
+              {nights > 0 ? `$${total}` : "--"}
             </span>{" "}
           </div>
 

@@ -63,7 +63,13 @@ const SignUp = () => {
       };
 
       // Save User To Database
-      const res = await axiosPublic.post("/users", userInfo);
+      const token = await result.user.getIdToken();
+
+      const res = await axiosPublic.post("/users", userInfo, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
       if (res.data.insertedId || res.data.message) {
         toast.success("Account Created Successfully");

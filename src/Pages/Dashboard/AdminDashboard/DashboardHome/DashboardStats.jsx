@@ -15,7 +15,7 @@ const DashboardStats = ({ stats }) => {
   const cards = [
     {
       title: "Total Revenue",
-      value: `£${stats.totalRevenue || 0}`,
+      value: `${stats.totalRevenue || 0}`,
       icon: <FaDollarSign />,
       color: "bg-green-100 text-green-600",
     },

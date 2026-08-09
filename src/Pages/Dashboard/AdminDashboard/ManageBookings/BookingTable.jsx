@@ -174,7 +174,7 @@ const BookingTable = ({
 
               <td>{booking.nights}</td>
 
-              <td>£{booking.totalPrice.toFixed(2)}</td>
+              <td>${booking.totalPrice.toFixed(2)}</td>
 
               <td>{getPaymentStatusBadge(booking.paymentStatus)}</td>
 

@@ -54,7 +54,7 @@ const RecentBookings = () => {
 
                 <td>{booking.checkIn}</td>
 
-                <td>£{booking.totalPrice}</td>
+                <td>${booking.totalPrice}</td>
 
                 <td>
                   <span

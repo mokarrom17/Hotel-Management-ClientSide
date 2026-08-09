@@ -26,7 +26,13 @@ const SocialLogin = ({ type }) => {
           lastLogin: new Date(),
         };
 
-        await axiosPublic.post("/users", userInfo);
+        const token = await user.getIdToken();
+
+        await axiosPublic.post("/users", userInfo, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
 
         toast.success("Logged in successfully!");
         navigate("/");
