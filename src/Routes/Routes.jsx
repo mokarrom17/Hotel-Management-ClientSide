@@ -24,6 +24,7 @@ import ManageBookings from "../Pages/Dashboard/AdminDashboard/ManageBookings/Man
 import BookingPage from "../Pages/Booking/BookingPage/BookingPage";
 import AdminRoute from "./AdminRoute";
 import DashboardHome from "../Pages/Dashboard/DashboardHome/DashboardHome.jsx";
+import EmployeeApplication from "../Pages/Dashboard/EmployeeApplication/EmployeeApplication.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -125,6 +126,16 @@ const router = createBrowserRouter([
       {
         path: "profile",
         element: <MyProfile />,
+      },
+
+      // Employee Application
+      {
+        path: "employee-application",
+        element: (
+          <PrivateRoute>
+            <EmployeeApplication />
+          </PrivateRoute>
+        ),
       },
 
       // My Bookings

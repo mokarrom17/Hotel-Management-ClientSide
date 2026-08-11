@@ -12,13 +12,16 @@ import {
   FaDoorOpen,
   FaClipboardList,
   FaSignOutAlt,
+  FaBriefcase,
 } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import useAdmin from "../hooks/useAdmin";
 import DashboardNavbar from "../Pages/Dashboard/AdminDashboard/DashboardNavbar/DashboardNavbar";
+import useUserRole from "../hooks/useUserRole";
 
 const DashboardLayout = () => {
   const { isAdmin } = useAdmin();
+  const { isUser } = useUserRole();
 
   return (
     <div className="drawer lg:drawer-open">
@@ -95,6 +98,25 @@ const DashboardLayout = () => {
                 <span className="is-drawer-close:hidden">My Bookings</span>
               </NavLink>
             </li>
+
+            {isUser && (
+              <li>
+                <NavLink
+                  to="/dashboard/employee-application"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "bg-[#c49b63] text-white rounded-xl shadow-md"
+                      : "rounded-xl transition-all duration-300 hover:bg-[#f8f6f2] hover:translate-x-1"
+                  }
+                >
+                  <FaBriefcase className="text-lg" />
+                  <span className="is-drawer-close:hidden">
+                    Become an Employee
+                  </span>
+                </NavLink>
+              </li>
+            )}
+
             <div className="divider my-4"></div>
 
             {/*  Admin */}
