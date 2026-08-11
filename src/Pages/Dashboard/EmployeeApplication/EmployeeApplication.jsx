@@ -1,8 +1,11 @@
 import { useForm } from "react-hook-form";
 import useAuth from "../../../hooks/useAuth";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import toast from "react-hot-toast";
 
 const EmployeeApplication = () => {
   const { user } = useAuth();
+  const axiosSecure = useAxiosSecure();
 
   const {
     register,
@@ -11,11 +14,31 @@ const EmployeeApplication = () => {
     reset,
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log("Employee Application:", data);
+  const onSubmit = async (data) => {
+    try {
+      const res = await axiosSecure.post("employee-applications", data);
 
-    // API পরে connect করব
-    reset();
+      if (res.data.success) {
+        Swal.fire({
+          icon: "success",
+          title: "Application Submitted!",
+          text: "Your employee application has been submitted successfully.",
+          confirmButtonColor: "#c49b63",
+        });
+        reset();
+      }
+    } catch (error) {
+      console.error("Employee application error: ", error);
+
+      Swal.fire({
+        icon: "error",
+        title: "Submission Failed",
+        text:
+          error.response?.data?.message ||
+          "Something went wrong. Please try again.",
+        confirmButtonColor: "#c49b63",
+      });
+    }
   };
 
   return (
