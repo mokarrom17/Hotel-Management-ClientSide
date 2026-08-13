@@ -13,6 +13,7 @@ import {
   FaClipboardList,
   FaSignOutAlt,
   FaBriefcase,
+  FaUserTie,
 } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import useAdmin from "../hooks/useAdmin";
@@ -180,6 +181,22 @@ const DashboardLayout = () => {
                     <FaClipboardList className="text-lg" />
                     <span className="is-drawer-close:hidden">
                       Manage Bookings
+                    </span>
+                  </NavLink>
+                </li>
+
+                <li>
+                  <NavLink
+                    to="/dashboard/manage-employees"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "bg-[#c49b63] text-white rounded-xl shadow-md"
+                        : "rounded-xl transition-all duration-300 hover:bg-[#f8f6f2] hover:translate-x-1"
+                    }
+                  >
+                    <FaUserTie className="text-lg" />
+                    <span className="is-drawer-close:hidden">
+                      Manage Employees
                     </span>
                   </NavLink>
                 </li>

@@ -25,6 +25,7 @@ import BookingPage from "../Pages/Booking/BookingPage/BookingPage";
 import AdminRoute from "./AdminRoute";
 import DashboardHome from "../Pages/Dashboard/DashboardHome/DashboardHome.jsx";
 import EmployeeApplication from "../Pages/Dashboard/EmployeeApplication/EmployeeApplication.jsx";
+import ManageEmployee from "../Pages/Dashboard/AdminDashboard/ManageEmployee/ManageEmployee.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -200,6 +201,14 @@ const router = createBrowserRouter([
         element: (
           <AdminRoute>
             <ManageBookings />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "manage-employees",
+        element: (
+          <AdminRoute>
+            <ManageEmployee />
           </AdminRoute>
         ),
       },
