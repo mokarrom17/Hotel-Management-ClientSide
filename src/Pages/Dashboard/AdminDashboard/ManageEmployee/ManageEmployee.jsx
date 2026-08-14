@@ -20,6 +20,8 @@ import Swal from "sweetalert2";
 const ManageEmployee = () => {
   const axiosSecure = useAxiosSecure();
   const [selectedApplication, setSelectedApplication] = useState(null);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [statusFilter, setStatusFilter] = useState("all");
   // Fetch employee applications using React Query
   const {
     data: applications = [],
@@ -33,6 +35,22 @@ const ManageEmployee = () => {
       return res.data;
     },
   });
+
+  // Filter applications based on search term and status
+  const filteredApplications = applications.filter((application) => {
+    const search = searchTerm.toLowerCase().trim();
+
+    const matchesSearch =
+      application.name?.toLowerCase().includes(search) ||
+      application.email?.toLowerCase().includes(search) ||
+      application.position?.toLowerCase().includes(search);
+
+    const matchesStatus =
+      statusFilter === "all" || application.status === statusFilter;
+
+    return matchesSearch && matchesStatus;
+  });
+
   // Approve application handler
   const handleApprove = async (application) => {
     const result = await Swal.fire({
@@ -164,11 +182,11 @@ const ManageEmployee = () => {
         </div>
 
         {/* Stats */}
-        <div className="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-3">
+        <div className="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
           <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
             <p className="text-sm text-gray-500">Total Applications</p>
             <h2 className="mt-1 text-2xl font-bold text-gray-800">
-              {applications.length}
+              {filteredApplications.length}
             </h2>
           </div>
 
@@ -193,74 +211,146 @@ const ManageEmployee = () => {
               }
             </h2>
           </div>
+          {/* Rejected */}
+          <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
+            <p className="text-sm text-gray-500">Rejected</p>
+
+            <h2 className="mt-1 text-2xl font-bold text-red-600">
+              {
+                applications.filter(
+                  (application) => application.status === "rejected",
+                ).length
+              }
+            </h2>
+          </div>
+        </div>
+
+        {/* Search & Filter */}
+        <div className="mb-5 rounded-2xl border border-gray-200 bg-white p-4 shadow-sm">
+          <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+            {/* Search */}
+            <div className="w-full md:max-w-md">
+              <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-gray-400">
+                Search Applications
+              </label>
+
+              <div className="relative">
+                <input
+                  type="text"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  placeholder="Search by name, email or position..."
+                  className="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-700 outline-none transition placeholder:text-gray-400 focus:border-[#aa8453] focus:bg-white focus:ring-2 focus:ring-[#aa8453]/10"
+                />
+              </div>
+            </div>
+
+            {/* Status Filter */}
+            <div className="w-full md:w-48">
+              <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-gray-400">
+                Filter by Status
+              </label>
+
+              <select
+                value={statusFilter}
+                onChange={(e) => setStatusFilter(e.target.value)}
+                className="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm font-medium text-gray-700 outline-none transition focus:border-[#aa8453] focus:bg-white focus:ring-2 focus:ring-[#aa8453]/10"
+              >
+                <option value="all">All Applications</option>
+                <option value="pending">Pending</option>
+                <option value="approved">Approved</option>
+                <option value="rejected">Rejected</option>
+              </select>
+            </div>
+          </div>
         </div>
 
         {/* Application Table */}
         <div className="w-full overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
           <div className="w-full overflow-x-auto">
-            <table className="w-full min-w-[1050px]">
+            <table className="w-full min-w-[1100px]">
               <thead>
                 <tr className="border-b border-gray-200 bg-gray-50 text-left text-sm text-gray-600">
-                  <th className="w-12 px-4 py-4 font-semibold">#</th>
+                  <th className="w-12 whitespace-nowrap px-4 py-4 font-semibold">
+                    #
+                  </th>
 
-                  <th className="min-w-[190px] px-4 py-4 font-semibold">
+                  <th className="min-w-[190px] whitespace-nowrap px-4 py-4 font-semibold">
                     Applicant
                   </th>
 
-                  <th className="min-w-[230px] px-4 py-4 font-semibold">
+                  <th className="min-w-[230px] whitespace-nowrap px-4 py-4 font-semibold">
                     Email
                   </th>
 
-                  <th className="min-w-[160px] px-4 py-4 font-semibold">
+                  <th className="min-w-[170px] whitespace-nowrap px-4 py-4 font-semibold">
                     Position
                   </th>
 
-                  <th className="min-w-[150px] px-4 py-4 font-semibold">
+                  <th className="min-w-[160px] whitespace-nowrap px-4 py-4 font-semibold">
                     Experience
                   </th>
 
-                  <th className="w-[120px] px-4 py-4 font-semibold">Status</th>
+                  <th className="min-w-[120px] whitespace-nowrap px-4 py-4 font-semibold">
+                    Status
+                  </th>
 
-                  <th className="w-[140px] whitespace-nowrap px-4 py-4 font-semibold">
+                  <th className="min-w-[140px] whitespace-nowrap px-4 py-4 font-semibold">
                     Applied Date
                   </th>
 
-                  <th className="w-[130px] px-4 py-4 text-center font-semibold">
+                  <th className="min-w-[120px] whitespace-nowrap px-4 py-4 text-center font-semibold">
                     Action
                   </th>
                 </tr>
               </thead>
-
+              {/* Application Rows */}
               <tbody>
-                {applications.length === 0 ? (
+                {filteredApplications.length === 0 ? (
                   <tr>
-                    <td colSpan="8" className="px-4 py-12 text-center">
-                      <p className="text-gray-500">
-                        No employee applications found.
-                      </p>
+                    <td colSpan="8" className="px-4 py-14 text-center">
+                      <div className="flex flex-col items-center justify-center">
+                        <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-gray-100 text-gray-400">
+                          <FaUserTie />
+                        </div>
+
+                        <p className="font-semibold text-gray-700">
+                          No applications found
+                        </p>
+
+                        <p className="mt-1 text-sm text-gray-400">
+                          Try changing your search or filter.
+                        </p>
+                      </div>
                     </td>
                   </tr>
                 ) : (
-                  applications.map((application, index) => (
+                  filteredApplications.map((application, index) => (
                     <tr
                       key={application._id}
                       className="border-b border-gray-100 transition hover:bg-gray-50"
                     >
-                      {/* Number */}
-                      <td className="px-4 py-4 text-sm font-medium text-gray-600">
+                      {/* # */}
+                      <td className="px-4 py-4 text-sm font-medium text-gray-500">
                         {index + 1}
                       </td>
 
                       {/* Applicant */}
                       <td className="px-4 py-4">
-                        <div className="min-w-[170px]">
-                          <p className="break-words font-semibold text-gray-800">
-                            {application.name}
-                          </p>
+                        <div className="flex min-w-[170px] items-center gap-3">
+                          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#aa8453]/10 text-sm font-bold text-[#aa8453]">
+                            {application.name?.charAt(0)?.toUpperCase() || "?"}
+                          </div>
 
-                          <p className="mt-1 whitespace-nowrap text-xs text-gray-500">
-                            {application.phone}
-                          </p>
+                          <div className="min-w-0">
+                            <p className="break-words font-semibold text-gray-800">
+                              {application.name}
+                            </p>
+
+                            <p className="mt-1 whitespace-nowrap text-xs text-gray-500">
+                              {application.phone}
+                            </p>
+                          </div>
                         </div>
                       </td>
 
@@ -273,14 +363,14 @@ const ManageEmployee = () => {
 
                       {/* Position */}
                       <td className="px-4 py-4">
-                        <p className="min-w-[140px] break-words font-medium text-gray-700">
+                        <p className="min-w-[150px] break-words font-medium text-gray-700">
                           {application.position}
                         </p>
                       </td>
 
                       {/* Experience */}
                       <td className="px-4 py-4">
-                        <p className="min-w-[130px] break-words text-sm text-gray-600">
+                        <p className="min-w-[140px] break-words text-sm text-gray-600">
                           {application.experience}
                         </p>
                       </td>
