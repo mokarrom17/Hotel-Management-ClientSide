@@ -1,10 +1,10 @@
 import useUserRole from "../../../hooks/useUserRole";
 import AdminDashboardHome from "../AdminDashboard/DashboardHome/AdminDashboardHome ";
-import EmployeeDashboardHome from "../EmployeeDashboard/EmployeeDashboardHome";
+import StaffDashboard from "../StaffDashboard/StaffDashboardHome/StaffDashboardHome";
 import UserDashboardHome from "../UserDashboardHome/UserDashboardHome";
 
 const DashboardHome = () => {
-  const { isRoleLoading, isAdmin, isEmployee, isUser } = useUserRole();
+  const { isRoleLoading, isAdmin, isStaff, isUser } = useUserRole();
 
   if (isRoleLoading) {
     return (
@@ -18,10 +18,9 @@ const DashboardHome = () => {
     return <AdminDashboardHome />;
   }
 
-  if (isEmployee) {
-    return <EmployeeDashboardHome />;
+  if (isStaff) {
+    return <StaffDashboard />;
   }
-
   if (isUser) {
     return <UserDashboardHome />;
   }

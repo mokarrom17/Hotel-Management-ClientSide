@@ -13,6 +13,11 @@ const useUserRole = () => {
 
     queryFn: async () => {
       const res = await axiosSecure.get(`/users/role/${user.email}`);
+
+      console.log("Logged in email:", user.email);
+      console.log("Role API response:", res.data);
+      console.log("Role:", res.data.role);
+
       return res.data.role;
     },
   });
@@ -21,7 +26,7 @@ const useUserRole = () => {
     role,
     isRoleLoading,
     isAdmin: role === "admin",
-    isEmployee: role === "staff",
+    isStaff: role === "staff",
     isUser: role === "customer",
   };
 };
