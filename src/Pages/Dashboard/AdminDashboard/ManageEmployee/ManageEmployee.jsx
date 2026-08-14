@@ -20,7 +20,7 @@ import Swal from "sweetalert2";
 const ManageEmployee = () => {
   const axiosSecure = useAxiosSecure();
   const [selectedApplication, setSelectedApplication] = useState(null);
-
+  // Fetch employee applications using React Query
   const {
     data: applications = [],
     isLoading,
@@ -33,7 +33,7 @@ const ManageEmployee = () => {
       return res.data;
     },
   });
-
+  // Approve application handler
   const handleApprove = async (application) => {
     const result = await Swal.fire({
       title: "Approve Application?",
@@ -71,6 +71,53 @@ const ManageEmployee = () => {
         title: "Approval Failed",
         text:
           error.response?.data?.message || "Failed to approve the application.",
+        icon: "error",
+        confirmButtonColor: "#aa8453",
+      });
+    }
+  };
+  // Reject application handler
+  const handleReject = async (application) => {
+    const result = await Swal.fire({
+      title: "Reject Application?",
+      text: `Are you sure you want to reject ${application.name}'s application?`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes, Reject",
+      cancelButtonText: "Cancel",
+      confirmButtonColor: "#dc2626",
+      cancelButtonColor: "#6b7280",
+    });
+
+    if (!result.isConfirmed) {
+      return;
+    }
+
+    try {
+      const res = await axiosSecure.patch(
+        `/admin/manage-employees/${application._id}/reject`,
+      );
+
+      if (res.data.success) {
+        await Swal.fire({
+          title: "Application Rejected",
+          text: `${application.name}'s application has been rejected.`,
+          icon: "success",
+          confirmButtonColor: "#aa8453",
+        });
+
+        setSelectedApplication(null);
+
+        // Refresh application list
+        refetch();
+      }
+    } catch (error) {
+      console.error("Reject application error:", error);
+
+      Swal.fire({
+        title: "Rejection Failed",
+        text:
+          error.response?.data?.message || "Failed to reject the application.",
         icon: "error",
         confirmButtonColor: "#aa8453",
       });
@@ -296,6 +343,7 @@ const ManageEmployee = () => {
         application={selectedApplication}
         onClose={() => setSelectedApplication(null)}
         onApprove={handleApprove}
+        onReject={handleReject}
       />
     </div>
   );

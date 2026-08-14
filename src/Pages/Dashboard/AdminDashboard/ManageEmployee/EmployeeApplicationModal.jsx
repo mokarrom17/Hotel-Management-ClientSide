@@ -12,15 +12,23 @@ import {
   FaTimes,
 } from "react-icons/fa";
 
-const EmployeeApplicationModal = ({ application, onClose, onApprove }) => {
+const EmployeeApplicationModal = ({
+  application,
+  onClose,
+  onApprove,
+  onReject,
+}) => {
   if (!application) return null;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-3 backdrop-blur-sm sm:p-5">
       <div className="relative flex h-[92vh] max-h-[92vh] w-full max-w-4xl flex-col overflow-hidden rounded-3xl bg-white shadow-2xl">
-        {/* Header */}
+        {/* =====================================================
+            HEADER
+        ====================================================== */}
         <div className="shrink-0 border-b border-gray-200 bg-white px-5 py-4 sm:px-6 sm:py-5 md:px-8">
           <div className="flex items-center justify-between gap-4">
+            {/* Applicant Info */}
             <div className="flex min-w-0 items-center gap-3 sm:gap-4">
               <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[#aa8453] text-white shadow-sm sm:h-14 sm:w-14">
                 <FaUserTie className="text-xl sm:text-2xl" />
@@ -55,20 +63,25 @@ const EmployeeApplicationModal = ({ application, onClose, onApprove }) => {
               </div>
             </div>
 
+            {/* Close */}
             <button
               type="button"
               onClick={onClose}
               aria-label="Close application details"
-              className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gray-100 text-gray-500 transition hover:bg-gray-200 hover:text-gray-800 sm:h-10 sm:w-10"
+              className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gray-100 text-gray-500 transition duration-200 hover:bg-gray-200 hover:text-gray-800 sm:h-10 sm:w-10"
             >
               <FaTimes />
             </button>
           </div>
         </div>
 
-        {/* Body */}
+        {/* =====================================================
+            BODY
+        ====================================================== */}
         <div className="min-h-0 min-w-0 flex-1 overflow-x-hidden overflow-y-auto bg-gray-50/70 px-4 py-5 sm:px-6 sm:py-6 md:px-8">
-          {/* Personal Information */}
+          {/* =================================================
+              PERSONAL INFORMATION
+          ================================================== */}
           <section className="mb-5 rounded-2xl border border-gray-200 bg-white p-5 shadow-sm sm:p-6">
             <div className="mb-5 flex items-center gap-3">
               <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#aa8453]/10 text-[#aa8453]">
@@ -87,6 +100,7 @@ const EmployeeApplicationModal = ({ application, onClose, onApprove }) => {
             </div>
 
             <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+              {/* Name */}
               <div className="flex min-w-0 items-start gap-3">
                 <FaUserTie className="mt-1 shrink-0 text-sm text-[#aa8453]" />
 
@@ -101,6 +115,7 @@ const EmployeeApplicationModal = ({ application, onClose, onApprove }) => {
                 </div>
               </div>
 
+              {/* Email */}
               <div className="flex min-w-0 items-start gap-3">
                 <FaEnvelope className="mt-1 shrink-0 text-sm text-[#aa8453]" />
 
@@ -115,6 +130,7 @@ const EmployeeApplicationModal = ({ application, onClose, onApprove }) => {
                 </div>
               </div>
 
+              {/* Phone */}
               <div className="flex min-w-0 items-start gap-3">
                 <FaPhone className="mt-1 shrink-0 text-sm text-[#aa8453]" />
 
@@ -129,6 +145,7 @@ const EmployeeApplicationModal = ({ application, onClose, onApprove }) => {
                 </div>
               </div>
 
+              {/* Date of Birth */}
               <div className="flex min-w-0 items-start gap-3">
                 <FaCalendarAlt className="mt-1 shrink-0 text-sm text-[#aa8453]" />
 
@@ -143,6 +160,7 @@ const EmployeeApplicationModal = ({ application, onClose, onApprove }) => {
                 </div>
               </div>
 
+              {/* Address */}
               <div className="flex min-w-0 items-start gap-3 md:col-span-2">
                 <FaMapMarkerAlt className="mt-1 shrink-0 text-sm text-[#aa8453]" />
 
@@ -159,7 +177,9 @@ const EmployeeApplicationModal = ({ application, onClose, onApprove }) => {
             </div>
           </section>
 
-          {/* Job Information */}
+          {/* =================================================
+              JOB INFORMATION
+          ================================================== */}
           <section className="mb-5 rounded-2xl border border-gray-200 bg-white p-5 shadow-sm sm:p-6">
             <div className="mb-5 flex items-center gap-3">
               <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#aa8453]/10 text-[#aa8453]">
@@ -176,6 +196,7 @@ const EmployeeApplicationModal = ({ application, onClose, onApprove }) => {
             </div>
 
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+              {/* Position */}
               <div className="min-w-0 rounded-xl bg-gray-50 p-4">
                 <p className="text-xs font-medium uppercase tracking-wide text-gray-400">
                   Position Applied For
@@ -190,6 +211,7 @@ const EmployeeApplicationModal = ({ application, onClose, onApprove }) => {
                 </div>
               </div>
 
+              {/* Experience */}
               <div className="min-w-0 rounded-xl bg-gray-50 p-4">
                 <p className="text-xs font-medium uppercase tracking-wide text-gray-400">
                   Previous Experience
@@ -204,6 +226,7 @@ const EmployeeApplicationModal = ({ application, onClose, onApprove }) => {
                 </div>
               </div>
 
+              {/* Skills */}
               <div className="min-w-0 rounded-xl bg-gray-50 p-4 md:col-span-2">
                 <div className="flex items-center gap-2">
                   <FaTools className="shrink-0 text-[#aa8453]" />
@@ -220,7 +243,9 @@ const EmployeeApplicationModal = ({ application, onClose, onApprove }) => {
             </div>
           </section>
 
-          {/* Application Statement */}
+          {/* =================================================
+              APPLICATION STATEMENT
+          ================================================== */}
           <section className="mb-5 rounded-2xl border border-gray-200 bg-white p-5 shadow-sm sm:p-6">
             <div className="mb-4 flex items-center gap-3">
               <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#aa8453]/10 text-[#aa8453]">
@@ -245,7 +270,9 @@ const EmployeeApplicationModal = ({ application, onClose, onApprove }) => {
             </div>
           </section>
 
-          {/* Status */}
+          {/* =================================================
+              APPLICATION STATUS
+          ================================================== */}
           <section className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm sm:p-6">
             <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
               <div>
@@ -297,9 +324,12 @@ const EmployeeApplicationModal = ({ application, onClose, onApprove }) => {
           </section>
         </div>
 
-        {/* Footer */}
+        {/* =====================================================
+            FOOTER
+        ====================================================== */}
         <div className="shrink-0 border-t border-gray-200 bg-white px-5 py-4 sm:px-6 md:px-8">
           <div className="flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
+            {/* Close */}
             <button
               type="button"
               onClick={onClose}
@@ -308,6 +338,18 @@ const EmployeeApplicationModal = ({ application, onClose, onApprove }) => {
               Close
             </button>
 
+            {/* Reject */}
+            {application.status === "pending" && (
+              <button
+                type="button"
+                onClick={() => onReject(application)}
+                className="rounded-xl border border-red-200 bg-red-50 px-6 py-3 text-sm font-semibold text-red-600 transition duration-200 hover:bg-red-100 focus:outline-none focus:ring-2 focus:ring-red-300 focus:ring-offset-2"
+              >
+                Reject Application
+              </button>
+            )}
+
+            {/* Approve */}
             {application.status === "pending" && (
               <button
                 type="button"
