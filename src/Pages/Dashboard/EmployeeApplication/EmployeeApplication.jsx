@@ -1,8 +1,11 @@
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
+
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const EmployeeApplication = () => {
   const { user } = useAuth();
@@ -13,6 +16,7 @@ const EmployeeApplication = () => {
     handleSubmit,
     formState: { errors },
     reset,
+    control,
   } = useForm();
 
   const onSubmit = async (data) => {
@@ -41,6 +45,20 @@ const EmployeeApplication = () => {
       });
     }
   };
+
+  const today = new Date();
+
+  const maxDate = new Date(
+    today.getFullYear() - 18,
+    today.getMonth(),
+    today.getDate(),
+  );
+
+  const minDate = new Date(
+    today.getFullYear() - 65,
+    today.getMonth(),
+    today.getDate(),
+  );
 
   return (
     <div className="min-h-screen bg-gray-50 p-4 md:p-6">
@@ -105,7 +123,6 @@ const EmployeeApplication = () => {
                 </p>
               )}
             </div>
-
             {/* Phone + Date of Birth */}
             <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
               {/* Phone */}
@@ -117,7 +134,7 @@ const EmployeeApplication = () => {
                 <input
                   type="tel"
                   placeholder="01XXXXXXXXX"
-                  className="w-full rounded-xl border border-gray-300 px-4 py-3 text-gray-800 outline-none transition focus:border-[#aa8453]"
+                  className="w-full rounded-xl border border-gray-300 px-4 py-3 text-gray-800 outline-none transition focus:border-[#aa8453] focus:ring-2 focus:ring-[#aa8453]/20"
                   {...register("phone", {
                     required: "Phone number is required",
                     pattern: {
@@ -140,13 +157,133 @@ const EmployeeApplication = () => {
                   Date of Birth
                 </label>
 
-                <input
-                  type="date"
-                  className="w-full rounded-xl border border-gray-300 px-4 py-3 text-gray-800 outline-none transition focus:border-[#aa8453]"
-                  {...register("dateOfBirth", {
+                <Controller
+                  name="dateOfBirth"
+                  control={control}
+                  rules={{
                     required: "Date of birth is required",
-                  })}
+                  }}
+                  render={({ field }) => (
+                    <DatePicker
+                      selected={
+                        field.value ? new Date(`${field.value}T00:00:00`) : null
+                      }
+                      onChange={(date) => {
+                        if (date) {
+                          const year = date.getFullYear();
+
+                          const month = String(date.getMonth() + 1).padStart(
+                            2,
+                            "0",
+                          );
+
+                          const day = String(date.getDate()).padStart(2, "0");
+
+                          field.onChange(`${year}-${month}-${day}`);
+                        } else {
+                          field.onChange("");
+                        }
+                      }}
+                      minDate={minDate}
+                      maxDate={maxDate}
+                      dateFormat="dd/MM/yyyy"
+                      placeholderText="dd/mm/yyyy"
+                      isClearable
+                      wrapperClassName="w-full"
+                      className="w-full rounded-xl border border-gray-300 px-4 py-3 text-gray-800 outline-none transition focus:border-[#aa8453] focus:ring-2 focus:ring-[#aa8453]/20"
+                      calendarClassName="hotel-datepicker"
+                      renderCustomHeader={({
+                        date,
+                        decreaseMonth,
+                        increaseMonth,
+                        prevMonthButtonDisabled,
+                        nextMonthButtonDisabled,
+                        changeYear,
+                        changeMonth,
+                      }) => (
+                        <div className="datepicker-header">
+                          {/* Previous Month */}
+                          <button
+                            type="button"
+                            onClick={decreaseMonth}
+                            disabled={prevMonthButtonDisabled}
+                            className="datepicker-nav-btn"
+                          >
+                            ‹
+                          </button>
+
+                          {/* Month + Year */}
+                          <div className="datepicker-title">
+                            {/* Month */}
+                            <select
+                              value={date.getMonth()}
+                              onChange={(e) =>
+                                changeMonth(Number(e.target.value))
+                              }
+                              className="datepicker-select"
+                            >
+                              {[
+                                "January",
+                                "February",
+                                "March",
+                                "April",
+                                "May",
+                                "June",
+                                "July",
+                                "August",
+                                "September",
+                                "October",
+                                "November",
+                                "December",
+                              ].map((month, index) => (
+                                <option key={month} value={index}>
+                                  {month}
+                                </option>
+                              ))}
+                            </select>
+
+                            {/* Year */}
+                            <select
+                              value={date.getFullYear()}
+                              onChange={(e) =>
+                                changeYear(Number(e.target.value))
+                              }
+                              className="datepicker-select"
+                            >
+                              {Array.from(
+                                {
+                                  length:
+                                    maxDate.getFullYear() -
+                                    minDate.getFullYear() +
+                                    1,
+                                },
+                                (_, index) => minDate.getFullYear() + index,
+                              ).map((year) => (
+                                <option key={year} value={year}>
+                                  {year}
+                                </option>
+                              ))}
+                            </select>
+                          </div>
+
+                          {/* Next Month */}
+                          <button
+                            type="button"
+                            onClick={increaseMonth}
+                            disabled={nextMonthButtonDisabled}
+                            className="datepicker-nav-btn"
+                          >
+                            ›
+                          </button>
+                        </div>
+                      )}
+                    />
+                  )}
                 />
+
+                <p className="mt-1 text-xs text-gray-400">
+                  Age must be between 18 and 65 years.
+                </p>
 
                 {errors.dateOfBirth && (
                   <p className="mt-1 text-sm text-red-500">

@@ -2,9 +2,10 @@ import { useLoaderData, Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { FaArrowLeft, FaStar, FaUserFriends, FaBed } from "react-icons/fa";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import BookingSummary from "../BookingSummary/BookingSummary";
 import useAuth from "../../../hooks/useAuth";
+import toast from "react-hot-toast";
 
 const BookingPage = () => {
   // ===============================
@@ -18,6 +19,8 @@ const BookingPage = () => {
 
   const navigate = useNavigate();
 
+  const queryClient = useQueryClient();
+
   const { image, type, price, adults, child, beds, rating, totalReviews } =
     room;
 
@@ -27,6 +30,8 @@ const BookingPage = () => {
   const [checkIn, setCheckIn] = useState("");
   const [checkOut, setCheckOut] = useState("");
   const [selectedRoom, setSelectedRoom] = useState(null);
+  const [floor, setFloor] = useState("");
+  const [view, setView] = useState("");
   const today = new Date().toISOString().split("T")[0];
 
   const nights =
@@ -38,12 +43,34 @@ const BookingPage = () => {
 
   const serviceFee = 20;
 
-  const { data: availableRooms = [] } = useQuery({
-    queryKey: ["availableRooms", type],
+  const { data: filterOptions = { floors: [], views: [] } } = useQuery({
+    queryKey: ["roomFilters", type],
     queryFn: async () => {
-      const res = await axiosSecure.get(`/rooms/available?roomType=${type}`);
+      const res = await axiosSecure.get(
+        `/rooms/filters?roomType=${encodeURIComponent(type)}`,
+      );
       return res.data;
     },
+  });
+
+  const { data: availableRooms = [], isLoading: loadingRooms } = useQuery({
+    queryKey: ["availableRooms", type, checkIn, checkOut, floor, view],
+    queryFn: async () => {
+      const params = new URLSearchParams({
+        roomType: type,
+        checkIn,
+        checkOut,
+      });
+
+      if (floor) params.append("floor", floor);
+      if (view) params.append("view", view);
+
+      const res = await axiosSecure.get(
+        `/rooms/available?${params.toString()}`,
+      );
+      return res.data;
+    },
+    enabled: !!checkIn && !!checkOut,
   });
 
   if (!room?._id) {
@@ -55,36 +82,40 @@ const BookingPage = () => {
   }
 
   const handleContinue = async () => {
+    if (!selectedRoom) return;
+
     const bookingData = {
       customerName: user.displayName,
       customerEmail: user.email,
-
       type,
-
       roomId: selectedRoom._id,
       roomNumber: selectedRoom.roomNumber,
-
       checkIn,
       checkOut,
-
       nights,
-
       pricePerNight: price,
-
       serviceFee,
-
       totalPrice: nights * price + serviceFee,
-
       paymentStatus: "pending",
       bookingStatus: "pending",
     };
 
     try {
       const res = await axiosSecure.post("/bookings", bookingData);
-
       navigate(`/payment/${res.data.insertedId}`);
     } catch (error) {
-      console.log(error);
+      if (error.response?.status === 409) {
+        toast.error(
+          error.response.data.message ||
+            "This room was just booked. Please pick another.",
+        );
+        setSelectedRoom(null);
+        queryClient.invalidateQueries({
+          queryKey: ["availableRooms", type, checkIn, checkOut],
+        });
+      } else {
+        toast.error("Something went wrong. Please try again.");
+      }
     }
   };
 
@@ -180,7 +211,7 @@ const BookingPage = () => {
                     min={today}
                     value={checkIn}
                     onChange={(e) => {
-                      setCheckIn(e.target.value);
+                      (setCheckIn(e.target.value), setSelectedRoom(null));
 
                       // Check-out reset if invalid
                       if (checkOut && e.target.value >= checkOut) {
@@ -211,46 +242,125 @@ const BookingPage = () => {
             <div className="bg-white rounded-3xl shadow-lg p-8">
               <h2 className="text-3xl font-black mb-8">Choose Your Room</h2>
 
+              {/* Floor / View Filter */}
+              {checkIn && checkOut && (
+                <div className="grid md:grid-cols-3 gap-4 mb-8">
+                  <div>
+                    <label className="font-semibold text-sm text-gray-600">
+                      Floor
+                    </label>
+                    <select
+                      className="select select-bordered w-full mt-2"
+                      value={floor}
+                      onChange={(e) => {
+                        setFloor(e.target.value);
+                        setSelectedRoom(null);
+                      }}
+                    >
+                      <option value="">All Floors</option>
+                      {filterOptions.floors.map((f) => (
+                        <option key={f} value={f}>
+                          Floor {f}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="font-semibold text-sm text-gray-600">
+                      View
+                    </label>
+                    <select
+                      className="select select-bordered w-full mt-2"
+                      value={view}
+                      onChange={(e) => {
+                        setView(e.target.value);
+                        setSelectedRoom(null);
+                      }}
+                    >
+                      <option value="">All Views</option>
+                      {filterOptions.views.map((v) => (
+                        <option key={v} value={v}>
+                          {v}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+
+                  {(floor || view) && (
+                    <div className="flex items-end">
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setFloor("");
+                          setView("");
+                          setSelectedRoom(null);
+                        }}
+                        className="btn btn-ghost text-[#c49b63]"
+                      >
+                        Clear Filters
+                      </button>
+                    </div>
+                  )}
+                </div>
+              )}
+
               <div className="space-y-5">
                 {/* Room Card */}
-
-                {availableRooms.map((room) => (
-                  <label
-                    key={room._id}
-                    className={`border rounded-2xl p-5 flex justify-between items-center cursor-pointer transition-all duration-300
+                {!checkIn || !checkOut ? (
+                  <p className="text-gray-500">
+                    Room দেখতে আগে Check In / Check Out date সিলেক্ট করো।
+                  </p>
+                ) : loadingRooms ? (
+                  <span className="loading loading-spinner text-[#c49b63]"></span>
+                ) : availableRooms.length === 0 ? (
+                  <p className="text-gray-500">
+                    এই date{floor || view ? " এবং filter" : ""}-এর জন্য কোনো
+                    room available নাই।
+                    {(floor || view) && " Filter clear করে বা "}
+                    অন্য date try করো।
+                  </p>
+                ) : (
+                  availableRooms.map((room) => (
+                    <label
+                      key={room._id}
+                      className={`border rounded-2xl p-5 flex justify-between items-center cursor-pointer transition-all duration-300
                         ${
                           selectedRoom?._id === room._id
                             ? "border-[#c49b63] bg-[#fff8ef] shadow-md"
                             : "border-gray-200 hover:border-[#c49b63]"
                         }`}
-                  >
-                    <div>
-                      <div className="flex items-center gap-3">
-                        <h3 className="text-xl font-bold">
-                          Room {room.roomNumber}
-                        </h3>
+                    >
+                      <div>
+                        <div className="flex items-center gap-3">
+                          <h3 className="text-xl font-bold">
+                            Room {room.roomNumber}
+                          </h3>
 
-                        {selectedRoom?._id === room._id && (
-                          <span className="badge badge-warning text-white">
-                            Selected
-                          </span>
-                        )}
+                          {selectedRoom?._id === room._id && (
+                            <span className="badge badge-warning text-white">
+                              Selected
+                            </span>
+                          )}
+                        </div>
+
+                        <p className="text-gray-500 mt-2">
+                          Floor: {room.floor}
+                        </p>
+
+                        <p className="text-gray-500">{room.view}</p>
                       </div>
 
-                      <p className="text-gray-500 mt-2">Floor: {room.floor}</p>
-
-                      <p className="text-gray-500">{room.view}</p>
-                    </div>
-
-                    <input
-                      type="radio"
-                      name="room"
-                      className="radio radio-warning"
-                      checked={selectedRoom?._id === room._id}
-                      onChange={() => setSelectedRoom(room)}
-                    />
-                  </label>
-                ))}
+                      <input
+                        type="radio"
+                        name="room"
+                        className="radio radio-warning"
+                        checked={selectedRoom?._id === room._id}
+                        onChange={() => setSelectedRoom(room)}
+                      />
+                    </label>
+                  ))
+                )}
               </div>
             </div>
           </div>
