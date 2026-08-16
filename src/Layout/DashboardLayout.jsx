@@ -22,8 +22,7 @@ import useUserRole from "../hooks/useUserRole";
 
 const DashboardLayout = () => {
   const { isAdmin } = useAdmin();
-  const { isUser } = useUserRole();
-
+  const { isStaff, isUser } = useUserRole();
   return (
     <div className="drawer lg:drawer-open">
       <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
@@ -240,6 +239,44 @@ const DashboardLayout = () => {
                   >
                     <FaCog className="text-lg" />
                     <span className="is-drawer-close:hidden">Settings</span>
+                  </NavLink>
+                </li>
+              </>
+            )}
+            {/* Staff */}
+            {isStaff && (
+              <>
+                <li className="menu-title uppercase tracking-wider text-xs font-bold text-gray-400 px-2">
+                  <span>Staff</span>
+                </li>
+
+                <li>
+                  <NavLink
+                    to="/dashboard/staff-bookings"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "bg-[#c49b63] text-white rounded-xl shadow-md"
+                        : "rounded-xl transition-all duration-300 hover:bg-[#f8f6f2] hover:translate-x-1"
+                    }
+                  >
+                    <FaClipboardList className="text-lg" />
+                    <span className="is-drawer-close:hidden">
+                      Staff Bookings
+                    </span>
+                  </NavLink>
+                </li>
+
+                <li>
+                  <NavLink
+                    to="/dashboard/room-status"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "bg-[#c49b63] text-white rounded-xl shadow-md"
+                        : "rounded-xl transition-all duration-300 hover:bg-[#f8f6f2] hover:translate-x-1"
+                    }
+                  >
+                    <FaDoorOpen className="text-lg" />
+                    <span className="is-drawer-close:hidden">Room Status</span>
                   </NavLink>
                 </li>
               </>

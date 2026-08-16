@@ -26,6 +26,7 @@ import AdminRoute from "./AdminRoute";
 import DashboardHome from "../Pages/Dashboard/DashboardHome/DashboardHome.jsx";
 import EmployeeApplication from "../Pages/Dashboard/EmployeeApplication/EmployeeApplication.jsx";
 import ManageEmployee from "../Pages/Dashboard/AdminDashboard/ManageEmployee/ManageEmployee.jsx";
+import StaffBookings from "../Pages/Dashboard/StaffDashboard/StaffBookings/StaffBookings.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -143,6 +144,16 @@ const router = createBrowserRouter([
       {
         path: "my-bookings",
         element: <MyBookings />,
+      },
+
+      // Staff Bookings
+      {
+        path: "staff-bookings",
+        element: (
+          <PrivateRoute>
+            <StaffBookings />
+          </PrivateRoute>
+        ),
       },
 
       // Payment

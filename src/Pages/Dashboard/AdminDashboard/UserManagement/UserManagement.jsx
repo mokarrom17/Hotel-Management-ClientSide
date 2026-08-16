@@ -39,7 +39,9 @@ const UserManagement = () => {
   const totalUsers = users.length;
   const totalAdmins = users.filter((user) => user.role === "admin").length;
   const totalStaff = users.filter((user) => user.role === "staff").length;
-  const totalCustomers = users.filter((user) => user.role === "user").length;
+  const totalCustomers = users.filter(
+    (user) => user.role === "customer",
+  ).length;
   // ==========================================
   // Loading and Error Handling
   // ==========================================
@@ -74,22 +76,34 @@ const UserManagement = () => {
           role: "admin",
         };
 
-        axiosSecure.patch(`/users/${user._id}`, roleInfo).then((res) => {
-          if (res.data.modifiedCount > 0) {
-            refetch();
+        axiosSecure
+          .patch(`/users/${user._id}`, roleInfo)
+          .then((res) => {
+            if (res.data.modifiedCount > 0) {
+              refetch();
+
+              Swal.fire({
+                icon: "success",
+                title: "Success!",
+                text: `${user.name ?? user.email} is now an Admin.`,
+                timer: 1500,
+                showConfirmButton: false,
+              });
+            }
+          })
+          .catch((error) => {
+            console.error(error);
 
             Swal.fire({
-              icon: "success",
-              title: "Success!",
-              text: `${user.name ?? user.email} is now an Admin.`,
-              timer: 1500,
-              showConfirmButton: false,
+              icon: "error",
+              title: "Something went wrong!",
+              text: "Failed to make this user an admin.",
             });
-          }
-        });
+          });
       }
     });
   };
+
   const handleRemoveAdmin = (user) => {
     Swal.fire({
       title: "Remove Admin?",
@@ -101,7 +115,7 @@ const UserManagement = () => {
       if (result.isConfirmed) {
         axiosSecure
           .patch(`/users/${user._id}`, {
-            role: "user",
+            role: "customer",
           })
           .then((res) => {
             if (res.data.modifiedCount > 0) {
@@ -110,11 +124,20 @@ const UserManagement = () => {
               Swal.fire({
                 icon: "success",
                 title: "Admin Removed",
-                text: `${user.name} is now a user.`,
+                text: `${user.name} is now a customer.`,
                 timer: 1500,
                 showConfirmButton: false,
               });
             }
+          })
+          .catch((error) => {
+            console.error(error);
+
+            Swal.fire({
+              icon: "error",
+              title: "Something went wrong!",
+              text: "Failed to remove admin access.",
+            });
           });
       }
     });
@@ -252,7 +275,7 @@ const UserManagement = () => {
             <option value="all">All Roles</option>
             <option value="admin">Admin</option>
             <option value="staff">Staff</option>
-            <option value="user">User</option>
+            <option value="customer">Customer</option>
           </select>
 
           {/* Sort */}
@@ -301,7 +324,7 @@ const UserManagement = () => {
                         src={
                           user.photoURL || "https://i.ibb.co/4pDNDk1/avatar.png"
                         }
-                        alt="User"
+                        alt={user.name || "User"}
                       />
                     </div>
                   </div>
@@ -317,7 +340,7 @@ const UserManagement = () => {
                       user.role === "admin" ? "badge-success" : "badge-warning"
                     }`}
                   >
-                    {user.role || "user"}
+                    {user.role || "customer"}
                   </span>
                 </td>
                 <td>
