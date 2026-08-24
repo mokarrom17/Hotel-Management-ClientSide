@@ -56,6 +56,9 @@ const TodayCheckIns = () => {
       queryClient.invalidateQueries({
         queryKey: ["staff-today-activity"],
       });
+      queryClient.invalidateQueries({
+        queryKey: ["staff-recent-activity"],
+      });
     },
 
     onError: (error) => {
