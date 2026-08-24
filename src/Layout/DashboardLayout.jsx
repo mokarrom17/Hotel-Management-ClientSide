@@ -14,11 +14,12 @@ import {
   FaSignOutAlt,
   FaBriefcase,
   FaUserTie,
+  FaHistory,
 } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import useAdmin from "../hooks/useAdmin";
-import DashboardNavbar from "../Pages/Dashboard/AdminDashboard/DashboardNavbar/DashboardNavbar";
 import useUserRole from "../hooks/useUserRole";
+import DashboardNavbar from "../Pages/Dashboard/DashboardNavbar/DashboardNavbar";
 
 const DashboardLayout = () => {
   const { isAdmin } = useAdmin();
@@ -199,6 +200,22 @@ const DashboardLayout = () => {
                     </span>
                   </NavLink>
                 </li>
+                <li>
+                  <NavLink
+                    to="/dashboard/booking-history"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "bg-[#c49b63] text-white rounded-xl shadow-md"
+                        : "rounded-xl transition-all duration-300 hover:bg-[#f8f6f2] hover:translate-x-1"
+                    }
+                  >
+                    <FaHistory className="text-lg" />
+
+                    <span className="is-drawer-close:hidden">
+                      Booking History
+                    </span>
+                  </NavLink>
+                </li>
 
                 <li>
                   <NavLink
@@ -277,6 +294,22 @@ const DashboardLayout = () => {
                   >
                     <FaDoorOpen className="text-lg" />
                     <span className="is-drawer-close:hidden">Room Status</span>
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/dashboard/staff-booking-history"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "bg-[#c49b63] text-white rounded-xl shadow-md"
+                        : "rounded-xl transition-all duration-300 hover:bg-[#f8f6f2] hover:translate-x-1"
+                    }
+                  >
+                    <FaHistory className="text-lg" />
+
+                    <span className="is-drawer-close:hidden">
+                      My Booking History
+                    </span>
                   </NavLink>
                 </li>
               </>

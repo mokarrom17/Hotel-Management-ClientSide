@@ -102,7 +102,7 @@ const BookingPage = () => {
 
     try {
       const res = await axiosSecure.post("/bookings", bookingData);
-      navigate(`/payment/${res.data.insertedId}`);
+      navigate(`/payment/${res.data.result.insertedId}`);
     } catch (error) {
       if (error.response?.status === 409) {
         toast.error(

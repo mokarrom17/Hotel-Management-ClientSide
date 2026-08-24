@@ -27,6 +27,9 @@ import DashboardHome from "../Pages/Dashboard/DashboardHome/DashboardHome.jsx";
 import EmployeeApplication from "../Pages/Dashboard/EmployeeApplication/EmployeeApplication.jsx";
 import ManageEmployee from "../Pages/Dashboard/AdminDashboard/ManageEmployee/ManageEmployee.jsx";
 import StaffBookings from "../Pages/Dashboard/StaffDashboard/StaffBookings/StaffBookings.jsx";
+import StaffRoomStatus from "../Pages/Dashboard/StaffDashboard/StaffRoomStatus/StaffRoomStatus.jsx";
+import BookingHistory from "../Pages/Dashboard/AdminDashboard/BookingHistory/BookingHistory.jsx";
+import MyBookingHistory from "../Pages/Dashboard/StaffDashboard/MyBookingHistory/MyBookingHistory.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -155,6 +158,15 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
+      // Staff Booking History
+      {
+        path: "staff-booking-history",
+        element: (
+          <PrivateRoute>
+            <MyBookingHistory />
+          </PrivateRoute>
+        ),
+      },
 
       // Payment
       {
@@ -216,11 +228,23 @@ const router = createBrowserRouter([
         ),
       },
       {
+        path: "booking-history",
+        element: <BookingHistory />,
+      },
+      {
         path: "manage-employees",
         element: (
           <AdminRoute>
             <ManageEmployee />
           </AdminRoute>
+        ),
+      },
+      {
+        path: "room-status",
+        element: (
+          <PrivateRoute>
+            <StaffRoomStatus />
+          </PrivateRoute>
         ),
       },
     ],

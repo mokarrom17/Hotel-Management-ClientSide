@@ -4,6 +4,8 @@ import StaffResponsibilities from "./StaffResponsibilities";
 import StaffProfile from "./StaffProfile";
 import StaffRecentActivity from "./StaffRecentActivity";
 import StaffStats from "./StaffStats";
+import TodayCheckIns from "./TodayCheckIns";
+import TodayCheckOuts from "./TodayCheckOuts";
 
 const StaffDashboardHome = () => {
   return (
@@ -14,6 +16,11 @@ const StaffDashboardHome = () => {
 
         {/* Statistics */}
         <StaffStats />
+
+        <div className="grid grid-cols-1 gap-6 xl:grid-cols-2 mb-6">
+          <TodayCheckIns />
+          <TodayCheckOuts />
+        </div>
 
         {/* Responsibilities + Profile */}
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">

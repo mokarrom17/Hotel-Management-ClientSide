@@ -1,10 +1,19 @@
-import { FaBars, FaBell, FaCog, FaSearch, FaUserCircle } from "react-icons/fa";
-import { Link, useLocation } from "react-router-dom";
-import useAuth from "../../../../hooks/useAuth";
+import { FaBars, FaBell, FaCog, FaSearch } from "react-icons/fa";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import useAuth from "../../../hooks/useAuth";
+import useUserRole from "../../../hooks/useUserRole";
+
+const ROLE_LABELS = {
+  admin: "Administrator",
+  staff: "Staff Member",
+  customer: "Customer",
+};
 
 const DashboardNavbar = () => {
   const { user } = useAuth();
+  const { role } = useUserRole();
   const location = useLocation();
+  const navigate = useNavigate();
 
   const currentPath = location.pathname.split("/").pop();
 
@@ -14,6 +23,10 @@ const DashboardNavbar = () => {
       : currentPath
           .replace(/-/g, " ")
           .replace(/\b\w/g, (char) => char.toUpperCase());
+
+  const displayName = user?.displayName || "Guest";
+  const roleLabel = ROLE_LABELS[role] || "Guest";
+
   return (
     <div className="border-b bg-white px-6 py-4 shadow-sm">
       <div className="flex items-center justify-between">
@@ -31,10 +44,11 @@ const DashboardNavbar = () => {
               <h2 className="text-2xl font-bold text-gray-800">{pageTitle}</h2>
 
               <p className="text-sm text-gray-500">
-                Welcome back, {user?.displayName || "Admin"} 👋
+                Welcome back, {displayName} 👋
               </p>
             </div>
           </div>
+
           <div className="mt-3 border-t pt-3 text-sm text-gray-500">
             <Link to="/" className="font-medium text-[#c49b63] hover:underline">
               Home
@@ -55,36 +69,44 @@ const DashboardNavbar = () => {
               type="text"
               className="grow"
               placeholder="Search users, rooms, bookings..."
+              // NOTE: not wired to a real search endpoint yet.
+              // Hook this up once a global search API exists.
             />
           </label>
         </div>
 
         {/* Right */}
         <div className="flex items-center gap-5">
-          <div className="indicator">
-            <span className="indicator-item badge badge-error badge-xs">3</span>
+          <button
+            className="btn btn-ghost btn-circle text-xl"
+            aria-label="Notifications"
+          >
+            <FaBell />
+          </button>
 
-            <button className="btn btn-ghost btn-circle text-xl">
-              <FaBell />
-            </button>
-          </div>
-
-          <button className="btn btn-ghost btn-circle text-xl">
+          <button
+            className="btn btn-ghost btn-circle text-xl"
+            aria-label="Settings"
+            onClick={() => navigate("/dashboard/profile")}
+          >
             <FaCog />
           </button>
 
-          <button className="btn btn-ghost">
+          <button
+            className="btn btn-ghost"
+            onClick={() => navigate("/dashboard/profile")}
+          >
             <img
               src={user?.photoURL || "/avatar.png"}
-              alt=""
+              alt={displayName}
               className="w-11 h-11 rounded-full object-cover border-2 border-[#c49b63]"
             />
             <div className="hidden md:flex flex-col items-start">
               <span className="text-sm font-semibold text-gray-800">
-                {user?.displayName || "Admin"}
+                {displayName}
               </span>
 
-              <span className="text-xs text-gray-500">Administrator</span>
+              <span className="text-xs text-gray-500">{roleLabel}</span>
             </div>
           </button>
         </div>

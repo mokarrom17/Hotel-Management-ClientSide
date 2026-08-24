@@ -7,13 +7,20 @@ import {
   FaHotel,
   FaMoneyBillWave,
   FaUser,
+  FaSignInAlt,
+  FaSignOutAlt,
 } from "react-icons/fa";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import Swal from "sweetalert2";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 
 const StaffBookings = () => {
   const axiosSecure = useAxiosSecure();
+  const queryClient = useQueryClient();
 
+  // ==========================================
+  // Get Staff Bookings
+  // ==========================================
   const {
     data: bookings = [],
     isLoading,
@@ -27,6 +34,132 @@ const StaffBookings = () => {
     },
   });
 
+  // ==========================================
+  // Check-In Mutation
+  // ==========================================
+  const checkInMutation = useMutation({
+    mutationFn: async (bookingId) => {
+      const res = await axiosSecure.patch(
+        `/admin/bookings/${bookingId}/check-in`,
+      );
+
+      return res.data;
+    },
+
+    onSuccess: () => {
+      Swal.fire({
+        icon: "success",
+        title: "Guest Checked In",
+        text: "The guest has been checked in successfully.",
+        confirmButtonColor: "#aa8453",
+      });
+
+      queryClient.invalidateQueries({
+        queryKey: ["staff-bookings"],
+      });
+    },
+
+    onError: (error) => {
+      Swal.fire({
+        icon: "error",
+        title: "Check-In Failed",
+        text: error?.response?.data?.message || "Failed to check in the guest.",
+        confirmButtonColor: "#aa8453",
+      });
+    },
+  });
+
+  // ==========================================
+  // Check-Out Mutation
+  // ==========================================
+  const checkOutMutation = useMutation({
+    mutationFn: async (bookingId) => {
+      const res = await axiosSecure.patch(
+        `/admin/bookings/${bookingId}/check-out`,
+      );
+
+      return res.data;
+    },
+
+    onSuccess: () => {
+      Swal.fire({
+        icon: "success",
+        title: "Guest Checked Out",
+        text: "The guest has been checked out successfully.",
+        confirmButtonColor: "#aa8453",
+      });
+
+      queryClient.invalidateQueries({
+        queryKey: ["staff-bookings"],
+      });
+    },
+
+    onError: (error) => {
+      Swal.fire({
+        icon: "error",
+        title: "Check-Out Failed",
+        text:
+          error?.response?.data?.message || "Failed to check out the guest.",
+        confirmButtonColor: "#aa8453",
+      });
+    },
+  });
+
+  // ==========================================
+  // Check-In Handler
+  // ==========================================
+  const handleCheckIn = (booking) => {
+    Swal.fire({
+      title: "Check In Guest?",
+      html: `
+        <div style="text-align: left;">
+          <p><strong>Guest:</strong> ${booking.customerName || "N/A"}</p>
+          <p><strong>Room:</strong> ${booking.roomNumber || "N/A"}</p>
+          <p><strong>Check-in:</strong> ${booking.checkIn || "N/A"}</p>
+        </div>
+      `,
+      icon: "question",
+      showCancelButton: true,
+      confirmButtonText: "Yes, Check In",
+      cancelButtonText: "Cancel",
+      confirmButtonColor: "#aa8453",
+      cancelButtonColor: "#6b7280",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        checkInMutation.mutate(booking._id);
+      }
+    });
+  };
+
+  // ==========================================
+  // Check-Out Handler
+  // ==========================================
+  const handleCheckOut = (booking) => {
+    Swal.fire({
+      title: "Check Out Guest?",
+      html: `
+        <div style="text-align: left;">
+          <p><strong>Guest:</strong> ${booking.customerName || "N/A"}</p>
+          <p><strong>Room:</strong> ${booking.roomNumber || "N/A"}</p>
+          <p><strong>Check-out:</strong> ${booking.checkOut || "N/A"}</p>
+        </div>
+      `,
+      icon: "question",
+      showCancelButton: true,
+      confirmButtonText: "Yes, Check Out",
+      cancelButtonText: "Cancel",
+      confirmButtonColor: "#aa8453",
+      cancelButtonColor: "#6b7280",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        checkOutMutation.mutate(booking._id);
+      }
+    });
+  };
+
+  // ==========================================
+  // Loading
+  // ==========================================
   if (isLoading) {
     return (
       <div className="min-h-[500px] bg-gray-50 p-4 md:p-6">
@@ -48,6 +181,9 @@ const StaffBookings = () => {
     );
   }
 
+  // ==========================================
+  // Error
+  // ==========================================
   if (isError) {
     return (
       <div className="flex min-h-[500px] items-center justify-center bg-gray-50 p-6">
@@ -60,12 +196,19 @@ const StaffBookings = () => {
     );
   }
 
+  // ==========================================
+  // Statistics
+  // ==========================================
   const pendingBookings = bookings.filter(
     (booking) => booking.bookingStatus === "pending",
   ).length;
 
   const confirmedBookings = bookings.filter(
     (booking) => booking.bookingStatus === "confirmed",
+  ).length;
+
+  const checkedInBookings = bookings.filter(
+    (booking) => booking.bookingStatus === "checked-in",
   ).length;
 
   return (
@@ -92,7 +235,7 @@ const StaffBookings = () => {
 
         {/* Statistics */}
         <div className="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-3">
-          {/* Total */}
+          {/* Active */}
           <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
             <div className="flex items-center justify-between">
               <div>
@@ -183,7 +326,8 @@ const StaffBookings = () => {
                         </p>
 
                         <p className="mt-1 text-sm text-gray-400">
-                          There are currently no pending or confirmed bookings.
+                          There are currently no pending, confirmed, or
+                          checked-in bookings.
                         </p>
                       </div>
                     </td>
@@ -247,22 +391,30 @@ const StaffBookings = () => {
                       {/* Booking Status */}
                       <td>
                         {booking.bookingStatus === "pending" && (
-                          <span className="badge badge-warning  gap-1 rounded-full px-3 py-3 font-medium">
-                            <FaClock />
+                          <span className="inline-flex items-center gap-1.5 rounded-full bg-amber-100 px-3 py-1.5 text-xs font-semibold text-amber-700">
+                            <FaClock className="text-[10px]" />
                             Pending
                           </span>
                         )}
 
                         {booking.bookingStatus === "confirmed" && (
-                          <span className="badge badge-success gap-1 rounded-full px-3 py-3 font-medium">
-                            <FaCheck />
+                          <span className="inline-flex items-center gap-1.5 rounded-full bg-green-100 px-3 py-1.5 text-xs font-semibold text-green-700">
+                            <FaCheck className="text-[10px]" />
                             Confirmed
                           </span>
                         )}
 
+                        {booking.bookingStatus === "checked-in" && (
+                          <span className="inline-flex items-center gap-1.5 rounded-full bg-blue-100 px-3 py-1.5 text-xs font-semibold text-blue-700">
+                            <FaSignInAlt className="text-[10px]" />
+                            Checked In
+                          </span>
+                        )}
+
                         {booking.bookingStatus !== "pending" &&
-                          booking.bookingStatus !== "confirmed" && (
-                            <span className="badge rounded p-2">
+                          booking.bookingStatus !== "confirmed" &&
+                          booking.bookingStatus !== "checked-in" && (
+                            <span className="inline-flex rounded-full bg-gray-100 px-3 py-1.5 text-xs font-semibold text-gray-600">
                               {booking.bookingStatus || "Unknown"}
                             </span>
                           )}
@@ -284,13 +436,48 @@ const StaffBookings = () => {
 
                       {/* Action */}
                       <td>
-                        <button
-                          type="button"
-                          className="btn btn-sm border-none bg-[#aa8453] text-white shadow-sm hover:bg-black"
-                        >
-                          <FaEye />
-                          View
-                        </button>
+                        <div className="flex min-w-[170px] flex-wrap items-center gap-2">
+                          {/* View */}
+                          <button
+                            type="button"
+                            className="btn btn-sm border-none bg-gray-100 text-gray-700 shadow-sm hover:bg-gray-200"
+                          >
+                            <FaEye />
+                            View
+                          </button>
+
+                          {/* Check In */}
+                          {booking.bookingStatus === "confirmed" && (
+                            <button
+                              type="button"
+                              onClick={() => handleCheckIn(booking)}
+                              disabled={checkInMutation.isPending}
+                              className="btn btn-sm border-none bg-[#aa8453] text-white shadow-sm hover:bg-black"
+                            >
+                              <FaSignInAlt />
+
+                              {checkInMutation.isPending
+                                ? "Checking..."
+                                : "Check In"}
+                            </button>
+                          )}
+
+                          {/* Check Out */}
+                          {booking.bookingStatus === "checked-in" && (
+                            <button
+                              type="button"
+                              onClick={() => handleCheckOut(booking)}
+                              disabled={checkOutMutation.isPending}
+                              className="btn btn-sm border-none bg-[#aa8453] text-white shadow-sm hover:bg-black"
+                            >
+                              <FaSignOutAlt />
+
+                              {checkOutMutation.isPending
+                                ? "Checking..."
+                                : "Check Out"}
+                            </button>
+                          )}
+                        </div>
                       </td>
                     </tr>
                   ))
