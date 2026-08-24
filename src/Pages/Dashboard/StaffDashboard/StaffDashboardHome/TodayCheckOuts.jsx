@@ -12,17 +12,20 @@ const TodayCheckOuts = () => {
   // Get Staff Bookings
   // ==========================================
   const {
-    data: bookings = [],
+    data: todayActivity = {},
     isLoading,
     isError,
   } = useQuery({
-    queryKey: ["staff-bookings"],
+    queryKey: ["staff-today-activity"],
 
     queryFn: async () => {
-      const res = await axiosSecure.get("/staff/bookings");
+      const res = await axiosSecure.get("/staff/today-activity");
+
       return res.data;
     },
   });
+
+  const todayCheckOuts = todayActivity.checkOuts || [];
 
   // ==========================================
   // Check-Out Mutation
@@ -45,7 +48,7 @@ const TodayCheckOuts = () => {
       });
 
       queryClient.invalidateQueries({
-        queryKey: ["staff-bookings"],
+        queryKey: ["staff-today-activity"],
       });
     },
 
@@ -58,57 +61,6 @@ const TodayCheckOuts = () => {
         confirmButtonColor: "#aa8453",
       });
     },
-  });
-
-  // ==========================================
-  // Today's Date
-  // ==========================================
-  const getTodayDate = () => {
-    const today = new Date();
-
-    const year = today.getFullYear();
-    const month = String(today.getMonth() + 1).padStart(2, "0");
-    const day = String(today.getDate()).padStart(2, "0");
-
-    return `${year}-${month}-${day}`;
-  };
-
-  const today = getTodayDate();
-
-  // ==========================================
-  // Normalize Booking Date
-  // Supports:
-  // YYYY-MM-DD
-  // DD/MM/YYYY
-  // ==========================================
-  const normalizeDate = (dateString) => {
-    if (!dateString) return null;
-
-    // YYYY-MM-DD
-    if (/^\d{4}-\d{2}-\d{2}$/.test(dateString)) {
-      return dateString;
-    }
-
-    // DD/MM/YYYY
-    if (/^\d{2}\/\d{2}\/\d{4}$/.test(dateString)) {
-      const [day, month, year] = dateString.split("/");
-
-      return `${year}-${month}-${day}`;
-    }
-
-    return null;
-  };
-
-  // ==========================================
-  // Today's Check-Outs
-  // ==========================================
-  const todayCheckOuts = bookings.filter((booking) => {
-    const bookingCheckOut = normalizeDate(booking.checkOut);
-
-    return (
-      bookingCheckOut === today &&
-      ["checked-in", "completed"].includes(booking.bookingStatus)
-    );
   });
 
   // ==========================================
