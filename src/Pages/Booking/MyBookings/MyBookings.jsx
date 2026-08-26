@@ -2,11 +2,16 @@ import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import ReviewModal from "../../Component/ReviewModal/ReviewModal.jsx";
+import BookingReviewAction from "../../Component/BookingReviewAction.jsx";
 
 const MyBookings = () => {
   const { user } = useAuth();
 
   const axiosSecure = useAxiosSecure();
+
+  const [selectedBooking, setSelectedBooking] = useState(null);
 
   const {
     data: bookings = [],
@@ -80,6 +85,8 @@ const MyBookings = () => {
                 <th>Price</th>
 
                 <th>Payment</th>
+
+                <th>Review</th>
               </tr>
             </thead>
 
@@ -124,11 +131,23 @@ const MyBookings = () => {
                       </Link>
                     )}
                   </td>
+                  <td>
+                    <BookingReviewAction
+                      booking={booking}
+                      onWriteReview={setSelectedBooking}
+                    />
+                  </td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
+      )}
+      {selectedBooking && (
+        <ReviewModal
+          booking={selectedBooking}
+          onClose={() => setSelectedBooking(null)}
+        />
       )}
     </div>
   );
